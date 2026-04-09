@@ -137,7 +137,7 @@ textarea, select {
         <div style="width:36px;height:36px;border-radius:8px;background:rgba(0,200,83,.12);display:flex;align-items:center;justify-content:center;">
           <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;color:#00C853;font-size:20px;">lightbulb</span>
         </div>
-        <span>IDEA TECH</span>
+        <span id="admin-site-name">IDEA TECH</span>
       </div>
       <p style="font-size:.7rem;color:rgba(255,255,255,.3);margin-top:.4rem;letter-spacing:.05em;">لوحة التحكم</p>
     </div>
@@ -186,7 +186,7 @@ textarea, select {
     <header class="admin-header">
       <div>
         <h1 id="section-title" style="font-size:1.25rem;font-weight:900;color:#fff;">نظرة عامة</h1>
-        <p id="section-sub" style="font-size:.75rem;color:rgba(255,255,255,.35);margin-top:2px;">مرحباً بك في لوحة تحكم IDEA TECH</p>
+        <p id="section-sub" style="font-size:.75rem;color:rgba(255,255,255,.35);margin-top:2px;">مرحباً بك في لوحة تحكم <span id="admin-site-name2">IDEA TECH</span></p>
       </div>
       <div style="display:flex;align-items:center;gap:1rem;">
         <span id="admin-name" style="font-size:.875rem;font-weight:700;color:#00C853;"></span>
@@ -319,8 +319,12 @@ textarea, select {
                 <input class="ctrl-input" id="s-address" style="width:100%;" value="Dubai, Digital Oasis — UAE"/>
               </div>
               <div>
-                <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;">شعار الموقع (نص)</label>
+                <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;">شعار الموقع (عربي)</label>
                 <input class="ctrl-input" id="s-tagline" style="width:100%;" value="نحوّل أفكارك إلى واقع تقني"/>
+              </div>
+              <div>
+                <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;">Site Tagline (English)</label>
+                <input class="ctrl-input" id="s-tagline-en" style="width:100%;direction:ltr;" value="We turn your ideas into tech reality"/>
               </div>
               <div>
                 <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;">أرقام WhatsApp (يُختار بشكل عشوائي)</label>
@@ -646,12 +650,18 @@ function renderPricing() {
           <input class="ctrl-input" id="p-${k}-price" value="${p.price||''}" style="width:100%;direction:ltr;"/>
         </div>
         <div style="margin-bottom:1rem;">
-          <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">الوصف</label>
+          <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">الوصف (عربي)</label>
           <input class="ctrl-input" id="p-${k}-desc" value="${p.desc||''}" style="width:100%;"/>
         </div>
+        <div style="margin-bottom:1rem;">
+          <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">Description (English)</label>
+          <input class="ctrl-input" id="p-${k}-descEn" value="${p.descEn||''}" style="width:100%;direction:ltr;"/>
+        </div>
         <div>
-          <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">المميزات (سطر لكل ميزة)</label>
-          <textarea class="ctrl-input" id="p-${k}-features" rows="5" style="width:100%;resize:vertical;">${(p.features||[]).join('\n')}</textarea>
+          <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">
+            المميزات — كل سطر: <span style="color:#00C853;font-family:monospace;">نص عربي|English text</span>
+          </label>
+          <textarea class="ctrl-input" id="p-${k}-features" rows="6" style="width:100%;resize:vertical;direction:ltr;">${(p.features||[]).join('\n')}</textarea>
         </div>
       </div>
     `;
@@ -667,6 +677,7 @@ window.savePricing = async function() {
       nameAr: document.getElementById(`p-${k}-nameAr`).value,
       price: document.getElementById(`p-${k}-price`).value,
       desc: document.getElementById(`p-${k}-desc`).value,
+      descEn: document.getElementById(`p-${k}-descEn`)?.value || '',
       features: document.getElementById(`p-${k}-features`).value.split('\n').filter(f => f.trim())
     };
   });
@@ -693,18 +704,26 @@ async function loadServices() {
 
 function renderServices() {
   document.getElementById('services-list').innerHTML = servicesData.map((s, i) => `
-    <div class="stat-card" style="display:grid;grid-template-columns:auto 1fr 1fr 1fr auto;gap:1rem;align-items:center;">
-      <span class="material-symbols-outlined" style="color:${s.color};">${s.icon}</span>
+    <div class="stat-card" style="display:grid;grid-template-columns:auto 1fr 1fr 1fr 1fr 1fr auto;gap:.75rem;align-items:center;">
+      <span class="material-symbols-outlined" style="color:${s.color||'#00C853'};">${s.icon||'star'}</span>
       <div>
-        <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">الاسم</label>
+        <label style="display:block;font-size:.65rem;color:rgba(255,255,255,.4);margin-bottom:.3rem;">الاسم (AR)</label>
         <input class="ctrl-input" id="srv-${i}-nameAr" value="${s.nameAr||''}" style="width:100%;"/>
       </div>
       <div>
-        <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">الوصف</label>
+        <label style="display:block;font-size:.65rem;color:rgba(255,255,255,.4);margin-bottom:.3rem;">Name (EN)</label>
+        <input class="ctrl-input" id="srv-${i}-nameEn" value="${s.nameEn||''}" style="width:100%;direction:ltr;"/>
+      </div>
+      <div>
+        <label style="display:block;font-size:.65rem;color:rgba(255,255,255,.4);margin-bottom:.3rem;">الوصف (AR)</label>
         <input class="ctrl-input" id="srv-${i}-descAr" value="${s.descAr||''}" style="width:100%;"/>
       </div>
       <div>
-        <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">أيقونة (Material)</label>
+        <label style="display:block;font-size:.65rem;color:rgba(255,255,255,.4);margin-bottom:.3rem;">Desc (EN)</label>
+        <input class="ctrl-input" id="srv-${i}-descEn" value="${s.descEn||''}" style="width:100%;direction:ltr;"/>
+      </div>
+      <div>
+        <label style="display:block;font-size:.65rem;color:rgba(255,255,255,.4);margin-bottom:.3rem;">أيقونة (Material)</label>
         <input class="ctrl-input" id="srv-${i}-icon" value="${s.icon||''}" style="width:100%;direction:ltr;"/>
       </div>
       <button class="btn-danger" onclick="removeService(${i})">
@@ -726,8 +745,10 @@ window.saveServices = async function() {
   servicesData = servicesData.map((s, i) => ({
     ...s,
     nameAr: document.getElementById(`srv-${i}-nameAr`)?.value || s.nameAr,
+    nameEn: document.getElementById(`srv-${i}-nameEn`)?.value || s.nameEn || s.nameAr,
     descAr: document.getElementById(`srv-${i}-descAr`)?.value || s.descAr,
-    icon: document.getElementById(`srv-${i}-icon`)?.value || s.icon
+    descEn: document.getElementById(`srv-${i}-descEn`)?.value || s.descEn || s.descAr,
+    icon:   document.getElementById(`srv-${i}-icon`)?.value   || s.icon
   }));
   await setDoc(doc(db, 'siteConfig', 'services'), { list: servicesData });
   showToast('تم حفظ الخدمات ✓');
@@ -774,7 +795,16 @@ async function loadSettings() {
       if (d.company)  document.getElementById('s-company').value  = d.company;
       if (d.email)    document.getElementById('s-email').value    = d.email;
       if (d.address)  document.getElementById('s-address').value  = d.address;
-      if (d.tagline)  document.getElementById('s-tagline').value  = d.tagline;
+      if (d.tagline)   document.getElementById('s-tagline').value    = d.tagline;
+      if (d.taglineEn) { const el = document.getElementById('s-tagline-en'); if(el) el.value = d.taglineEn; }
+      // Update admin UI labels
+      if (d.company) {
+        const n1 = document.getElementById('admin-site-name');
+        const n2 = document.getElementById('admin-site-name2');
+        if (n1) n1.textContent = d.company;
+        if (n2) n2.textContent = d.company;
+        document.title = d.company + ' | لوحة التحكم';
+      }
       // Support both old single string and new array
       if (d.whatsappNumbers && Array.isArray(d.whatsappNumbers)) {
         whatsappNumbers = d.whatsappNumbers;
@@ -807,11 +837,21 @@ window.saveSettings = async function() {
       email:            document.getElementById('s-email').value.trim(),
       address:          document.getElementById('s-address').value.trim(),
       tagline:          document.getElementById('s-tagline').value.trim(),
+      taglineEn:        document.getElementById('s-tagline-en')?.value.trim() || '',
       whatsappNumbers:  whatsappNumbers,
       updatedAt:        serverTimestamp()
     });
     showToast('تم حفظ الإعدادات ✓');
     renderWhatsappNumbers();
+    // Update admin UI live
+    const companyVal = document.getElementById('s-company').value.trim();
+    if (companyVal) {
+      const n1 = document.getElementById('admin-site-name');
+      const n2 = document.getElementById('admin-site-name2');
+      if (n1) n1.textContent = companyVal;
+      if (n2) n2.textContent = companyVal;
+      document.title = companyVal + ' | لوحة التحكم';
+    }
   } catch(e) {
     console.error('saveSettings error:', e);
     showToast('خطأ في الحفظ: ' + (e.message || 'حاول مجدداً'));

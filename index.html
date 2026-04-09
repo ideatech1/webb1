@@ -73,7 +73,7 @@ tailwind.config = {
       <div class="nav-logo-icon">
         <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;color:#00C853;">lightbulb</span>
       </div>
-      <span class="nav-logo-text">IDEA TECH</span>
+      <span class="nav-logo-text" id="site-nav-name">IDEA TECH</span>
     </a>
 
     <!-- Desktop links -->
@@ -132,12 +132,12 @@ tailwind.config = {
   <!-- Mobile menu -->
   <div id="mobile-menu">
     <div class="mobile-menu-inner">
-      <a href="#"         class="mobile-link active">Home</a>
-      <a href="#services" class="mobile-link" onclick="toggleMobileMenu()">Services</a>
-      <a href="#work"     class="mobile-link" onclick="toggleMobileMenu()">Our Work</a>
-      <a href="#pricing"  class="mobile-link" onclick="toggleMobileMenu()">Pricing</a>
-      <a href="#contact"  class="mobile-link" onclick="toggleMobileMenu()">Contact</a>
-      <a href="#contact"  class="btn-grad mobile-cta">Start a Project</a>
+      <a href="#"         class="mobile-link active" data-en="Home"            data-ar="الرئيسية">Home</a>
+      <a href="#services" class="mobile-link" onclick="toggleMobileMenu()" data-en="Services"       data-ar="الخدمات">Services</a>
+      <a href="#work"     class="mobile-link" onclick="toggleMobileMenu()" data-en="Our Work"        data-ar="أعمالنا">Our Work</a>
+      <a href="#pricing"  class="mobile-link" onclick="toggleMobileMenu()" data-en="Pricing"         data-ar="الأسعار">Pricing</a>
+      <a href="#contact"  class="mobile-link" onclick="toggleMobileMenu()" data-en="Contact"         data-ar="تواصل">Contact</a>
+      <a href="#contact"  class="btn-grad mobile-cta"                       data-en="Start a Project" data-ar="ابدأ مشروعك">Start a Project</a>
     </div>
   </div>
 </nav>
@@ -165,7 +165,7 @@ tailwind.config = {
     <h1 class="hero-h1-grad text-grad" data-en="Tech Reality" data-ar="واقع تقني">
       Tech Reality
     </h1>
-    <p class="hero-subtitle-ar" id="hero-subtitle">نحوّل أفكارك إلى واقع تقني</p>
+    <p class="hero-subtitle-ar" id="hero-subtitle" data-default="نحوّل أفكارك إلى واقع تقني">نحوّل أفكارك إلى واقع تقني</p>
 
     <p class="hero-desc" data-en="Websites • Apps • AI Bots • Automation • Design • Software" data-ar="مواقع • تطبيقات • بوتات AI • أتمتة • تصميم • برمجيات">
       Websites • Apps • AI Bots • Automation • Design • Software
@@ -393,10 +393,10 @@ tailwind.config = {
         <p  class="pricing-desc"  data-en="Perfect for MVP and Startups" data-ar="مثالي للمشاريع الناشئة">Perfect for MVP and Startups</p>
         <div class="pricing-price">$2k – $5k</div>
         <ul class="pricing-features">
-          <li class="pricing-feature"><span class="material-symbols-outlined">check_circle</span> Responsive Website</li>
-          <li class="pricing-feature"><span class="material-symbols-outlined">check_circle</span> UI/UX Basic Design</li>
-          <li class="pricing-feature"><span class="material-symbols-outlined">check_circle</span> 1 Month Support</li>
-          <li class="pricing-feature off"><span class="material-symbols-outlined">cancel</span> Advanced AI Integration</li>
+          <li class="pricing-feature" data-en="Responsive Website"        data-ar="موقع متجاوب"><span class="material-symbols-outlined">check_circle</span> Responsive Website</li>
+          <li class="pricing-feature" data-en="UI/UX Basic Design"          data-ar="تصميم UI/UX أساسي"><span class="material-symbols-outlined">check_circle</span> UI/UX Basic Design</li>
+          <li class="pricing-feature" data-en="1 Month Support"              data-ar="شهر دعم فني"><span class="material-symbols-outlined">check_circle</span> 1 Month Support</li>
+          <li class="pricing-feature off" data-en="Advanced AI Integration"  data-ar="تكامل ذكاء اصطناعي متقدم"><span class="material-symbols-outlined">cancel</span> Advanced AI Integration</li>
         </ul>
         <button class="pricing-btn" data-en="Get Started" data-ar="ابدأ الآن">Get Started</button>
       </div>
@@ -408,10 +408,10 @@ tailwind.config = {
         <p  class="pricing-desc"  data-en="Comprehensive digital products" data-ar="منتجات رقمية متكاملة">Comprehensive digital products</p>
         <div class="pricing-price">$10k – $25k</div>
         <ul class="pricing-features">
-          <li class="pricing-feature"><span class="material-symbols-outlined">check_circle</span> Mobile + Web Apps</li>
-          <li class="pricing-feature"><span class="material-symbols-outlined">check_circle</span> Custom Backend Logic</li>
-          <li class="pricing-feature"><span class="material-symbols-outlined">check_circle</span> 3 Months Support</li>
-          <li class="pricing-feature"><span class="material-symbols-outlined">check_circle</span> Basic AI Automation</li>
+          <li class="pricing-feature" data-en="Mobile + Web Apps"     data-ar="تطبيقات موبايل + ويب"><span class="material-symbols-outlined">check_circle</span> Mobile + Web Apps</li>
+          <li class="pricing-feature" data-en="Custom Backend Logic"   data-ar="منطق خلفي مخصص"><span class="material-symbols-outlined">check_circle</span> Custom Backend Logic</li>
+          <li class="pricing-feature" data-en="3 Months Support"       data-ar="3 أشهر دعم فني"><span class="material-symbols-outlined">check_circle</span> 3 Months Support</li>
+          <li class="pricing-feature" data-en="Basic AI Automation"    data-ar="أتمتة ذكاء اصطناعي أساسية"><span class="material-symbols-outlined">check_circle</span> Basic AI Automation</li>
         </ul>
         <button class="btn-grad pricing-btn-featured" data-en="Elevate Now" data-ar="ارتقِ الآن">Elevate Now</button>
       </div>
@@ -422,10 +422,10 @@ tailwind.config = {
         <p  class="pricing-desc"  data-en="Complex software &amp; AI" data-ar="برمجيات ذكاء اصطناعي متقدمة">Complex software &amp; AI</p>
         <div class="pricing-price">$50k+</div>
         <ul class="pricing-features">
-          <li class="pricing-feature secondary"><span class="material-symbols-outlined">check_circle</span> Custom Large Scale Software</li>
-          <li class="pricing-feature secondary"><span class="material-symbols-outlined">check_circle</span> Full AI Integration</li>
-          <li class="pricing-feature secondary"><span class="material-symbols-outlined">check_circle</span> Legacy Migration</li>
-          <li class="pricing-feature secondary"><span class="material-symbols-outlined">check_circle</span> Dedicated 24/7 Team</li>
+          <li class="pricing-feature secondary" data-en="Custom Large Scale Software" data-ar="برمجيات ضخمة مخصصة"><span class="material-symbols-outlined">check_circle</span> Custom Large Scale Software</li>
+          <li class="pricing-feature secondary" data-en="Full AI Integration"          data-ar="تكامل ذكاء اصطناعي كامل"><span class="material-symbols-outlined">check_circle</span> Full AI Integration</li>
+          <li class="pricing-feature secondary" data-en="Legacy Migration"             data-ar="ترحيل الأنظمة القديمة"><span class="material-symbols-outlined">check_circle</span> Legacy Migration</li>
+          <li class="pricing-feature secondary" data-en="Dedicated 24/7 Team"         data-ar="فريق مخصص 24/7"><span class="material-symbols-outlined">check_circle</span> Dedicated 24/7 Team</li>
         </ul>
         <button class="pricing-btn" data-en="Contact for Custom" data-ar="تواصل للتخصيص">Contact for Custom</button>
       </div>
@@ -442,17 +442,17 @@ tailwind.config = {
       <div class="contact-left">
         <div>
           <h2 class="contact-title"    data-en="Let's Build Something Great" data-ar="لنبني شيئاً رائعاً">Let's Build Something Great</h2>
-          <h3 class="contact-title-ar" dir="rtl">لنبني شيئاً رائعاً</h3>
+          <h3 class="contact-title-ar" dir="rtl" data-en="" data-ar="لنبني شيئاً رائعاً" style="display:none;">لنبني شيئاً رائعاً</h3>
           <p  class="contact-subtitle" data-en="Whether you're a startup or an enterprise, we're ready to engineer your future." data-ar="سواء كنت شركة ناشئة أو مؤسسة، نحن مستعدون لبناء مستقبلك.">Whether you're a startup or an enterprise, we're ready to engineer your future.</p>
         </div>
         <div class="contact-info">
           <div class="contact-info-item">
             <div class="contact-info-icon"><span class="material-symbols-outlined">mail</span></div>
-            <span class="contact-info-text">hello@ideatech.io</span>
+            <span class="contact-info-text" id="site-email">hello@ideatech.io</span>
           </div>
           <div class="contact-info-item">
             <div class="contact-info-icon"><span class="material-symbols-outlined">location_on</span></div>
-            <span class="contact-info-text">Dubai, Digital Oasis — UAE</span>
+            <span class="contact-info-text" id="site-address">Dubai, Digital Oasis — UAE</span>
           </div>
         </div>
       </div>
@@ -500,9 +500,9 @@ tailwind.config = {
           <div class="form-field">
             <label class="form-label" data-en="Budget Range" data-ar="نطاق الميزانية">Budget Range</label>
             <select id="cf-budget" class="form-select">
-              <option>$5k - $10k</option>
-              <option>$10k - $50k</option>
-              <option>$50k+</option>
+              <option data-en="$5k - $10k"  data-ar="5k$ - 10k$">$5k - $10k</option>
+              <option data-en="$10k - $50k" data-ar="10k$ - 50k$">$10k - $50k</option>
+              <option data-en="$50k+"       data-ar="+50k$">$50k+</option>
             </select>
           </div>
           <div class="form-field">
@@ -527,8 +527,8 @@ tailwind.config = {
 <footer class="footer-root">
   <div class="footer-inner">
     <div>
-      <div class="footer-brand-name">IDEA TECH</div>
-      <p class="footer-brand-tagline">نحوّل أفكارك إلى واقع تقني</p>
+      <div class="footer-brand-name" id="site-footer-name">IDEA TECH</div>
+      <p class="footer-brand-tagline" id="site-footer-tagline">نحوّل أفكارك إلى واقع تقني</p>
     </div>
     <div class="footer-social">
       <a href="#" class="footer-link">LinkedIn</a>
@@ -541,7 +541,7 @@ tailwind.config = {
       <a href="#" class="footer-link" data-en="Privacy" data-ar="الخصوصية">Privacy</a>
     </div>
   </div>
-  <div class="footer-bottom">
+  <div class="footer-bottom" id="footer-bottom-text">
     © 2024 IDEA TECH. All rights reserved. |
     <span data-en="We turn your ideas into tech reality." data-ar="نحوّل أفكارك إلى واقع تقني">We turn your ideas into tech reality.</span>
   </div>
@@ -582,20 +582,42 @@ const auth = getAuth(app);
 const db   = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
-// ══ WhatsApp Random Number Loader ══
+// ══ Site-wide Config Loader ══
 let _waNumbers = [];
-(async function loadWhatsappNumbers() {
+
+(async function loadAllSiteConfig() {
   try {
-    const snap = await getDoc(doc(db, 'siteConfig', 'general'));
-    if (snap.exists()) {
-      const d = snap.data();
+    // Load all 3 configs in parallel
+    const [generalSnap, pricingSnap, servicesSnap] = await Promise.all([
+      getDoc(doc(db, 'siteConfig', 'general')),
+      getDoc(doc(db, 'siteConfig', 'pricing')),
+      getDoc(doc(db, 'siteConfig', 'services')),
+    ]);
+
+    // ── General settings ──
+    if (generalSnap.exists()) {
+      const d = generalSnap.data();
+      if (window.applySiteConfig) window.applySiteConfig(d);
+      // WhatsApp
       if (Array.isArray(d.whatsappNumbers) && d.whatsappNumbers.length) {
         _waNumbers = d.whatsappNumbers.filter(n => n);
       } else if (d.whatsapp) {
         _waNumbers = [d.whatsapp];
       }
     }
-  } catch(e) { console.warn('WhatsApp config load failed:', e); }
+
+    // ── Pricing ──
+    if (pricingSnap.exists() && window.applyPricingConfig) {
+      window.applyPricingConfig(pricingSnap.data());
+    }
+
+    // ── Services ──
+    if (servicesSnap.exists() && window.applyServicesConfig) {
+      const list = servicesSnap.data().list;
+      if (list && list.length) window.applyServicesConfig(list);
+    }
+
+  } catch(e) { console.warn('siteConfig load failed:', e); }
 })();
 
 window.openRandomWhatsapp = function(e) {

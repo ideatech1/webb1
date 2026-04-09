@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html class="dark" lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>IDEA TECH | لوحة التحكم</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+<style>
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:#0A0A0F; color:#e4e1e9; font-family:'Cairo','Tajawal',sans-serif; min-height:100vh; }
+::-webkit-scrollbar{width:6px;} ::-webkit-scrollbar-track{background:#0e0e13;} ::-webkit-scrollbar-thumb{background:#2a292f;border-radius:3px;}
+::-webkit-scrollbar-thumb:hover{background:#3c494e;}
+
+/* Layout */
+.admin-layout { display:flex; min-height:100vh; }
+.sidebar {
+  width:260px;min-width:260px;background:#0e0e13;border-left:1px solid rgba(255,255,255,.06);
+  display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;
+}
+.main-content { flex:1;overflow-x:hidden; }
+
+/* Sidebar */
+.sidebar-logo { padding:1.75rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.06); }
+.sidebar-logo span { font-size:1.35rem;font-weight:900;background:linear-gradient(135deg,#00C853,#00A040);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+.sidebar-nav { padding:1rem;flex:1; }
+.nav-section { font-size:.65rem;font-weight:700;letter-spacing:.12em;color:rgba(255,255,255,.3);text-transform:uppercase;padding:.5rem .75rem;margin-bottom:.25rem;margin-top:.75rem; }
+.nav-item {
+  display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;border-radius:.625rem;
+  color:rgba(255,255,255,.55);font-size:.875rem;font-weight:600;cursor:pointer;transition:all .2s;
+  text-decoration:none;margin-bottom:2px;
+}
+.nav-item:hover { background:rgba(255,255,255,.06);color:#fff; }
+.nav-item.active { background:rgba(0,200,83,.1);color:#00C853;border:1px solid rgba(0,200,83,.2); }
+.nav-item .material-symbols-outlined { font-size:1.2rem; }
+
+/* Header */
+.admin-header {
+  background:rgba(10,10,15,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.05);
+  padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;
+}
+
+/* Cards */
+.stat-card { background:#131318;border:1px solid rgba(255,255,255,.07);border-radius:1rem;padding:1.5rem;transition:border-color .3s; }
+.stat-card:hover{border-color:rgba(0,200,83,.2);}
+
+/* Table */
+.data-table { width:100%;border-collapse:collapse; }
+.data-table th { padding:.875rem 1rem;text-align:right;font-size:.75rem;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.4);text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.06);background:#0e0e13; }
+.data-table td { padding:.875rem 1rem;font-size:.875rem;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle; }
+.data-table tr:hover td{background:rgba(255,255,255,.02);}
+
+/* Badge */
+.badge { display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:9999px;font-size:.7rem;font-weight:700; }
+.badge-admin { background:rgba(0,160,64,.15);color:#d1bcff;border:1px solid rgba(0,160,64,.3); }
+.badge-worker { background:rgba(0,200,83,.1);color:#00C853;border:1px solid rgba(0,200,83,.2); }
+.badge-customer { background:rgba(255,255,255,.06);color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.1); }
+.badge-new { background:rgba(0,200,83,.1);color:#00C853;border:1px solid rgba(0,200,83,.2); }
+.badge-read { background:rgba(255,255,255,.05);color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.08); }
+.badge-replied { background:rgba(80,200,80,.1);color:#6dda6d;border:1px solid rgba(80,200,80,.2); }
+
+/* Input */
+.ctrl-input { background:#0e0e13;border:1px solid rgba(255,255,255,.1);border-radius:.5rem;padding:.625rem .875rem;color:#fff;font-size:.875rem;font-family:inherit;outline:none;transition:border-color .2s; }
+.ctrl-input:focus{border-color:rgba(0,200,83,.4);}
+
+/* Btn */
+.btn-primary { padding:.625rem 1.25rem;background:linear-gradient(135deg,#00C853,#00A040);color:#fff;border:none;border-radius:.625rem;font-weight:700;cursor:pointer;font-family:inherit;transition:transform .2s; }
+.btn-primary:hover{transform:scale(1.03);}
+.btn-danger { padding:.5rem 1rem;background:rgba(255,60,60,.1);color:#ff6b6b;border:1px solid rgba(255,60,60,.2);border-radius:.5rem;font-weight:700;cursor:pointer;font-family:inherit;font-size:.8rem;transition:background .2s; }
+.btn-danger:hover{background:rgba(255,60,60,.2);}
+.btn-ghost { padding:.5rem 1rem;background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.1);border-radius:.5rem;font-weight:600;cursor:pointer;font-family:inherit;font-size:.8rem;transition:background .2s; }
+.btn-ghost:hover{background:rgba(255,255,255,.1);}
+
+/* Section */
+.section { display:none; }
+.section.active { display:block; }
+
+/* Message card */
+.msg-card { background:#131318;border:1px solid rgba(255,255,255,.07);border-radius:.875rem;padding:1.25rem 1.5rem;transition:border-color .3s;cursor:pointer; }
+.msg-card:hover{border-color:rgba(0,200,83,.2);}
+.msg-card.unread{border-color:rgba(0,200,83,.2);background:rgba(0,200,83,.03);}
+.msg-expanded{display:none;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.06);}
+
+/* Toast */
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:#1b1b20;border:1px solid rgba(0,200,83,.3);color:#fff;padding:.875rem 2rem;border-radius:.875rem;font-size:.875rem;font-weight:600;z-index:9999;opacity:0;transition:opacity .3s;pointer-events:none;}
+.toast.show{opacity:1;}
+
+/* Access denied */
+#access-denied{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;gap:1rem;text-align:center;}
+
+/* Loading */
+#admin-loading{display:flex;align-items:center;justify-content:center;min-height:100vh;}
+.spin{width:40px;height:40px;border:3px solid rgba(0,200,83,.2);border-top-color:#00C853;border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<div id="admin-loading">
+  <div style="text-align:center;">
+    <div class="spin" style="margin:0 auto 1rem;"></div>
+    <p style="color:rgba(255,255,255,.4);font-size:.875rem;">جاري التحقق من الصلاحيات...</p>
+  </div>
+</div>
+
+<div id="access-denied" style="display:none;">
+  <span class="material-symbols-outlined" style="font-size:4rem;color:rgba(255,60,60,.5);">block</span>
+  <h2 style="font-size:1.5rem;font-weight:900;color:#fff;">صلاحية مرفوضة</h2>
+  <p style="color:rgba(255,255,255,.45);">هذه الصفحة متاحة للمدير فقط.</p>
+  <a href="index.html" style="color:#00C853;font-weight:700;text-decoration:none;">← العودة للموقع</a>
+</div>
+
+<div id="admin-panel" style="display:none;" class="admin-layout">
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:36px;height:36px;border-radius:8px;background:rgba(0,200,83,.12);display:flex;align-items:center;justify-content:center;">
+          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;color:#00C853;font-size:20px;">lightbulb</span>
+        </div>
+        <span>IDEA TECH</span>
+      </div>
+      <p style="font-size:.7rem;color:rgba(255,255,255,.3);margin-top:.4rem;letter-spacing:.05em;">لوحة التحكم</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section">عام</div>
+      <a class="nav-item active" onclick="showSection('overview')">
+        <span class="material-symbols-outlined">dashboard</span> نظرة عامة
+      </a>
+      <a class="nav-item" onclick="showSection('messages')">
+        <span class="material-symbols-outlined">inbox</span> الرسائل
+        <span id="msg-badge" style="margin-right:auto;background:rgba(0,200,83,.15);color:#00C853;font-size:.65rem;padding:2px 8px;border-radius:9999px;font-weight:700;display:none;"></span>
+      </a>
+
+      <div class="nav-section">إدارة الموقع</div>
+      <a class="nav-item" onclick="showSection('pricing')">
+        <span class="material-symbols-outlined">sell</span> الأسعار
+      </a>
+      <a class="nav-item" onclick="showSection('services')">
+        <span class="material-symbols-outlined">design_services</span> الخدمات
+      </a>
+      <a class="nav-item" onclick="showSection('settings')">
+        <span class="material-symbols-outlined">tune</span> الإعدادات العامة
+      </a>
+
+      <div class="nav-section">الفريق</div>
+      <a class="nav-item" onclick="showSection('users')">
+        <span class="material-symbols-outlined">group</span> المستخدمون
+      </a>
+
+      <div style="margin-top:auto;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.06);">
+        <a href="index.html" class="nav-item" style="color:rgba(255,255,255,.4);">
+          <span class="material-symbols-outlined">arrow_back</span> العودة للموقع
+        </a>
+        <a class="nav-item" onclick="handleLogout()" style="color:rgba(255,60,60,.6);">
+          <span class="material-symbols-outlined">logout</span> تسجيل الخروج
+        </a>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- ═══ MAIN ═══ -->
+  <div class="main-content">
+
+    <!-- Header -->
+    <header class="admin-header">
+      <div>
+        <h1 id="section-title" style="font-size:1.25rem;font-weight:900;color:#fff;">نظرة عامة</h1>
+        <p id="section-sub" style="font-size:.75rem;color:rgba(255,255,255,.35);margin-top:2px;">مرحباً بك في لوحة تحكم IDEA TECH</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <span id="admin-name" style="font-size:.875rem;font-weight:700;color:#00C853;"></span>
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#00C853,#00A040);display:flex;align-items:center;justify-content:center;">
+          <span class="material-symbols-outlined" style="font-size:1.2rem;color:#fff;">person</span>
+        </div>
+      </div>
+    </header>
+
+    <div style="padding:2rem;">
+
+      <!-- ═══ OVERVIEW ═══ -->
+      <section class="section active" id="sec-overview">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-bottom:2rem;" id="stats-row">
+          <div class="stat-card">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <div>
+                <p style="font-size:.75rem;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem;">إجمالي الرسائل</p>
+                <p id="st-msgs" style="font-size:2rem;font-weight:900;color:#fff;">—</p>
+              </div>
+              <div style="width:42px;height:42px;border-radius:.625rem;background:rgba(0,200,83,.1);display:flex;align-items:center;justify-content:center;">
+                <span class="material-symbols-outlined" style="color:#00C853;">inbox</span>
+              </div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <div>
+                <p style="font-size:.75rem;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem;">رسائل جديدة</p>
+                <p id="st-new" style="font-size:2rem;font-weight:900;color:#00C853;">—</p>
+              </div>
+              <div style="width:42px;height:42px;border-radius:.625rem;background:rgba(0,200,83,.1);display:flex;align-items:center;justify-content:center;">
+                <span class="material-symbols-outlined" style="color:#00C853;">mark_email_unread</span>
+              </div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <div>
+                <p style="font-size:.75rem;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem;">إجمالي المستخدمين</p>
+                <p id="st-users" style="font-size:2rem;font-weight:900;color:#fff;">—</p>
+              </div>
+              <div style="width:42px;height:42px;border-radius:.625rem;background:rgba(0,160,64,.1);display:flex;align-items:center;justify-content:center;">
+                <span class="material-symbols-outlined" style="color:#d1bcff;">group</span>
+              </div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <div>
+                <p style="font-size:.75rem;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem;">العمال</p>
+                <p id="st-workers" style="font-size:2rem;font-weight:900;color:#fff;">—</p>
+              </div>
+              <div style="width:42px;height:42px;border-radius:.625rem;background:rgba(0,160,64,.1);display:flex;align-items:center;justify-content:center;">
+                <span class="material-symbols-outlined" style="color:#d1bcff;">engineering</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent messages -->
+        <div class="stat-card" style="margin-bottom:1.5rem;">
+          <h3 style="font-size:.95rem;font-weight:700;color:#fff;margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem;">
+            <span class="material-symbols-outlined" style="color:#00C853;font-size:1.1rem;">inbox</span> آخر الرسائل
+          </h3>
+          <div id="recent-msgs-list" style="display:flex;flex-direction:column;gap:.75rem;">
+            <p style="color:rgba(255,255,255,.3);font-size:.85rem;">جاري التحميل...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ MESSAGES ═══ -->
+      <section class="section" id="sec-messages">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
+          <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+            <button class="btn-ghost msg-filter active" data-filter="all" onclick="filterMsgs('all',this)">الكل</button>
+            <button class="btn-ghost msg-filter" data-filter="new" onclick="filterMsgs('new',this)">جديدة</button>
+            <button class="btn-ghost msg-filter" data-filter="read" onclick="filterMsgs('read',this)">مقروءة</button>
+            <button class="btn-ghost msg-filter" data-filter="replied" onclick="filterMsgs('replied',this)">تم الرد</button>
+          </div>
+        </div>
+        <div id="msgs-list" style="display:flex;flex-direction:column;gap:.875rem;">
+          <p style="color:rgba(255,255,255,.3);font-size:.85rem;">جاري التحميل...</p>
+        </div>
+      </section>
+
+      <!-- ═══ PRICING ═══ -->
+      <section class="section" id="sec-pricing">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;" id="pricing-cards">
+          <!-- Generated dynamically -->
+        </div>
+        <div style="margin-top:1.5rem;text-align:left;">
+          <button class="btn-primary" onclick="savePricing()">
+            <span class="material-symbols-outlined" style="font-size:1rem;vertical-align:middle;">save</span> حفظ التغييرات
+          </button>
+        </div>
+      </section>
+
+      <!-- ═══ SERVICES ═══ -->
+      <section class="section" id="sec-services">
+        <div style="margin-bottom:1.5rem;text-align:left;">
+          <button class="btn-primary" onclick="addService()">
+            <span class="material-symbols-outlined" style="font-size:1rem;vertical-align:middle;">add</span> إضافة خدمة
+          </button>
+        </div>
+        <div id="services-list" style="display:flex;flex-direction:column;gap:1rem;"></div>
+        <div style="margin-top:1.5rem;text-align:left;">
+          <button class="btn-primary" onclick="saveServices()">
+            <span class="material-symbols-outlined" style="font-size:1rem;vertical-align:middle;">save</span> حفظ الخدمات
+          </button>
+        </div>
+      </section>
+
+      <!-- ═══ SETTINGS ═══ -->
+      <section class="section" id="sec-settings">
+        <div style="max-width:600px;">
+          <div class="stat-card" style="margin-bottom:1.5rem;">
+            <h3 style="font-size:.95rem;font-weight:700;color:#fff;margin-bottom:1.25rem;">إعدادات الموقع</h3>
+            <div style="display:flex;flex-direction:column;gap:1.25rem;">
+              <div>
+                <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;">اسم الشركة</label>
+                <input class="ctrl-input" id="s-company" style="width:100%;" value="IDEA TECH"/>
+              </div>
+              <div>
+                <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;">البريد الإلكتروني</label>
+                <input class="ctrl-input" id="s-email" style="width:100%;direction:ltr;" value="hello@ideatech.io"/>
+              </div>
+              <div>
+                <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;">العنوان</label>
+                <input class="ctrl-input" id="s-address" style="width:100%;" value="Dubai, Digital Oasis — UAE"/>
+              </div>
+              <div>
+                <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;">شعار الموقع (نص)</label>
+                <input class="ctrl-input" id="s-tagline" style="width:100%;" value="نحوّل أفكارك إلى واقع تقني"/>
+              </div>
+              <div>
+                <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;">رابط WhatsApp</label>
+                <input class="ctrl-input" id="s-whatsapp" style="width:100%;direction:ltr;" placeholder="https://wa.me/971XXXXXXXXX"/>
+              </div>
+            </div>
+            <div style="margin-top:1.5rem;text-align:left;">
+              <button class="btn-primary" onclick="saveSettings()">حفظ الإعدادات</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ USERS ═══ -->
+      <section class="section" id="sec-users">
+        <div class="stat-card" style="overflow-x:auto;">
+          <table class="data-table" id="users-table">
+            <thead>
+              <tr>
+                <th>المستخدم</th>
+                <th>البريد</th>
+                <th>الدور</th>
+                <th>تاريخ التسجيل</th>
+                <th>الإجراء</th>
+              </tr>
+            </thead>
+            <tbody id="users-tbody">
+              <tr><td colspan="5" style="text-align:center;color:rgba(255,255,255,.3);padding:2rem;">جاري التحميل...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Firebase -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {
+  getAuth, onAuthStateChanged, signOut
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import {
+  getFirestore, collection, getDocs, doc, getDoc, setDoc, updateDoc, deleteDoc, query, orderBy, serverTimestamp, onSnapshot
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCH5K-zXdh0v8lZz4PiSFocAs_rklBZe1A",
+  authDomain: "web1-94067.firebaseapp.com",
+  projectId: "web1-94067",
+  storageBucket: "web1-94067.firebasestorage.app",
+  messagingSenderId: "106677179670",
+  appId: "1:106677179670:web:1388a0d28f7bbce8186c37"
+};
+const ADMIN_EMAIL = "ideatech829@gmail.com";
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+let allMessages = [];
+let allUsers = [];
+let pricingData = {};
+let servicesData = [];
+
+// ── Auth Guard ──
+onAuthStateChanged(auth, async (user) => {
+  document.getElementById('admin-loading').style.display = 'none';
+  if (!user || user.email !== ADMIN_EMAIL) {
+    document.getElementById('access-denied').style.display = 'flex';
+    return;
+  }
+  document.getElementById('admin-panel').style.display = 'flex';
+  document.getElementById('admin-name').textContent = user.displayName || user.email;
+
+  loadAll();
+});
+
+window.handleLogout = async () => {
+  await signOut(auth);
+  window.location.href = 'index.html';
+};
+
+// ── Load Everything ──
+async function loadAll() {
+  loadMessages();
+  loadUsers();
+  loadPricing();
+  loadServices();
+  loadSettings();
+}
+
+// ── Section Navigation ──
+window.showSection = function(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('sec-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
+  const titles = { overview:'نظرة عامة', messages:'الرسائل', pricing:'إدارة الأسعار', services:'إدارة الخدمات', settings:'الإعدادات', users:'إدارة المستخدمين' };
+  document.getElementById('section-title').textContent = titles[name] || name;
+};
+
+// ── Toast ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ══════════ MESSAGES ══════════
+async function loadMessages() {
+  const snap = await getDocs(query(collection(db, 'messages'), orderBy('createdAt', 'desc')));
+  allMessages = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+
+  const newCount = allMessages.filter(m => m.status === 'new').length;
+  document.getElementById('st-msgs').textContent = allMessages.length;
+  document.getElementById('st-new').textContent = newCount;
+
+  const badge = document.getElementById('msg-badge');
+  if (newCount > 0) { badge.textContent = newCount; badge.style.display = 'inline'; }
+
+  renderMessages('all');
+  renderRecentMsgs();
+}
+
+function renderRecentMsgs() {
+  const el = document.getElementById('recent-msgs-list');
+  const recent = allMessages.slice(0, 5);
+  if (!recent.length) { el.innerHTML = '<p style="color:rgba(255,255,255,.3);font-size:.85rem;">لا توجد رسائل بعد</p>'; return; }
+  el.innerHTML = recent.map(m => `
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;border-radius:.625rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);">
+      <div style="display:flex;align-items:center;gap:.75rem;">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,rgba(0,200,83,.2),rgba(0,160,64,.2));display:flex;align-items:center;justify-content:center;">
+          <span class="material-symbols-outlined" style="font-size:1rem;color:#00C853;">person</span>
+        </div>
+        <div>
+          <p style="font-size:.875rem;font-weight:700;color:#fff;">${m.name || 'زائر'}</p>
+          <p style="font-size:.75rem;color:rgba(255,255,255,.4);">${(m.message || '').substring(0,50)}${m.message?.length>50?'...':''}</p>
+        </div>
+      </div>
+      <span class="badge badge-${m.status||'new'}">${m.status==='new'?'جديد':m.status==='read'?'مقروء':'تم الرد'}</span>
+    </div>
+  `).join('');
+}
+
+function renderMessages(filter) {
+  const filtered = filter === 'all' ? allMessages : allMessages.filter(m => (m.status||'new') === filter);
+  const el = document.getElementById('msgs-list');
+  if (!filtered.length) { el.innerHTML = '<p style="color:rgba(255,255,255,.3);font-size:.85rem;padding:2rem 0;">لا توجد رسائل</p>'; return; }
+
+  el.innerHTML = filtered.map(m => `
+    <div class="msg-card ${(m.status||'new')==='new'?'unread':''}" onclick="toggleMsg('${m.id}')">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:.75rem;">
+          <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,rgba(0,200,83,.15),rgba(0,160,64,.15));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span class="material-symbols-outlined" style="color:#00C853;">person</span>
+          </div>
+          <div>
+            <p style="font-weight:700;color:#fff;">${m.name||'زائر'}</p>
+            <p style="font-size:.8rem;color:rgba(255,255,255,.45);direction:ltr;">${m.email||''}</p>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;">
+          <span class="badge badge-${m.status||'new'}">${m.status==='new'?'جديد':m.status==='read'?'مقروء':'تم الرد'}</span>
+          <span style="font-size:.75rem;color:rgba(255,255,255,.3);">${m.createdAt?.toDate ? m.createdAt.toDate().toLocaleDateString('ar-EG') : ''}</span>
+        </div>
+      </div>
+      <p style="font-size:.875rem;color:rgba(255,255,255,.6);margin-top:.75rem;">${(m.message||'').substring(0,100)}${(m.message||'').length>100?'...':''}</p>
+      
+      <div class="msg-expanded" id="msg-exp-${m.id}">
+        <div style="margin-bottom:1rem;">
+          <p style="font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.35rem;">الرسالة الكاملة:</p>
+          <p style="font-size:.875rem;color:#e4e1e9;line-height:1.7;">${m.message||''}</p>
+        </div>
+        ${m.service?`<p style="font-size:.8rem;color:rgba(255,255,255,.4);">الخدمة: <strong style="color:#00C853;">${m.service}</strong></p>`:''}
+        ${m.budget?`<p style="font-size:.8rem;color:rgba(255,255,255,.4);">الميزانية: <strong style="color:#00C853;">${m.budget}</strong></p>`:''}
+        ${m.company?`<p style="font-size:.8rem;color:rgba(255,255,255,.4);">الشركة: <strong style="color:#fff;">${m.company}</strong></p>`:''}
+        <div style="display:flex;gap:.75rem;margin-top:1rem;flex-wrap:wrap;">
+          <button class="btn-primary" onclick="event.stopPropagation();markMsg('${m.id}','replied')">
+            <span class="material-symbols-outlined" style="font-size:.9rem;vertical-align:middle;">reply</span> تم الرد
+          </button>
+          <button class="btn-ghost" onclick="event.stopPropagation();markMsg('${m.id}','read')">تحديد كمقروء</button>
+          <button class="btn-danger" onclick="event.stopPropagation();deleteMsg('${m.id}')">
+            <span class="material-symbols-outlined" style="font-size:.9rem;vertical-align:middle;">delete</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+window.toggleMsg = async function(id) {
+  const el = document.getElementById('msg-exp-' + id);
+  if (!el) return;
+  const isOpen = el.style.display === 'block';
+  el.style.display = isOpen ? 'none' : 'block';
+
+  const msg = allMessages.find(m => m.id === id);
+  if (!isOpen && msg && (msg.status === 'new' || !msg.status)) {
+    await updateDoc(doc(db, 'messages', id), { status: 'read' });
+    msg.status = 'read';
+  }
+};
+
+window.markMsg = async function(id, status) {
+  await updateDoc(doc(db, 'messages', id), { status });
+  const msg = allMessages.find(m => m.id === id);
+  if (msg) msg.status = status;
+  renderMessages(document.querySelector('.msg-filter.active')?.dataset.filter || 'all');
+  renderRecentMsgs();
+  showToast('تم تحديث حالة الرسالة ✓');
+};
+
+window.deleteMsg = async function(id) {
+  if (!confirm('هل تريد حذف هذه الرسالة؟')) return;
+  await deleteDoc(doc(db, 'messages', id));
+  allMessages = allMessages.filter(m => m.id !== id);
+  renderMessages(document.querySelector('.msg-filter.active')?.dataset.filter || 'all');
+  renderRecentMsgs();
+  showToast('تم حذف الرسالة');
+};
+
+window.filterMsgs = function(filter, btn) {
+  document.querySelectorAll('.msg-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderMessages(filter);
+};
+
+// ══════════ USERS ══════════
+async function loadUsers() {
+  const snap = await getDocs(collection(db, 'users'));
+  allUsers = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  const workerCount = allUsers.filter(u => u.role === 'worker').length;
+  document.getElementById('st-users').textContent = allUsers.length;
+  document.getElementById('st-workers').textContent = workerCount;
+  renderUsers();
+}
+
+function renderUsers() {
+  const tbody = document.getElementById('users-tbody');
+  if (!allUsers.length) {
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:rgba(255,255,255,.3);padding:2rem;">لا يوجد مستخدمون بعد</td></tr>';
+    return;
+  }
+  tbody.innerHTML = allUsers.map(u => `
+    <tr>
+      <td style="display:flex;align-items:center;gap:.75rem;">
+        <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,rgba(0,200,83,.15),rgba(0,160,64,.15));display:flex;align-items:center;justify-content:center;">
+          <span class="material-symbols-outlined" style="font-size:.9rem;color:#00C853;">person</span>
+        </div>
+        <span style="font-weight:600;">${u.displayName||'—'}</span>
+      </td>
+      <td style="color:rgba(255,255,255,.55);direction:ltr;">${u.email||'—'}</td>
+      <td>
+        <select onchange="changeRole('${u.uid||u.id}', this.value)" style="background:#0e0e13;border:1px solid rgba(255,255,255,.1);border-radius:.5rem;padding:.4rem .75rem;color:#fff;font-family:inherit;font-size:.8rem;outline:none;" ${u.email===ADMIN_EMAIL?'disabled':''}>
+          <option value="customer" ${u.role==='customer'?'selected':''}>عميل</option>
+          <option value="worker" ${u.role==='worker'?'selected':''}>عامل</option>
+          <option value="admin" ${u.role==='admin'?'selected':''}>مدير</option>
+        </select>
+      </td>
+      <td style="color:rgba(255,255,255,.4);font-size:.8rem;">${u.createdAt?.toDate ? u.createdAt.toDate().toLocaleDateString('ar-EG') : '—'}</td>
+      <td>
+        ${u.email !== ADMIN_EMAIL ? `<button class="btn-danger" onclick="deleteUser('${u.uid||u.id}')">حذف</button>` : '<span style="color:rgba(255,255,255,.2);font-size:.75rem;">محمي</span>'}
+      </td>
+    </tr>
+  `).join('');
+}
+
+window.changeRole = async function(uid, role) {
+  await updateDoc(doc(db, 'users', uid), { role });
+  const user = allUsers.find(u => (u.uid||u.id) === uid);
+  if (user) user.role = role;
+  const workerCount = allUsers.filter(u => u.role === 'worker').length;
+  document.getElementById('st-workers').textContent = workerCount;
+  showToast('تم تحديث الدور ✓');
+};
+
+window.deleteUser = async function(uid) {
+  if (!confirm('هل تريد حذف هذا المستخدم؟')) return;
+  await deleteDoc(doc(db, 'users', uid));
+  allUsers = allUsers.filter(u => (u.uid||u.id) !== uid);
+  renderUsers();
+  document.getElementById('st-users').textContent = allUsers.length;
+  showToast('تم حذف المستخدم');
+};
+
+// ══════════ PRICING ══════════
+const defaultPricing = {
+  starter: { name: 'Starter', nameAr: 'المبتدئ', price: '$2k – $5k', desc: 'مثالي للمشاريع الناشئة', features: ['موقع متجاوب', 'تصميم UI/UX أساسي', 'دعم لمدة شهر'] },
+  growth:  { name: 'Growth',  nameAr: 'النمو',     price: '$10k – $25k', desc: 'منتجات رقمية متكاملة', features: ['تطبيق جوال + ويب', 'منطق خلفي مخصص', 'دعم 3 أشهر', 'أتمتة AI أساسية'] },
+  enterprise:{ name: 'Enterprise', nameAr: 'المؤسسات', price: '$50k+', desc: 'برمجيات ذكاء اصطناعي متقدمة', features: ['برمجيات ضخمة مخصصة', 'تكامل AI كامل', 'نقل الأنظمة القديمة', 'فريق 24/7 مخصص'] }
+};
+
+async function loadPricing() {
+  const snap = await getDoc(doc(db, 'siteConfig', 'pricing'));
+  pricingData = snap.exists() ? snap.data() : defaultPricing;
+  renderPricing();
+}
+
+function renderPricing() {
+  const keys = ['starter', 'growth', 'enterprise'];
+  document.getElementById('pricing-cards').innerHTML = keys.map(k => {
+    const p = pricingData[k] || defaultPricing[k];
+    return `
+      <div class="stat-card">
+        <p style="font-size:.7rem;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem;">${p.name}</p>
+        <div style="margin-bottom:1rem;">
+          <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">الاسم (عربي)</label>
+          <input class="ctrl-input" id="p-${k}-nameAr" value="${p.nameAr||''}" style="width:100%;"/>
+        </div>
+        <div style="margin-bottom:1rem;">
+          <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">السعر</label>
+          <input class="ctrl-input" id="p-${k}-price" value="${p.price||''}" style="width:100%;direction:ltr;"/>
+        </div>
+        <div style="margin-bottom:1rem;">
+          <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">الوصف</label>
+          <input class="ctrl-input" id="p-${k}-desc" value="${p.desc||''}" style="width:100%;"/>
+        </div>
+        <div>
+          <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">المميزات (سطر لكل ميزة)</label>
+          <textarea class="ctrl-input" id="p-${k}-features" rows="5" style="width:100%;resize:vertical;">${(p.features||[]).join('\n')}</textarea>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+window.savePricing = async function() {
+  const keys = ['starter', 'growth', 'enterprise'];
+  const data = {};
+  keys.forEach(k => {
+    data[k] = {
+      name: defaultPricing[k].name,
+      nameAr: document.getElementById(`p-${k}-nameAr`).value,
+      price: document.getElementById(`p-${k}-price`).value,
+      desc: document.getElementById(`p-${k}-desc`).value,
+      features: document.getElementById(`p-${k}-features`).value.split('\n').filter(f => f.trim())
+    };
+  });
+  await setDoc(doc(db, 'siteConfig', 'pricing'), data);
+  pricingData = data;
+  showToast('تم حفظ الأسعار ✓');
+};
+
+// ══════════ SERVICES ══════════
+const defaultServices = [
+  { id: 's1', nameAr: 'تطوير الويب', icon: 'language', color: '#00C853', descAr: 'تطوير مواقع إلكترونية متجاوبة وعالية الأداء' },
+  { id: 's2', nameAr: 'تطبيقات الجوال', icon: 'smartphone', color: '#00A040', descAr: 'تطبيقات ذكية لنظامي Android و iOS' },
+  { id: 's3', nameAr: 'بوتات AI', icon: 'smart_toy', color: '#00C853', descAr: 'بوتات ذكاء اصطناعي لأتمتة المهام' },
+  { id: 's4', nameAr: 'تصميم UI/UX', icon: 'brush', color: '#00A040', descAr: 'تصاميم عصرية تركز على تجربة المستخدم' },
+  { id: 's5', nameAr: 'برمجيات', icon: 'developer_board', color: '#00C853', descAr: 'بناء أنظمة برمجية مخصصة للشركات' },
+  { id: 's6', nameAr: 'استشارات', icon: 'forum', color: '#00A040', descAr: 'استشارات تقنية لإدارة التحول الرقمي' }
+];
+
+async function loadServices() {
+  const snap = await getDoc(doc(db, 'siteConfig', 'services'));
+  servicesData = snap.exists() ? snap.data().list : defaultServices;
+  renderServices();
+}
+
+function renderServices() {
+  document.getElementById('services-list').innerHTML = servicesData.map((s, i) => `
+    <div class="stat-card" style="display:grid;grid-template-columns:auto 1fr 1fr 1fr auto;gap:1rem;align-items:center;">
+      <span class="material-symbols-outlined" style="color:${s.color};">${s.icon}</span>
+      <div>
+        <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">الاسم</label>
+        <input class="ctrl-input" id="srv-${i}-nameAr" value="${s.nameAr||''}" style="width:100%;"/>
+      </div>
+      <div>
+        <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">الوصف</label>
+        <input class="ctrl-input" id="srv-${i}-descAr" value="${s.descAr||''}" style="width:100%;"/>
+      </div>
+      <div>
+        <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">أيقونة (Material)</label>
+        <input class="ctrl-input" id="srv-${i}-icon" value="${s.icon||''}" style="width:100%;direction:ltr;"/>
+      </div>
+      <button class="btn-danger" onclick="removeService(${i})">
+        <span class="material-symbols-outlined" style="font-size:.9rem;">delete</span>
+      </button>
+    </div>
+  `).join('');
+}
+
+window.addService = function() {
+  servicesData.push({ id: 's'+Date.now(), nameAr: 'خدمة جديدة', icon: 'star', color: '#00C853', descAr: 'وصف الخدمة' });
+  renderServices();
+};
+window.removeService = function(i) {
+  servicesData.splice(i, 1);
+  renderServices();
+};
+window.saveServices = async function() {
+  servicesData = servicesData.map((s, i) => ({
+    ...s,
+    nameAr: document.getElementById(`srv-${i}-nameAr`)?.value || s.nameAr,
+    descAr: document.getElementById(`srv-${i}-descAr`)?.value || s.descAr,
+    icon: document.getElementById(`srv-${i}-icon`)?.value || s.icon
+  }));
+  await setDoc(doc(db, 'siteConfig', 'services'), { list: servicesData });
+  showToast('تم حفظ الخدمات ✓');
+};
+
+// ══════════ SETTINGS ══════════
+async function loadSettings() {
+  const snap = await getDoc(doc(db, 'siteConfig', 'general'));
+  if (snap.exists()) {
+    const d = snap.data();
+    if (d.company) document.getElementById('s-company').value = d.company;
+    if (d.email) document.getElementById('s-email').value = d.email;
+    if (d.address) document.getElementById('s-address').value = d.address;
+    if (d.tagline) document.getElementById('s-tagline').value = d.tagline;
+    if (d.whatsapp) document.getElementById('s-whatsapp').value = d.whatsapp;
+  }
+}
+window.saveSettings = async function() {
+  await setDoc(doc(db, 'siteConfig', 'general'), {
+    company: document.getElementById('s-company').value,
+    email: document.getElementById('s-email').value,
+    address: document.getElementById('s-address').value,
+    tagline: document.getElementById('s-tagline').value,
+    whatsapp: document.getElementById('s-whatsapp').value,
+    updatedAt: serverTimestamp()
+  });
+  showToast('تم حفظ الإعدادات ✓');
+};
+</script>
+</body>
+</html>

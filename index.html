@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>IDEA TECH | Transforming Visions into Reality</title>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=DM+Sans:wght@300;400;500;600&family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "void":                       "#0A0A0F",
+        "surface-container-lowest":   "#0e0e13",
+        "surface-container-low":      "#1b1b20",
+        "surface-container":          "#1f1f25",
+        "surface-container-high":     "#2a292f",
+        "surface-container-highest":  "#35343a",
+        "surface":                    "#131318",
+        "surface-variant":            "#35343a",
+        "primary":                    "#00C853",
+        "primary-dim":                "#54d5ff",
+        "secondary":                  "#00A040",
+        "secondary-light":            "#d1bcff",
+        "on-background":              "#e4e1e9",
+        "on-surface":                 "#e4e1e9",
+        "on-surface-variant":         "#bbc9cf",
+        "outline":                    "#869399",
+        "outline-variant":            "#3c494e",
+        "background":                 "#0A0A0F",
+      },
+      fontFamily: {
+        "headline": ["Cabinet Grotesk", "Cairo", "sans-serif"],
+        "body":     ["DM Sans", "Tajawal", "sans-serif"],
+        "label":    ["DM Sans", "Tajawal", "sans-serif"],
+      },
+      borderRadius: {
+        DEFAULT: "0.25rem",
+        lg:  "0.5rem",
+        xl:  "0.75rem",
+        "2xl": "1rem",
+        "3xl": "1.5rem",
+        full: "9999px",
+      },
+    }
+  }
+}
+</script>
+
+<!-- External Stylesheet -->
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- Gradient mesh background -->
+<div class="mesh-bg"></div>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav id="navbar" class="nav-root">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;color:#00C853;">lightbulb</span>
+      </div>
+      <span class="nav-logo-text">IDEA TECH</span>
+    </a>
+
+    <!-- Desktop links -->
+    <div class="nav-links">
+      <a href="#"         class="nav-link active" data-en="Home"     data-ar="الرئيسية">Home</a>
+      <a href="#services" class="nav-link"         data-en="Services" data-ar="الخدمات">Services</a>
+      <a href="#work"     class="nav-link"         data-en="Our Work" data-ar="أعمالنا">Our Work</a>
+      <a href="#pricing"  class="nav-link"         data-en="Pricing"  data-ar="الأسعار">Pricing</a>
+      <a href="#contact"  class="nav-link"         data-en="Contact"  data-ar="تواصل">Contact</a>
+    </div>
+
+    <!-- Right side -->
+    <div class="nav-right">
+
+      <!-- Language toggle -->
+      <div class="lang-pill" id="langToggle">
+        <div class="slider" id="langSlider" style="width:40px;transform:translateX(0px);"></div>
+        <button class="lang-active" id="btn-en" onclick="setLang('en')">EN</button>
+        <button id="btn-ar" onclick="setLang('ar')">AR</button>
+      </div>
+
+      <!-- Login Button (shown when logged out) -->
+      <button id="nav-login-btn" class="nav-login-btn" onclick="openAuthModal()">
+        <span class="material-symbols-outlined" style="font-size:1rem;">login</span>
+        <span data-en="Sign In" data-ar="تسجيل الدخول">تسجيل الدخول</span>
+      </button>
+
+      <!-- User Area (shown when logged in) -->
+      <div id="user-nav-area" style="display:none;">
+        <button id="user-nav-btn" onclick="toggleUserDropdown()">
+          <span class="material-symbols-outlined" style="font-size:1rem;">account_circle</span>
+          <span id="nav-user-name">User</span>
+          <span class="material-symbols-outlined" style="font-size:.9rem;">expand_more</span>
+        </button>
+        <div id="user-dropdown">
+          <a id="admin-nav-link" href="admin.html" class="dropdown-item" style="display:none;">
+            <span class="material-symbols-outlined">admin_panel_settings</span>
+            <span data-en="Dashboard" data-ar="لوحة التحكم">Dashboard</span>
+          </a>
+          <div class="dropdown-item" onclick="handleLogout()">
+            <span class="material-symbols-outlined" style="color:#ff6b6b;">logout</span>
+            <span style="color:#ff6b6b;" data-en="Logout" data-ar="تسجيل الخروج">Logout</span>
+          </div>
+        </div>
+      </div>
+
+      <a href="#contact" class="btn-grad nav-cta" data-en="Start a Project" data-ar="ابدأ مشروعك">Start a Project</a>
+
+      <!-- Hamburger -->
+      <button id="hamburger" class="nav-hamburger" onclick="toggleMobileMenu()">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu">
+    <div class="mobile-menu-inner">
+      <a href="#"         class="mobile-link active">Home</a>
+      <a href="#services" class="mobile-link" onclick="toggleMobileMenu()">Services</a>
+      <a href="#work"     class="mobile-link" onclick="toggleMobileMenu()">Our Work</a>
+      <a href="#pricing"  class="mobile-link" onclick="toggleMobileMenu()">Pricing</a>
+      <a href="#contact"  class="mobile-link" onclick="toggleMobileMenu()">Contact</a>
+      <a href="#contact"  class="btn-grad mobile-cta">Start a Project</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero-section">
+  <div class="hero-blob-left"></div>
+  <div class="hero-blob-right"></div>
+
+  <div class="hero-content reveal visible">
+
+    <!-- Badge -->
+    <div class="hero-badge">
+      <span class="hero-badge-dot">
+        <span class="pulse-ring" style="opacity:.6;animation-duration:1.8s;width:8px;height:8px;"></span>
+        <span class="hero-badge-dot-inner"></span>
+      </span>
+      <span class="hero-badge-label" data-en="Available for New Projects" data-ar="متاح لمشاريع جديدة">Available for New Projects</span>
+    </div>
+
+    <!-- Headline -->
+    <h1 class="hero-h1" data-en="We Turn Your Ideas Into" data-ar="نحوّل أفكارك إلى">
+      We Turn Your Ideas Into
+    </h1>
+    <h1 class="hero-h1-grad text-grad" data-en="Tech Reality" data-ar="واقع تقني">
+      Tech Reality
+    </h1>
+    <p class="hero-subtitle-ar" id="hero-subtitle">نحوّل أفكارك إلى واقع تقني</p>
+
+    <p class="hero-desc" data-en="Websites • Apps • AI Bots • Automation • Design • Software" data-ar="مواقع • تطبيقات • بوتات AI • أتمتة • تصميم • برمجيات">
+      Websites • Apps • AI Bots • Automation • Design • Software
+    </p>
+
+    <!-- CTAs -->
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-grad hero-cta-primary"    data-en="Start Your Project" data-ar="ابدأ مشروعك">Start Your Project</a>
+      <a href="#work"    class="hero-cta-secondary"           data-en="See Our Work"        data-ar="شاهد أعمالنا">See Our Work</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ STATS ═══════════ -->
+<section class="stats-section">
+  <div class="stats-grid">
+    <div class="reveal">
+      <div class="stat-number stat-num">+200</div>
+      <div class="stat-label" data-en="Projects" data-ar="مشروع">Projects</div>
+    </div>
+    <div class="reveal" style="transition-delay:.1s">
+      <div class="stat-number stat-num">+50</div>
+      <div class="stat-label" data-en="Companies" data-ar="شركة">Companies</div>
+    </div>
+    <div class="reveal" style="transition-delay:.2s">
+      <div class="stat-number stat-num">5 Yrs</div>
+      <div class="stat-label" data-en="Experience" data-ar="خبرة">Experience</div>
+    </div>
+    <div class="reveal" style="transition-delay:.3s">
+      <div class="stat-number stat-num">98%</div>
+      <div class="stat-label" data-en="Satisfaction" data-ar="رضا العملاء">Satisfaction</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SERVICES ═══════════ -->
+<section id="services" class="services-section">
+  <div class="services-inner">
+    <div class="services-header">
+      <p class="services-eyebrow reveal" data-en="Our Expertise" data-ar="خبراتنا">Our Expertise</p>
+      <div class="services-title-row">
+        <h2 class="services-title reveal" data-en="Future-ready solutions<br>for the digital age" data-ar="حلول مستقبلية<br>للعصر الرقمي" data-html="true">
+          Future-ready solutions<br>for the digital age
+        </h2>
+        <p class="services-desc reveal" data-en="We deliver integrated software solutions aligned with the latest global technologies to ensure your project excels." data-ar="نقدم حلولاً برمجية متكاملة تواكب أحدث التقنيات العالمية لضمان تفوق مشروعك.">
+          We deliver integrated software solutions aligned with the latest global technologies to ensure your project excels.
+        </p>
+      </div>
+    </div>
+
+    <div class="services-grid">
+      <div class="glass service-card reveal">
+        <span class="material-symbols-outlined service-icon">language</span>
+        <h3 class="service-title" data-en="Web Dev"     data-ar="تطوير الويب">Web Dev</h3>
+        <p  class="service-desc"  data-en="Responsive and high-performance websites." data-ar="تطوير مواقع إلكترونية متجاوبة وعالية الأداء">Responsive and high-performance websites.</p>
+        <a href="#" class="service-link" data-en="Learn More →" data-ar="اعرف المزيد ←">Learn More →</a>
+      </div>
+      <div class="glass service-card reveal" style="transition-delay:.07s">
+        <span class="material-symbols-outlined service-icon secondary">smartphone</span>
+        <h3 class="service-title" data-en="Mobile Apps" data-ar="تطبيقات الجوال">Mobile Apps</h3>
+        <p  class="service-desc"  data-en="Smart apps for Android &amp; iOS." data-ar="تطبيقات ذكية لنظامي Android و iOS">Smart apps for Android &amp; iOS.</p>
+        <a href="#" class="service-link" data-en="Learn More →" data-ar="اعرف المزيد ←">Learn More →</a>
+      </div>
+      <div class="glass service-card reveal" style="transition-delay:.14s">
+        <span class="material-symbols-outlined service-icon">smart_toy</span>
+        <h3 class="service-title" data-en="AI Bots"     data-ar="بوتات الذكاء الاصطناعي">AI Bots</h3>
+        <p  class="service-desc"  data-en="AI bots to automate tasks and services." data-ar="بوتات ذكاء اصطناعي لأتمتة المهام والخدمات">AI bots to automate tasks and services.</p>
+        <a href="#" class="service-link" data-en="Learn More →" data-ar="اعرف المزيد ←">Learn More →</a>
+      </div>
+      <div class="glass service-card reveal" style="transition-delay:.21s">
+        <span class="material-symbols-outlined service-icon secondary">brush</span>
+        <h3 class="service-title" data-en="UI/UX Design" data-ar="تصميم UI/UX">UI/UX Design</h3>
+        <p  class="service-desc"  data-en="Modern designs focused on user experience." data-ar="تصاميم عصرية تركز على تجربة المستخدم">Modern designs focused on user experience.</p>
+        <a href="#" class="service-link" data-en="Learn More →" data-ar="اعرف المزيد ←">Learn More →</a>
+      </div>
+      <div class="glass service-card reveal" style="transition-delay:.28s">
+        <span class="material-symbols-outlined service-icon">developer_board</span>
+        <h3 class="service-title" data-en="Software"    data-ar="برمجيات">Software</h3>
+        <p  class="service-desc"  data-en="Custom software systems for enterprises." data-ar="بناء أنظمة برمجية مخصصة للشركات">Custom software systems for enterprises.</p>
+        <a href="#" class="service-link" data-en="Learn More →" data-ar="اعرف المزيد ←">Learn More →</a>
+      </div>
+      <div class="glass service-card reveal" style="transition-delay:.35s">
+        <span class="material-symbols-outlined service-icon secondary">forum</span>
+        <h3 class="service-title" data-en="Consulting"  data-ar="استشارات">Consulting</h3>
+        <p  class="service-desc"  data-en="Technical consulting for digital transformation." data-ar="استشارات تقنية لإدارة التحول الرقمي">Technical consulting for digital transformation.</p>
+        <a href="#" class="service-link" data-en="Learn More →" data-ar="اعرف المزيد ←">Learn More →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ HOW IT WORKS ═══════════ -->
+<section class="hiw-section">
+  <div class="hiw-inner">
+    <h2 class="hiw-title reveal" data-en="How It Works" data-ar="كيف نعمل">How It Works</h2>
+    <div class="hiw-timeline">
+      <div class="hiw-line"></div>
+      <div class="hiw-steps">
+
+        <!-- Step 1 -->
+        <div class="hiw-step reveal">
+          <div class="hiw-step-left">
+            <h5 class="hiw-step-title" data-en="The Spark"        data-ar="الشرارة">The Spark</h5>
+            <p  class="hiw-step-desc"  data-en="The idea is the beginning." data-ar="الفكرة هي البداية">The idea is the beginning.</p>
+          </div>
+          <div class="hiw-node node-glow">
+            <span class="hiw-node-num">1</span>
+          </div>
+          <div class="hiw-step-right">
+            <h5 class="hiw-step-title" data-en="Idea Generation"  data-ar="توليد الفكرة">Idea Generation</h5>
+            <p  class="hiw-step-desc"  data-en="We dive deep into your requirements and refine the core concept." data-ar="نتعمق في متطلباتك ونصقل الفكرة الأساسية.">We dive deep into your requirements and refine the core concept.</p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="hiw-step reveal">
+          <div class="hiw-step-left">
+            <h5 class="hiw-step-title" data-en="Strategic Proposal" data-ar="العرض الاستراتيجي">Strategic Proposal</h5>
+            <p  class="hiw-step-desc"  data-en="Detailed blueprints, tech stack, milestone definition." data-ar="مخططات تفصيلية، تقنيات، وتحديد المراحل.">Detailed blueprints, tech stack, milestone definition.</p>
+          </div>
+          <div class="hiw-node secondary">
+            <span class="hiw-node-num">2</span>
+          </div>
+          <div class="hiw-step-right">
+            <h5 class="hiw-step-title" data-en="The Plan"          data-ar="الخطة">The Plan</h5>
+            <p  class="hiw-step-desc"  data-en="Precise planning for every detail." data-ar="تخطيط دقيق لكل تفصيل">Precise planning for every detail.</p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="hiw-step reveal">
+          <div class="hiw-step-left">
+            <h5 class="hiw-step-title" data-en="The Craft"         data-ar="الحرفة">The Craft</h5>
+            <p  class="hiw-step-desc"  data-en="Turning code into reality." data-ar="تحويل الرموز إلى واقع">Turning code into reality.</p>
+          </div>
+          <div class="hiw-node node-glow">
+            <span class="hiw-node-num">3</span>
+          </div>
+          <div class="hiw-step-right">
+            <h5 class="hiw-step-title" data-en="Agile Build"       data-ar="البناء الرشيق">Agile Build</h5>
+            <p  class="hiw-step-desc"  data-en="Continuous coding, testing, and feedback loops for maximum precision." data-ar="برمجة مستمرة، اختبار، وحلقات تغذية راجعة للدقة القصوى.">Continuous coding, testing, and feedback loops for maximum precision.</p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="hiw-step reveal">
+          <div class="hiw-step-left">
+            <h5 class="hiw-step-title" data-en="Successful Launch"  data-ar="الإطلاق الناجح">Successful Launch</h5>
+            <p  class="hiw-step-desc"  data-en="Deployment, monitoring, and ongoing support for your growth." data-ar="نشر، مراقبة، ودعم مستمر لنموك.">Deployment, monitoring, and ongoing support for your growth.</p>
+          </div>
+          <div class="hiw-node secondary">
+            <span class="hiw-node-num">4</span>
+          </div>
+          <div class="hiw-step-right">
+            <h5 class="hiw-step-title" data-en="The Impact"         data-ar="الأثر">The Impact</h5>
+            <p  class="hiw-step-desc"  data-en="Launching toward success." data-ar="الانطلاق نحو النجاح">Launching toward success.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FEATURED WORK ═══════════ -->
+<section id="work" class="work-section">
+  <div class="work-inner">
+    <h2 class="work-title reveal" data-en="Featured Work" data-ar="أعمالنا المميزة">Featured Work</h2>
+
+    <div class="work-bento">
+      <!-- Project 1 -->
+      <div class="project-card glass reveal project-card-1" style="transition-delay:.05s">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtXbjOYsHptxMRzRzyR1snjiT79voeq7Lmu6qajZbQr2XSuCocagIB4_DUMmt_CroPTLSEG7KLST9RbOHl6mWZ8lDzfmxDuY9xBih1xvP3WFKfjVe-xVp8onpbEj2ccWQse2O5-wAdyBvP1Fo5uFT-qiSC3tlYH-OMj-DN7GXiiJWkobmRBuRq6haAfPURa3Mdgo92qT8Cu-5Pe6cyjwjy0bCGYSiVNsYQ1nowwFGsl8EZa6kRZPGJOGWgc159OLquw3kNYpD03vk" alt="NexGen Trading Hub"/>
+        <div class="project-overlay">
+          <div class="project-tags">
+            <span class="project-tag">Fintech</span>
+            <span class="project-tag alt">Web App</span>
+          </div>
+          <h3 class="project-title">NexGen Trading Hub</h3>
+          <button class="project-btn">View Case Study <span class="material-symbols-outlined" style="font-size:1.1rem;">arrow_outward</span></button>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card glass reveal project-card-2" style="transition-delay:.1s">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuApvnhH5J42fkk-zWC-thAQK-QdsLDxyuEcP4JhfyvrA8Ayb94McMw-TXONZH76_aOBQcN7H7M4mufVEbUqXUrLU8V1OLuxLF7McZHMqyo_pHNXEpLQj9JiPJiqwxukMxpmZswcGshddUPtkhoxGgtlK9dLktfu6rBUkKwhHn-OdzrKXm9KEjlDwfukwQoPfSfpTwpC_p8jxK9N8ie_083MMuuQqoTyRyZzRIePpQQJGXZY52ER2E-Mwyqau36RUq1iP2k2sy-7I84" alt="Aura Home Control"/>
+        <div class="project-overlay sm">
+          <div class="project-tags sm">
+            <span class="project-tag sm">IoT</span>
+            <span class="project-tag sm alt">Mobile</span>
+          </div>
+          <h3 class="project-title sm">Aura Home Control</h3>
+          <button class="project-btn sm">View Case Study <span class="material-symbols-outlined" style="font-size:1rem;">arrow_outward</span></button>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card glass reveal project-card-3" style="transition-delay:.15s">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDR7WFLLxK-1EeQ6aBsuZotm4Y_SSezfFz9_nSG4BtVYwwy2QtkYmV7LztNU8Qifa1zSKKQh_AnXK0qDiF1smSIGXI3JGArXRpYvaDI8z-KZxlOSYeYCZJCk30LpXgMNzD5xNQ0p6BQgSqi001B2NR1XPxK2bQnENWzC4TAQAPDRzFxLS9AUrlPbVSYa6Ivttfqyh7RHBy_LiUO6QOYvi3PzEtmL9QNC6stMWrpoHyesAFuZ8qXZe-HunUiBwkFnNLU5eMxznvpEs" alt="Ethos Chain Analytics"/>
+        <div class="project-overlay lg">
+          <div class="project-tags">
+            <span class="project-tag">Web3</span>
+            <span class="project-tag alt">Backend</span>
+          </div>
+          <h3 class="project-title lg">Ethos Chain Analytics</h3>
+          <button class="project-btn">View Case Study <span class="material-symbols-outlined" style="font-size:1.1rem;">arrow_outward</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PRICING ═══════════ -->
+<section id="pricing" class="pricing-section">
+  <div class="pricing-inner">
+    <div class="pricing-header">
+      <h2 class="pricing-title reveal" data-en="Flexible Tiers" data-ar="خطط مرنة">Flexible Tiers</h2>
+      <p class="pricing-subtitle reveal" data-en="Investment plans tailored to your project scale" data-ar="خطط استثمارية مصممة لحجم مشروعك">Investment plans tailored to your project scale</p>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- Starter -->
+      <div class="glass pricing-card reveal">
+        <h3 class="pricing-name"  data-en="Starter" data-ar="المبتدئ">Starter</h3>
+        <p  class="pricing-desc"  data-en="Perfect for MVP and Startups" data-ar="مثالي للمشاريع الناشئة">Perfect for MVP and Startups</p>
+        <div class="pricing-price">$2k – $5k</div>
+        <ul class="pricing-features">
+          <li class="pricing-feature"><span class="material-symbols-outlined">check_circle</span> Responsive Website</li>
+          <li class="pricing-feature"><span class="material-symbols-outlined">check_circle</span> UI/UX Basic Design</li>
+          <li class="pricing-feature"><span class="material-symbols-outlined">check_circle</span> 1 Month Support</li>
+          <li class="pricing-feature off"><span class="material-symbols-outlined">cancel</span> Advanced AI Integration</li>
+        </ul>
+        <button class="pricing-btn" data-en="Get Started" data-ar="ابدأ الآن">Get Started</button>
+      </div>
+
+      <!-- Growth (featured) -->
+      <div class="glass pricing-card pricing-card-featured pricing-focus reveal" style="transition-delay:.1s">
+        <div class="pricing-badge" data-en="Recommended" data-ar="الأفضل">Recommended</div>
+        <h3 class="pricing-name"  data-en="Growth"  data-ar="النمو">Growth</h3>
+        <p  class="pricing-desc"  data-en="Comprehensive digital products" data-ar="منتجات رقمية متكاملة">Comprehensive digital products</p>
+        <div class="pricing-price">$10k – $25k</div>
+        <ul class="pricing-features">
+          <li class="pricing-feature"><span class="material-symbols-outlined">check_circle</span> Mobile + Web Apps</li>
+          <li class="pricing-feature"><span class="material-symbols-outlined">check_circle</span> Custom Backend Logic</li>
+          <li class="pricing-feature"><span class="material-symbols-outlined">check_circle</span> 3 Months Support</li>
+          <li class="pricing-feature"><span class="material-symbols-outlined">check_circle</span> Basic AI Automation</li>
+        </ul>
+        <button class="btn-grad pricing-btn-featured" data-en="Elevate Now" data-ar="ارتقِ الآن">Elevate Now</button>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="glass pricing-card reveal" style="transition-delay:.2s">
+        <h3 class="pricing-name"  data-en="Enterprise" data-ar="المؤسسات">Enterprise</h3>
+        <p  class="pricing-desc"  data-en="Complex software &amp; AI" data-ar="برمجيات ذكاء اصطناعي متقدمة">Complex software &amp; AI</p>
+        <div class="pricing-price">$50k+</div>
+        <ul class="pricing-features">
+          <li class="pricing-feature secondary"><span class="material-symbols-outlined">check_circle</span> Custom Large Scale Software</li>
+          <li class="pricing-feature secondary"><span class="material-symbols-outlined">check_circle</span> Full AI Integration</li>
+          <li class="pricing-feature secondary"><span class="material-symbols-outlined">check_circle</span> Legacy Migration</li>
+          <li class="pricing-feature secondary"><span class="material-symbols-outlined">check_circle</span> Dedicated 24/7 Team</li>
+        </ul>
+        <button class="pricing-btn" data-en="Contact for Custom" data-ar="تواصل للتخصيص">Contact for Custom</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section id="contact" class="contact-section">
+  <div class="contact-inner">
+    <div class="glass contact-grid reveal">
+
+      <!-- Left info -->
+      <div class="contact-left">
+        <div>
+          <h2 class="contact-title"    data-en="Let's Build Something Great" data-ar="لنبني شيئاً رائعاً">Let's Build Something Great</h2>
+          <h3 class="contact-title-ar" dir="rtl">لنبني شيئاً رائعاً</h3>
+          <p  class="contact-subtitle" data-en="Whether you're a startup or an enterprise, we're ready to engineer your future." data-ar="سواء كنت شركة ناشئة أو مؤسسة، نحن مستعدون لبناء مستقبلك.">Whether you're a startup or an enterprise, we're ready to engineer your future.</p>
+        </div>
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><span class="material-symbols-outlined">mail</span></div>
+            <span class="contact-info-text">hello@ideatech.io</span>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><span class="material-symbols-outlined">location_on</span></div>
+            <span class="contact-info-text">Dubai, Digital Oasis — UAE</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="contact-right">
+        <div id="contact-success" class="contact-success" style="display:none;">
+          <div class="contact-success-icon">
+            <span class="material-symbols-outlined">check_circle</span>
+          </div>
+          <h3 class="contact-success-title" data-en="Request Sent Successfully! ✓" data-ar="تم إرسال طلبك بنجاح! ✓">Request Sent Successfully! ✓</h3>
+          <p  class="contact-success-desc"  data-en="We will contact you within 24 hours." data-ar="سنتواصل معك خلال 24 ساعة">We will contact you within 24 hours.</p>
+        </div>
+
+        <div id="contact-form-fields">
+          <div class="form-row">
+            <div>
+              <label class="form-label" data-en="Full Name *" data-ar="الاسم الكامل *">Full Name *</label>
+              <input id="cf-name" type="text" class="form-input" placeholder="John Doe" data-placeholder-en="John Doe" data-placeholder-ar="محمد أحمد"/>
+            </div>
+            <div>
+              <label class="form-label" data-en="Company" data-ar="الشركة">Company</label>
+              <input id="cf-company" type="text" class="form-input" placeholder="اختياري"/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div>
+              <label class="form-label" data-en="Email *" data-ar="البريد الإلكتروني *">Email *</label>
+              <input id="cf-email" type="email" class="form-input" placeholder="example@email.com" data-placeholder-en="example@email.com" data-placeholder-ar="example@email.com"/>
+            </div>
+            <div>
+              <label class="form-label" data-en="Phone" data-ar="رقم الهاتف">Phone</label>
+              <input id="cf-phone" type="tel" class="form-input" placeholder="+1 xxx xxx xxxx" data-placeholder-en="+1 xxx xxx xxxx" data-placeholder-ar="+966 5xx xxx xxxx"/>
+            </div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" data-en="Service Needed" data-ar="الخدمة المطلوبة">Service Needed</label>
+            <select id="cf-service" class="form-select">
+              <option data-en="Web Development"    data-ar="تطوير الويب">Web Development</option>
+              <option data-en="Mobile App"         data-ar="تطبيق جوال">Mobile App</option>
+              <option data-en="AI &amp; Automation" data-ar="ذكاء اصطناعي وأتمتة">AI &amp; Automation</option>
+              <option data-en="Enterprise Software" data-ar="برمجيات مؤسسية">Enterprise Software</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" data-en="Budget Range" data-ar="نطاق الميزانية">Budget Range</label>
+            <select id="cf-budget" class="form-select">
+              <option>$5k - $10k</option>
+              <option>$10k - $50k</option>
+              <option>$50k+</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" data-en="Message *" data-ar="الرسالة *">Message *</label>
+            <textarea id="cf-message" class="form-textarea" rows="4"
+              placeholder="اكتب تفاصيل مشروعك هنا..."
+              data-placeholder-en="Write your project details here..."
+              data-placeholder-ar="اكتب تفاصيل مشروعك هنا..."></textarea>
+          </div>
+          <div id="cf-error" class="form-error" style="display:none;"></div>
+          <button id="cf-submit" onclick="submitContactForm()" class="btn-grad form-submit">
+            <span id="cf-btn-txt" data-en="Send Request" data-ar="إرسال الطلب">Send Request</span>
+            <span id="cf-btn-spin" class="form-spinner" style="display:none;"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer-root">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-name">IDEA TECH</div>
+      <p class="footer-brand-tagline">نحوّل أفكارك إلى واقع تقني</p>
+    </div>
+    <div class="footer-social">
+      <a href="#" class="footer-link">LinkedIn</a>
+      <a href="#" class="footer-link">Instagram</a>
+      <a href="#" class="footer-link">WhatsApp</a>
+      <a href="#" class="footer-link">GitHub</a>
+    </div>
+    <div class="footer-legal">
+      <a href="#" class="footer-link" data-en="Terms"   data-ar="الشروط">Terms</a>
+      <a href="#" class="footer-link" data-en="Privacy" data-ar="الخصوصية">Privacy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2024 IDEA TECH. All rights reserved. |
+    <span data-en="We turn your ideas into tech reality." data-ar="نحوّل أفكارك إلى واقع تقني">We turn your ideas into tech reality.</span>
+  </div>
+</footer>
+
+<!-- WhatsApp floating button -->
+<a href="#" class="whatsapp-btn">
+  <svg width="28" height="28" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<!-- External JavaScript -->
+<script src="main.js"></script>
+
+<!-- ═══════════ FIREBASE AUTH + CONTACT ═══════════ -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {
+  getAuth, onAuthStateChanged, signOut,
+  signInWithEmailAndPassword, createUserWithEmailAndPassword,
+  signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import {
+  getFirestore, collection, addDoc, doc, setDoc, getDoc, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCH5K-zXdh0v8lZz4PiSFocAs_rklBZe1A",
+  authDomain: "web1-94067.firebaseapp.com",
+  projectId: "web1-94067",
+  storageBucket: "web1-94067.firebasestorage.app",
+  messagingSenderId: "106677179670",
+  appId: "1:106677179670:web:1388a0d28f7bbce8186c37"
+};
+const ADMIN_EMAIL = "ideatech829@gmail.com";
+
+const app  = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db   = getFirestore(app);
+const provider = new GoogleAuthProvider();
+
+// ══ Inject Auth CSS ══
+const authStyle = document.createElement('style');
+authStyle.textContent = `
+  #auth-modal{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;}
+  #auth-modal.active{display:flex;}
+  .auth-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(8px);}
+  .auth-box{
+    position:relative;z-index:1;background:#131318;border:1px solid rgba(255,255,255,0.09);
+    border-radius:1.5rem;padding:2.5rem;width:100%;max-width:430px;margin:1rem;
+    box-shadow:0 0 80px rgba(0,200,83,0.07),0 40px 80px rgba(0,0,0,0.5);
+    animation:authSlideIn .35s cubic-bezier(.34,1.56,.64,1);direction:rtl;
+    font-family:'DM Sans','Tajawal',sans-serif;
+  }
+  @keyframes authSlideIn{from{opacity:0;transform:translateY(30px) scale(.96)}to{opacity:1;transform:none}}
+  .auth-close{position:absolute;top:1.25rem;left:1.25rem;background:rgba(255,255,255,.07);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+  .auth-close:hover{background:rgba(255,255,255,.14);}
+  .auth-tabs{display:flex;background:rgba(255,255,255,0.05);border-radius:.75rem;padding:4px;gap:4px;margin-bottom:1.75rem;}
+  .auth-tab{flex:1;padding:.6rem;border:none;background:none;color:rgba(255,255,255,.5);font-size:.875rem;font-weight:700;border-radius:.5rem;cursor:pointer;transition:all .2s;font-family:inherit;}
+  .auth-tab.active{background:linear-gradient(135deg,#00C853,#00A040);color:#fff;}
+  .auth-field{margin-bottom:1.25rem;}
+  .auth-field label{display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:.5rem;}
+  .auth-field input{width:100%;background:#0e0e13;border:1px solid rgba(255,255,255,.1);border-radius:.625rem;padding:.8rem 1rem;color:#fff;font-size:.9rem;outline:none;transition:border-color .2s;font-family:inherit;direction:ltr;}
+  .auth-field input:focus{border-color:rgba(0,200,83,.5);}
+  .auth-btn-main{width:100%;padding:1rem;border-radius:.875rem;border:none;cursor:pointer;background:linear-gradient(135deg,#00C853,#00A040);color:#fff;font-weight:700;font-size:.95rem;font-family:inherit;transition:transform .2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+  .auth-btn-main:hover{transform:scale(1.02);}
+  .auth-btn-google{width:100%;padding:.875rem;border-radius:.875rem;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:#fff;font-weight:700;font-size:.875rem;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:background .2s;}
+  .auth-btn-google:hover{background:rgba(255,255,255,.09);}
+  .auth-divider{display:flex;align-items:center;gap:.75rem;margin:1.25rem 0;color:rgba(255,255,255,.25);font-size:.8rem;}
+  .auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.1);}
+  .auth-spinner{width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;}
+  #auth-alert{padding:.875rem 1rem;border-radius:.625rem;font-size:.85rem;margin-bottom:1rem;font-weight:500;display:none;}
+  #auth-alert.success{background:rgba(0,200,83,.12);border:1px solid rgba(0,200,83,.3);color:#00C853;}
+  #auth-alert.error{background:rgba(255,60,60,.1);border:1px solid rgba(255,60,60,.3);color:#ff6b6b;}
+`;
+document.head.appendChild(authStyle);
+
+// ══ Inject Auth Modal ══
+const modal = document.createElement('div');
+modal.id = 'auth-modal';
+modal.innerHTML = `
+  <div class="auth-overlay" onclick="closeAuthModal()"></div>
+  <div class="auth-box">
+    <button class="auth-close" onclick="closeAuthModal()">✕</button>
+    <div style="text-align:center;margin-bottom:1.75rem;">
+      <div style="width:50px;height:50px;border-radius:12px;background:rgba(0,200,83,.12);display:flex;align-items:center;justify-content:center;box-shadow:0 0 24px rgba(0,200,83,.2);margin:0 auto 10px;">
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;color:#00C853;font-size:26px;">lightbulb</span>
+      </div>
+      <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:1.4rem;font-weight:900;background:linear-gradient(135deg,#00C853,#00A040);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">IDEA TECH</div>
+      <p style="color:rgba(255,255,255,.4);font-size:.8rem;margin-top:.25rem;" data-en="Sign in to your account" data-ar="تسجيل الدخول للموقع">Sign in to your account</p>
+    </div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-login"    onclick="switchAuthTab('login')"    data-en="Sign In"        data-ar="تسجيل الدخول">Sign In</button>
+      <button class="auth-tab"        id="tab-register" onclick="switchAuthTab('register')" data-en="Create Account" data-ar="إنشاء حساب">Create Account</button>
+    </div>
+    <div id="auth-alert"></div>
+
+    <!-- Login -->
+    <div id="form-login">
+      <div class="auth-field"><label data-en="Email"    data-ar="البريد الإلكتروني">Email</label><input type="email"    id="li-email" placeholder="example@email.com"/></div>
+      <div class="auth-field"><label data-en="Password" data-ar="كلمة المرور">Password</label><input type="password" id="li-pass"  placeholder="••••••••"/></div>
+      <div style="text-align:left;margin-bottom:1.25rem;">
+        <button onclick="doForgot()" style="background:none;border:none;color:#00C853;font-size:.8rem;cursor:pointer;padding:0;font-family:inherit;" data-en="Forgot password?" data-ar="نسيت كلمة المرور؟">Forgot password?</button>
+      </div>
+      <button class="auth-btn-main" onclick="doLogin()">
+        <span id="li-txt" data-en="Sign In" data-ar="تسجيل الدخول">Sign In</span><span id="li-spin" style="display:none;" class="auth-spinner"></span>
+      </button>
+      <div class="auth-divider"><span data-en="or" data-ar="أو">or</span></div>
+      <button class="auth-btn-google" onclick="doGoogle()">
+        <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.6 32.6 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 7.9 2.9l5.7-5.7C34.1 6.7 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.1 7.9 2.9l5.7-5.7C34.1 6.7 29.3 4 24 4 16.3 4 9.7 8.4 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-1.9 13.5-5l-6.2-5.3C29.5 35.5 26.9 36 24 36c-5.3 0-9.6-3.3-11.3-8H6.1C9.5 35.6 16.3 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.3 5.7l6.2 5.3C37.6 39 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg>
+        <span data-en="Sign in with Google" data-ar="تسجيل الدخول بـ Google">Sign in with Google</span>
+      </button>
+    </div>
+
+    <!-- Register -->
+    <div id="form-register" style="display:none;">
+      <div class="auth-field"><label data-en="Full Name" data-ar="الاسم الكامل">Full Name</label><input type="text"     id="rg-name"  placeholder="محمد أحمد"/></div>
+      <div class="auth-field"><label data-en="Email"     data-ar="البريد الإلكتروني">Email</label><input type="email"    id="rg-email" placeholder="example@email.com"/></div>
+      <div class="auth-field"><label data-en="Password"  data-ar="كلمة المرور">Password</label><input type="password" id="rg-pass"  placeholder="••••••••"/></div>
+      <button class="auth-btn-main" onclick="doRegister()">
+        <span id="rg-txt" data-en="Create Account" data-ar="إنشاء الحساب">Create Account</span><span id="rg-spin" style="display:none;" class="auth-spinner"></span>
+      </button>
+      <div class="auth-divider"><span data-en="or" data-ar="أو">or</span></div>
+      <button class="auth-btn-google" onclick="doGoogle()">
+        <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.6 32.6 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 7.9 2.9l5.7-5.7C34.1 6.7 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.1 7.9 2.9l5.7-5.7C34.1 6.7 29.3 4 24 4 16.3 4 9.7 8.4 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-1.9 13.5-5l-6.2-5.3C29.5 35.5 26.9 36 24 36c-5.3 0-9.6-3.3-11.3-8H6.1C9.5 35.6 16.3 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.3 5.7l6.2 5.3C37.6 39 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg>
+        <span data-en="Register with Google" data-ar="التسجيل بـ Google">Register with Google</span>
+      </button>
+    </div>
+  </div>
+`;
+document.body.appendChild(modal);
+
+// ══ Helpers ══
+function showAuthAlert(msg, type='error'){
+  const el=document.getElementById('auth-alert');
+  el.textContent=msg; el.className=type; el.style.display='block';
+  setTimeout(()=>el.style.display='none',5000);
+}
+
+window.openAuthModal    = () => document.getElementById('auth-modal').classList.add('active');
+window.closeAuthModal   = () => document.getElementById('auth-modal').classList.remove('active');
+window.switchAuthTab    = (t) => {
+  document.getElementById('form-login').style.display    = t==='login'    ? 'block' : 'none';
+  document.getElementById('form-register').style.display = t==='register' ? 'block' : 'none';
+  document.getElementById('tab-login').classList.toggle('active',    t==='login');
+  document.getElementById('tab-register').classList.toggle('active', t==='register');
+  document.getElementById('auth-alert').style.display = 'none';
+};
+window.toggleUserDropdown = () => document.getElementById('user-dropdown').classList.toggle('open');
+
+document.addEventListener('click', e => {
+  const area = document.getElementById('user-nav-area');
+  if (area && !area.contains(e.target)) document.getElementById('user-dropdown')?.classList.remove('open');
+});
+
+// ── Save user ──
+async function saveUser(user, extra={}) {
+  const ref  = doc(db,'users',user.uid);
+  const snap = await getDoc(ref);
+  if (!snap.exists()) {
+    await setDoc(ref,{
+      uid: user.uid, email: user.email,
+      displayName: user.displayName || extra.name || '',
+      role: user.email === ADMIN_EMAIL ? 'admin' : 'customer',
+      createdAt: serverTimestamp()
+    });
+  }
+}
+
+// ── doLogin ──
+window.doLogin = async () => {
+  const e = document.getElementById('li-email').value.trim();
+  const p = document.getElementById('li-pass').value;
+  if (!e||!p) { showAuthAlert('يرجى ملء جميع الحقول'); return; }
+  document.getElementById('li-txt').style.display  = 'none';
+  document.getElementById('li-spin').style.display = 'block';
+  try {
+    const c = await signInWithEmailAndPassword(auth,e,p);
+    await saveUser(c.user);
+    closeAuthModal();
+  } catch(err) {
+    const m = {'auth/user-not-found':'لا يوجد حساب بهذا البريد','auth/wrong-password':'كلمة المرور غير صحيحة','auth/invalid-email':'بريد إلكتروني غير صالح','auth/too-many-requests':'محاولات كثيرة، انتظر قليلاً','auth/invalid-credential':'البريد أو كلمة المرور غير صحيحة'};
+    showAuthAlert(m[err.code]||'حدث خطأ، حاول مجدداً');
+  } finally {
+    document.getElementById('li-txt').style.display  = 'inline';
+    document.getElementById('li-spin').style.display = 'none';
+  }
+};
+
+// ── doRegister ──
+window.doRegister = async () => {
+  const n = document.getElementById('rg-name').value.trim();
+  const e = document.getElementById('rg-email').value.trim();
+  const p = document.getElementById('rg-pass').value;
+  if (!n||!e||!p) { showAuthAlert('يرجى ملء جميع الحقول'); return; }
+  if (p.length<6)  { showAuthAlert('كلمة المرور 6 أحرف على الأقل'); return; }
+  document.getElementById('rg-txt').style.display  = 'none';
+  document.getElementById('rg-spin').style.display = 'block';
+  try {
+    const c = await createUserWithEmailAndPassword(auth,e,p);
+    await saveUser(c.user,{name:n});
+    closeAuthModal();
+  } catch(err) {
+    const m = {'auth/email-already-in-use':'البريد مستخدم بالفعل','auth/weak-password':'كلمة المرور ضعيفة','auth/invalid-email':'بريد غير صالح'};
+    showAuthAlert(m[err.code]||'حدث خطأ في التسجيل');
+  } finally {
+    document.getElementById('rg-txt').style.display  = 'inline';
+    document.getElementById('rg-spin').style.display = 'none';
+  }
+};
+
+// ── doGoogle ──
+window.doGoogle = async () => {
+  try {
+    const c = await signInWithPopup(auth,provider);
+    await saveUser(c.user);
+    closeAuthModal();
+  } catch(err) {
+    if (err.code !== 'auth/popup-closed-by-user') showAuthAlert('فشل تسجيل الدخول بـ Google');
+  }
+};
+
+// ── doForgot ──
+window.doForgot = async () => {
+  const e = document.getElementById('li-email').value.trim();
+  if (!e) { showAuthAlert('أدخل بريدك الإلكتروني أولاً'); return; }
+  try { await sendPasswordResetEmail(auth,e); showAuthAlert('تم إرسال رابط إعادة التعيين','success'); }
+  catch { showAuthAlert('لم يُعثر على هذا البريد'); }
+};
+
+// ── Logout ──
+window.handleLogout = async () => {
+  await signOut(auth);
+  document.getElementById('user-dropdown').classList.remove('open');
+};
+
+// ── Auth state ──
+onAuthStateChanged(auth, user => {
+  window.currentUser = user;
+  const loginBtn = document.getElementById('nav-login-btn');
+  const userArea  = document.getElementById('user-nav-area');
+  if (!loginBtn||!userArea) return;
+  if (user) {
+    loginBtn.style.display = 'none';
+    userArea.style.display = 'flex';
+    const nameEl = document.getElementById('nav-user-name');
+    if (nameEl) nameEl.textContent = (user.displayName||user.email||'').split(' ')[0] || 'مستخدم';
+    const adminLink = document.getElementById('admin-nav-link');
+    if (adminLink) adminLink.style.display = user.email===ADMIN_EMAIL ? 'flex' : 'none';
+  } else {
+    loginBtn.style.display = 'flex';
+    userArea.style.display = 'none';
+  }
+});
+
+// ══════════ CONTACT FORM → FIRESTORE ══════════
+window.submitContactForm = async function() {
+  const name    = document.getElementById('cf-name')?.value.trim();
+  const company = document.getElementById('cf-company')?.value.trim();
+  const email   = document.getElementById('cf-email')?.value.trim();
+  const phone   = document.getElementById('cf-phone')?.value.trim();
+  const service = document.getElementById('cf-service')?.value;
+  const budget  = document.getElementById('cf-budget')?.value;
+  const message = document.getElementById('cf-message')?.value.trim();
+  const errEl   = document.getElementById('cf-error');
+
+  if (!name)                      { showCfError('يرجى إدخال الاسم الكامل'); return; }
+  if (!email||!email.includes('@')){ showCfError('يرجى إدخال بريد إلكتروني صحيح'); return; }
+  if (!message)                   { showCfError('يرجى كتابة رسالتك'); return; }
+
+  errEl.style.display = 'none';
+  const btn  = document.getElementById('cf-submit');
+  const txt  = document.getElementById('cf-btn-txt');
+  const spin = document.getElementById('cf-btn-spin');
+  btn.disabled = true;
+  txt.style.display  = 'none';
+  spin.style.display = 'block';
+
+  try {
+    await addDoc(collection(db,'messages'), {
+      name, company: company||'', email, phone: phone||'',
+      service: service||'', budget: budget||'', message,
+      userId: window.currentUser?.uid || null,
+      status: 'new',
+      createdAt: serverTimestamp()
+    });
+    document.getElementById('contact-form-fields').style.display = 'none';
+    document.getElementById('contact-success').style.display     = 'block';
+  } catch(err) {
+    console.error('Contact form error:', err);
+    showCfError('حدث خطأ في الإرسال: ' + (err.message || 'حاول مجدداً'));
+    btn.disabled = false;
+    txt.style.display  = 'inline';
+    spin.style.display = 'none';
+  }
+};
+
+function showCfError(msg) {
+  const el = document.getElementById('cf-error');
+  if (el) { el.textContent = msg; el.style.display = 'block'; }
+}
+</script>
+</body>
+</html>

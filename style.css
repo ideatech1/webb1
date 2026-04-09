@@ -3,13 +3,24 @@
    ═══════════════════════════════════════════ */
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; color-scheme: dark; }
 
 body {
   background-color: #0A0A0F;
   color: #e4e1e9;
   font-family: 'DM Sans', 'Tajawal', sans-serif;
   overflow-x: hidden;
+  color-scheme: dark;
+}
+
+/* Force all native inputs to dark theme (Firefox/OS theme override fix) */
+input, textarea, select, button { color-scheme: dark; }
+input:not([type=submit]):not([type=button]):not([type=reset]):not([type=checkbox]):not([type=radio]):not([type=range]),
+textarea,
+select {
+  background-color: #0e0e13 !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
 }
 
 /* ─── Gradient mesh background ─── */
@@ -406,13 +417,31 @@ body {
 .form-input, .form-select, .form-textarea {
   width: 100%; background: #0e0e13;
   border: 1px solid rgba(255,255,255,.1); border-radius: .625rem;
-  padding: .75rem 1rem; color: #fff; font-size: .9rem;
+  padding: .75rem 1rem; color: #fff !important; font-size: .9rem;
   outline: none; transition: border-color .2s; font-family: inherit;
+  -webkit-text-fill-color: #fff !important;
+  caret-color: #fff;
 }
 .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: rgba(0,200,83,.5); }
 .form-input[type="email"], .form-input[type="tel"] { direction: ltr; }
 .form-select { appearance: none; }
-.form-textarea { resize: vertical; }
+.form-textarea { resize: vertical; -webkit-text-fill-color: #fff !important; color: #fff !important; }
+/* Fix browser autofill overriding background/text color */
+.form-input:-webkit-autofill,
+.form-input:-webkit-autofill:hover,
+.form-input:-webkit-autofill:focus,
+.form-select:-webkit-autofill,
+.form-textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #0e0e13 inset !important;
+  -webkit-text-fill-color: #fff !important;
+  caret-color: #fff;
+  border: 1px solid rgba(255,255,255,.1);
+  transition: background-color 5000s ease-in-out 0s;
+}
+.form-input::placeholder, .form-textarea::placeholder {
+  color: rgba(255,255,255,.3);
+  -webkit-text-fill-color: rgba(255,255,255,.3);
+}
 .form-error {
   background: rgba(255,60,60,.1); border: 1px solid rgba(255,60,60,.3);
   color: #ff6b6b; padding: .75rem 1rem; border-radius: .625rem; font-size: .85rem; margin-bottom: 1rem;

@@ -294,34 +294,79 @@ body { background:#0A0A0F; color:#e4e1e9; font-family:'Cairo','Tajawal',sans-ser
 
       <!-- ═══ SETTINGS ═══ -->
       <section class="section" id="sec-settings">
-        <div style="max-width:600px;">
-          <div class="stat-card" style="margin-bottom:1.5rem;">
-            <h3 style="font-size:.95rem;font-weight:700;color:#fff;margin-bottom:1.25rem;">إعدادات الموقع</h3>
+        <div style="max-width:700px;display:flex;flex-direction:column;gap:1.25rem;">
+
+          <!-- Basic Info -->
+          <div class="stat-card">
+            <h3 style="font-size:.95rem;font-weight:700;color:#fff;margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem;">
+              <span class="material-symbols-outlined" style="color:#00C853;font-size:1.1rem;">business</span> معلومات الشركة
+            </h3>
             <div style="display:flex;flex-direction:column;gap:1.25rem;">
               <div>
-                <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;">اسم الشركة</label>
+                <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;">اسم الشركة / Company Name</label>
                 <input class="ctrl-input" id="s-company" style="width:100%;" value="IDEA TECH"/>
               </div>
               <div>
-                <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;">البريد الإلكتروني</label>
+                <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;">البريد الإلكتروني / Email</label>
                 <input class="ctrl-input" id="s-email" style="width:100%;direction:ltr;" value="hello@ideatech.io"/>
               </div>
               <div>
-                <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;">العنوان</label>
+                <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;">العنوان / Address</label>
                 <input class="ctrl-input" id="s-address" style="width:100%;" value="Dubai, Digital Oasis — UAE"/>
               </div>
-              <div>
-                <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;">شعار الموقع (نص)</label>
-                <input class="ctrl-input" id="s-tagline" style="width:100%;" value="نحوّل أفكارك إلى واقع تقني"/>
-              </div>
-              <div>
-                <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;">رابط WhatsApp</label>
-                <input class="ctrl-input" id="s-whatsapp" style="width:100%;direction:ltr;" placeholder="https://wa.me/971XXXXXXXXX"/>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;">شعار الموقع (عربي)</label>
+                  <input class="ctrl-input" id="s-tagline" style="width:100%;" value="نحوّل أفكارك إلى واقع تقني"/>
+                </div>
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;">Tagline (English)</label>
+                  <input class="ctrl-input" id="s-taglineEn" style="width:100%;direction:ltr;" placeholder="We turn your ideas into reality"/>
+                </div>
               </div>
             </div>
-            <div style="margin-top:1.5rem;text-align:left;">
-              <button class="btn-primary" onclick="saveSettings()">حفظ الإعدادات</button>
+          </div>
+
+          <!-- Contact & Social -->
+          <div class="stat-card">
+            <h3 style="font-size:.95rem;font-weight:700;color:#fff;margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem;">
+              <span class="material-symbols-outlined" style="color:#00C853;font-size:1.1rem;">contact_phone</span> التواصل والسوشيال ميديا
+            </h3>
+            <div style="display:flex;flex-direction:column;gap:1.25rem;">
+              <div>
+                <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.75rem;display:flex;align-items:center;justify-content:space-between;">
+                  <span><span class="material-symbols-outlined" style="font-size:.85rem;vertical-align:middle;color:#25D366;">chat</span> أرقام WhatsApp</span>
+                  <button onclick="addWhatsappField()" style="background:rgba(37,211,102,.15);border:1px solid rgba(37,211,102,.3);color:#25D366;border-radius:.5rem;padding:.3rem .75rem;font-size:.75rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:.35rem;">
+                    <span class="material-symbols-outlined" style="font-size:.9rem;">add</span> إضافة رقم
+                  </button>
+                </label>
+                <div id="whatsapp-numbers" style="display:flex;flex-direction:column;gap:.6rem;"></div>
+              </div>
+              <div>
+                <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;">
+                  <span class="material-symbols-outlined" style="font-size:.85rem;vertical-align:middle;color:#1877F2;">language</span> رابط Facebook
+                </label>
+                <input class="ctrl-input" id="s-facebook" style="width:100%;direction:ltr;" placeholder="https://facebook.com/..."/>
+              </div>
+              <div>
+                <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;">
+                  <span class="material-symbols-outlined" style="font-size:.85rem;vertical-align:middle;color:#E1306C;">photo_camera</span> رابط Instagram
+                </label>
+                <input class="ctrl-input" id="s-instagram" style="width:100%;direction:ltr;" placeholder="https://instagram.com/..."/>
+              </div>
+              <div>
+                <label style="display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:.5rem;">
+                  <span class="material-symbols-outlined" style="font-size:.85rem;vertical-align:middle;color:#0A66C2;">work</span> رابط LinkedIn
+                </label>
+                <input class="ctrl-input" id="s-linkedin" style="width:100%;direction:ltr;" placeholder="https://linkedin.com/company/..."/>
+              </div>
             </div>
+          </div>
+
+          <div style="text-align:left;">
+            <button class="btn-primary" onclick="saveSettings()">
+              <span class="material-symbols-outlined" style="font-size:1rem;vertical-align:middle;">save</span> حفظ الإعدادات
+            </button>
           </div>
         </div>
       </section>
@@ -644,21 +689,39 @@ function renderPricing() {
     return `
       <div class="stat-card">
         <p style="font-size:.7rem;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem;">${p.name}</p>
-        <div style="margin-bottom:1rem;">
-          <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">الاسم (عربي)</label>
-          <input class="ctrl-input" id="p-${k}-nameAr" value="${p.nameAr||''}" style="width:100%;"/>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem;">
+          <div>
+            <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">الاسم (عربي)</label>
+            <input class="ctrl-input" id="p-${k}-nameAr" value="${p.nameAr||''}" style="width:100%;"/>
+          </div>
+          <div>
+            <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">Name (English)</label>
+            <input class="ctrl-input" id="p-${k}-nameEn" value="${p.nameEn||p.name||''}" style="width:100%;direction:ltr;"/>
+          </div>
         </div>
         <div style="margin-bottom:1rem;">
-          <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">السعر</label>
+          <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">السعر / Price</label>
           <input class="ctrl-input" id="p-${k}-price" value="${p.price||''}" style="width:100%;direction:ltr;"/>
         </div>
-        <div style="margin-bottom:1rem;">
-          <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">الوصف</label>
-          <input class="ctrl-input" id="p-${k}-desc" value="${p.desc||''}" style="width:100%;"/>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem;">
+          <div>
+            <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">الوصف (عربي)</label>
+            <input class="ctrl-input" id="p-${k}-desc" value="${p.desc||''}" style="width:100%;"/>
+          </div>
+          <div>
+            <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">Description (English)</label>
+            <input class="ctrl-input" id="p-${k}-descEn" value="${p.descEn||''}" style="width:100%;direction:ltr;"/>
+          </div>
         </div>
-        <div>
-          <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">المميزات (سطر لكل ميزة)</label>
-          <textarea class="ctrl-input" id="p-${k}-features" rows="5" style="width:100%;resize:vertical;">${(p.features||[]).join('\n')}</textarea>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;">
+          <div>
+            <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">المميزات (عربي - سطر لكل ميزة)</label>
+            <textarea class="ctrl-input" id="p-${k}-features" rows="5" style="width:100%;resize:vertical;">${(p.features||[]).join('\n')}</textarea>
+          </div>
+          <div>
+            <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">Features (English - one per line)</label>
+            <textarea class="ctrl-input" id="p-${k}-featuresEn" rows="5" style="width:100%;resize:vertical;direction:ltr;">${(p.featuresEn||[]).join('\n')}</textarea>
+          </div>
         </div>
       </div>
     `;
@@ -672,9 +735,12 @@ window.savePricing = async function() {
     data[k] = {
       name: defaultPricing[k].name,
       nameAr: document.getElementById(`p-${k}-nameAr`).value,
+      nameEn: document.getElementById(`p-${k}-nameEn`).value,
       price: document.getElementById(`p-${k}-price`).value,
       desc: document.getElementById(`p-${k}-desc`).value,
-      features: document.getElementById(`p-${k}-features`).value.split('\n').filter(f => f.trim())
+      descEn: document.getElementById(`p-${k}-descEn`).value,
+      features: document.getElementById(`p-${k}-features`).value.split('\n').filter(f => f.trim()),
+      featuresEn: document.getElementById(`p-${k}-featuresEn`).value.split('\n').filter(f => f.trim())
     };
   });
   await setDoc(doc(db, 'siteConfig', 'pricing'), data);
@@ -700,15 +766,23 @@ async function loadServices() {
 
 function renderServices() {
   document.getElementById('services-list').innerHTML = servicesData.map((s, i) => `
-    <div class="stat-card" style="display:grid;grid-template-columns:auto 1fr 1fr 1fr auto;gap:1rem;align-items:center;">
-      <span class="material-symbols-outlined" style="color:${s.color};">${s.icon}</span>
+    <div class="stat-card" style="display:grid;grid-template-columns:auto 1fr 1fr 1fr 1fr 1fr auto;gap:1rem;align-items:center;">
+      <span class="material-symbols-outlined" style="color:${s.color};font-size:1.75rem;">${s.icon}</span>
       <div>
-        <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">الاسم</label>
+        <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">الاسم (عربي)</label>
         <input class="ctrl-input" id="srv-${i}-nameAr" value="${s.nameAr||''}" style="width:100%;"/>
       </div>
       <div>
-        <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">الوصف</label>
+        <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">Name (English)</label>
+        <input class="ctrl-input" id="srv-${i}-nameEn" value="${s.nameEn||''}" style="width:100%;direction:ltr;"/>
+      </div>
+      <div>
+        <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">الوصف (عربي)</label>
         <input class="ctrl-input" id="srv-${i}-descAr" value="${s.descAr||''}" style="width:100%;"/>
+      </div>
+      <div>
+        <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">Description (English)</label>
+        <input class="ctrl-input" id="srv-${i}-descEn" value="${s.descEn||''}" style="width:100%;direction:ltr;"/>
       </div>
       <div>
         <label style="display:block;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:.35rem;">أيقونة (Material)</label>
@@ -722,7 +796,7 @@ function renderServices() {
 }
 
 window.addService = function() {
-  servicesData.push({ id: 's'+Date.now(), nameAr: 'خدمة جديدة', icon: 'star', color: '#00C853', descAr: 'وصف الخدمة' });
+  servicesData.push({ id: 's'+Date.now(), nameAr: 'خدمة جديدة', nameEn: 'New Service', icon: 'star', color: '#00C853', descAr: 'وصف الخدمة', descEn: 'Service description' });
   renderServices();
 };
 window.removeService = function(i) {
@@ -733,7 +807,9 @@ window.saveServices = async function() {
   servicesData = servicesData.map((s, i) => ({
     ...s,
     nameAr: document.getElementById(`srv-${i}-nameAr`)?.value || s.nameAr,
+    nameEn: document.getElementById(`srv-${i}-nameEn`)?.value || s.nameEn || '',
     descAr: document.getElementById(`srv-${i}-descAr`)?.value || s.descAr,
+    descEn: document.getElementById(`srv-${i}-descEn`)?.value || s.descEn || '',
     icon: document.getElementById(`srv-${i}-icon`)?.value || s.icon
   }));
   await setDoc(doc(db, 'siteConfig', 'services'), { list: servicesData });
@@ -742,23 +818,63 @@ window.saveServices = async function() {
 
 // ══════════ SETTINGS ══════════
 async function loadSettings() {
+  renderWhatsappFields(['']); // default empty field
   const snap = await getDoc(doc(db, 'siteConfig', 'general'));
   if (snap.exists()) {
     const d = snap.data();
-    if (d.company) document.getElementById('s-company').value = d.company;
-    if (d.email) document.getElementById('s-email').value = d.email;
-    if (d.address) document.getElementById('s-address').value = d.address;
-    if (d.tagline) document.getElementById('s-tagline').value = d.tagline;
-    if (d.whatsapp) document.getElementById('s-whatsapp').value = d.whatsapp;
+    if (d.company)    document.getElementById('s-company').value   = d.company;
+    if (d.email)      document.getElementById('s-email').value     = d.email;
+    if (d.address)    document.getElementById('s-address').value   = d.address;
+    if (d.tagline)    document.getElementById('s-tagline').value   = d.tagline;
+    if (d.taglineEn)  document.getElementById('s-taglineEn').value = d.taglineEn;
+    // Load WhatsApp numbers (supports array or old single string)
+    const waNumbers = Array.isArray(d.whatsapp) ? d.whatsapp : (d.whatsapp ? [d.whatsapp] : ['']);
+    renderWhatsappFields(waNumbers);
+    if (d.facebook)   document.getElementById('s-facebook').value  = d.facebook;
+    if (d.instagram)  document.getElementById('s-instagram').value = d.instagram;
+    if (d.linkedin)   document.getElementById('s-linkedin').value  = d.linkedin;
   }
 }
+// ══ WhatsApp multi-number helpers ══
+function renderWhatsappFields(numbers) {
+  const container = document.getElementById('whatsapp-numbers');
+  if (!container) return;
+  container.innerHTML = '';
+  (numbers.length ? numbers : ['']).forEach((num, i) => {
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;gap:.5rem;align-items:center;';
+    row.innerHTML = `
+      <input class="ctrl-input wa-number-input" value="${num}" style="flex:1;direction:ltr;" placeholder="https://wa.me/971XXXXXXXXX" data-index="${i}"/>
+      ${numbers.length > 1 ? `<button onclick="removeWhatsappField(${i})" style="background:rgba(255,60,60,.12);border:1px solid rgba(255,60,60,.25);color:#ff6b6b;border-radius:.5rem;padding:.4rem .6rem;cursor:pointer;display:flex;align-items:center;"><span class='material-symbols-outlined' style='font-size:.95rem;'>delete</span></button>` : ''}
+    `;
+    container.appendChild(row);
+  });
+}
+window.addWhatsappField = function() {
+  const current = getWhatsappNumbers();
+  current.push('');
+  renderWhatsappFields(current);
+};
+window.removeWhatsappField = function(i) {
+  const current = getWhatsappNumbers();
+  current.splice(i, 1);
+  renderWhatsappFields(current.length ? current : ['']);
+};
+function getWhatsappNumbers() {
+  return [...document.querySelectorAll('.wa-number-input')].map(el => el.value.trim()).filter(v => v);
+}
+
 window.saveSettings = async function() {
   await setDoc(doc(db, 'siteConfig', 'general'), {
-    company: document.getElementById('s-company').value,
-    email: document.getElementById('s-email').value,
-    address: document.getElementById('s-address').value,
-    tagline: document.getElementById('s-tagline').value,
-    whatsapp: document.getElementById('s-whatsapp').value,
+    company:   document.getElementById('s-company').value,
+    email:     document.getElementById('s-email').value,
+    address:   document.getElementById('s-address').value,
+    tagline:   document.getElementById('s-tagline').value,
+    taglineEn: document.getElementById('s-taglineEn').value,
+    whatsapp:  getWhatsappNumbers(),
+    facebook:  document.getElementById('s-facebook').value,
+    instagram: document.getElementById('s-instagram').value,
+    linkedin:  document.getElementById('s-linkedin').value,
     updatedAt: serverTimestamp()
   });
   showToast('تم حفظ الإعدادات ✓');

@@ -409,7 +409,7 @@ body {
 }
 .contact-info-icon .material-symbols-outlined { color: #00C853; }
 .contact-info-text { color: #fff; font-weight: 500; }
-.contact-right { padding: 3.5rem; background: #1f1f25; }
+.contact-right { padding: 3.5rem; background: #1f1f25 !important; }
 .contact-success { text-align: center; padding: 2.5rem 0; }
 .contact-success-icon {
   width: 70px; height: 70px; border-radius: 50%;
@@ -423,7 +423,7 @@ body {
 .form-field { margin-bottom: 1.25rem; }
 .form-label { display: block; font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #bbc9cf; margin-bottom: .5rem; }
 .form-input, .form-select, .form-textarea {
-  width: 100%; background: #0e0e13;
+  width: 100%; background: #0e0e13 !important;
   border: 1px solid rgba(255,255,255,.1); border-radius: .625rem;
   padding: .75rem 1rem; color: #fff !important; font-size: .9rem;
   outline: none; transition: border-color .2s; font-family: inherit;
@@ -432,8 +432,26 @@ body {
 }
 .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: rgba(0,200,83,.5); }
 .form-input[type="email"], .form-input[type="tel"] { direction: ltr; }
-.form-select { appearance: none; }
-.form-textarea { resize: vertical; -webkit-text-fill-color: #fff !important; color: #fff !important; }
+.form-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #0e0e13 !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+/* Force select options dark in all browsers */
+.form-select option {
+  background-color: #1a1a22 !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+.form-textarea { resize: vertical; -webkit-text-fill-color: #fff !important; color: #fff !important; background: #0e0e13 !important; }
+
+/* labels always visible */
+.form-label {
+  color: #bbc9cf !important;
+}
 /* Fix browser autofill overriding background/text color */
 .form-input:-webkit-autofill,
 .form-input:-webkit-autofill:hover,

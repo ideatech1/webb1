@@ -137,7 +137,37 @@ tailwind.config = {
       <a href="#work"     class="mobile-link" onclick="toggleMobileMenu()">Our Work</a>
       <a href="#pricing"  class="mobile-link" onclick="toggleMobileMenu()">Pricing</a>
       <a href="#contact"  class="mobile-link" onclick="toggleMobileMenu()">Contact</a>
-      <a href="#contact"  class="btn-grad mobile-cta">Start a Project</a>
+
+      <!-- Language toggle (mobile) -->
+      <div class="lang-pill mobile-lang-pill" id="langToggleMobile">
+        <div class="slider" id="langSliderMobile" style="width:40px;transform:translateX(0px);"></div>
+        <button class="lang-active" id="btn-en-m" onclick="setLang('en')">EN</button>
+        <button id="btn-ar-m" onclick="setLang('ar')">AR</button>
+      </div>
+
+      <!-- Auth (mobile) — shown when logged out -->
+      <button id="mobile-login-btn" class="mobile-auth-btn" onclick="toggleMobileMenu(); openAuthModal()">
+        <span class="material-symbols-outlined" style="font-size:1rem;">login</span>
+        <span data-en="Sign In" data-ar="تسجيل الدخول">تسجيل الدخول</span>
+      </button>
+
+      <!-- User area (mobile) — shown when logged in -->
+      <div id="mobile-user-area" style="display:none; flex-direction:column; gap:.5rem;">
+        <div style="display:flex;align-items:center;gap:.75rem;padding:.5rem 0;">
+          <span class="material-symbols-outlined" style="color:#00C853;">account_circle</span>
+          <span id="mobile-user-name" style="color:#fff;font-weight:700;"></span>
+        </div>
+        <a id="mobile-admin-link" href="admin.html" style="display:none;color:#00C853;font-weight:600;font-size:.875rem;text-decoration:none;">
+          <span class="material-symbols-outlined" style="font-size:.9rem;vertical-align:middle;">admin_panel_settings</span>
+          <span data-en="Dashboard" data-ar="لوحة التحكم">Dashboard</span>
+        </a>
+        <button onclick="handleLogout(); toggleMobileMenu();" class="mobile-logout-btn">
+          <span class="material-symbols-outlined" style="font-size:.9rem;">logout</span>
+          <span data-en="Logout" data-ar="تسجيل الخروج">تسجيل الخروج</span>
+        </button>
+      </div>
+
+      <a href="#contact"  class="btn-grad mobile-cta" onclick="toggleMobileMenu()">Start a Project</a>
     </div>
   </div>
 </nav>
@@ -352,7 +382,7 @@ tailwind.config = {
         <div class="contact-info">
           <div class="contact-info-item">
             <div class="contact-info-icon"><span class="material-symbols-outlined">mail</span></div>
-            <span class="contact-info-text">hello@ideatech.io</span>
+            <span class="contact-info-text"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fc9499909093bc9598999d88999f94d29593">[email&#160;protected]</a></span>
           </div>
           <div class="contact-info-item">
             <div class="contact-info-icon"><span class="material-symbols-outlined">location_on</span></div>
@@ -459,7 +489,7 @@ tailwind.config = {
 </div>
 
 <!-- External JavaScript -->
-<script src="main.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="main.js"></script>
 
 <!-- ═══════════ FIREBASE AUTH + CONTACT ═══════════ -->
 <script type="module">
@@ -690,28 +720,41 @@ window.handleLogout = async () => {
 // ── Auth state ──
 onAuthStateChanged(auth, async user => {
   window.currentUser = user;
-  const loginBtn = document.getElementById('nav-login-btn');
-  const userArea  = document.getElementById('user-nav-area');
+  const loginBtn      = document.getElementById('nav-login-btn');
+  const userArea      = document.getElementById('user-nav-area');
+  const mobileLogin   = document.getElementById('mobile-login-btn');
+  const mobileUserArea= document.getElementById('mobile-user-area');
   if (!loginBtn||!userArea) return;
   if (user) {
     loginBtn.style.display = 'none';
     userArea.style.display = 'flex';
     const nameEl = document.getElementById('nav-user-name');
     if (nameEl) nameEl.textContent = (user.displayName||user.email||'').split(' ')[0] || 'مستخدم';
-    const adminLink = document.getElementById('admin-nav-link');
-    if (adminLink) {
-      try {
-        const userSnap = await getDoc(doc(db, 'users', user.uid));
-        const role = userSnap.exists() ? (userSnap.data().role || 'customer') : 'customer';
-        const hasAccess = user.email === ADMIN_EMAIL || role === 'admin' || role === 'worker';
-        adminLink.style.display = hasAccess ? 'flex' : 'none';
-      } catch (e) {
-        adminLink.style.display = user.email === ADMIN_EMAIL ? 'flex' : 'none';
-      }
+
+    // Mobile
+    if (mobileLogin)    mobileLogin.style.display    = 'none';
+    if (mobileUserArea) mobileUserArea.style.display = 'flex';
+    const mobileNameEl = document.getElementById('mobile-user-name');
+    if (mobileNameEl) mobileNameEl.textContent = (user.displayName||user.email||'').split(' ')[0] || 'مستخدم';
+
+    const adminLink       = document.getElementById('admin-nav-link');
+    const mobileAdminLink = document.getElementById('mobile-admin-link');
+    try {
+      const userSnap = await getDoc(doc(db, 'users', user.uid));
+      const role = userSnap.exists() ? (userSnap.data().role || 'customer') : 'customer';
+      const hasAccess = user.email === ADMIN_EMAIL || role === 'admin' || role === 'worker';
+      if (adminLink)       adminLink.style.display       = hasAccess ? 'flex' : 'none';
+      if (mobileAdminLink) mobileAdminLink.style.display = hasAccess ? 'flex' : 'none';
+    } catch (e) {
+      if (adminLink)       adminLink.style.display       = user.email === ADMIN_EMAIL ? 'flex' : 'none';
+      if (mobileAdminLink) mobileAdminLink.style.display = user.email === ADMIN_EMAIL ? 'flex' : 'none';
     }
   } else {
     loginBtn.style.display = 'flex';
     userArea.style.display = 'none';
+    // Mobile
+    if (mobileLogin)    mobileLogin.style.display    = 'flex';
+    if (mobileUserArea) mobileUserArea.style.display = 'none';
   }
 });
 
@@ -967,8 +1010,10 @@ window.submitContactForm = async function() {
 };
 
 function showCfError(msg) {
-  const el = document.getElementById('cf-error');
-  if (el) { el.textContent = msg; el.style.display = 'block'; }
+  const errEl = document.getElementById('cf-error');
+  if (!errEl) return;
+  errEl.textContent = msg;
+  errEl.style.display = 'block';
 }
 </script>
 </body>

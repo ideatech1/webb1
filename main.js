@@ -104,12 +104,26 @@ window.setLang = function setLang(lang) {
     if (btnAr)  btnAr.classList.add('lang-active');
     document.documentElement.setAttribute('dir', 'rtl');
     document.documentElement.setAttribute('lang', 'ar');
+    // Mobile slider
+    const sliderM = document.getElementById('langSliderMobile');
+    const btnEnM  = document.getElementById('btn-en-m');
+    const btnArM  = document.getElementById('btn-ar-m');
+    if (sliderM) sliderM.style.transform = 'translateX(44px)';
+    if (btnEnM)  btnEnM.classList.remove('lang-active');
+    if (btnArM)  btnArM.classList.add('lang-active');
   } else {
     if (slider) slider.style.transform = 'translateX(0)';
     if (btnEn)  btnEn.classList.add('lang-active');
     if (btnAr)  btnAr.classList.remove('lang-active');
     document.documentElement.setAttribute('dir', 'ltr');
     document.documentElement.setAttribute('lang', 'en');
+    // Mobile slider
+    const sliderM = document.getElementById('langSliderMobile');
+    const btnEnM  = document.getElementById('btn-en-m');
+    const btnArM  = document.getElementById('btn-ar-m');
+    if (sliderM) sliderM.style.transform = 'translateX(0)';
+    if (btnEnM)  btnEnM.classList.add('lang-active');
+    if (btnArM)  btnArM.classList.remove('lang-active');
   }
 
   // All [data-en] elements (including pricing-feature, mobile links, options...)

@@ -102,6 +102,88 @@ body { background:#0A0A0F; color:#e4e1e9; font-family:'Cairo','Tajawal',sans-ser
 #admin-loading{display:flex;align-items:center;justify-content:center;min-height:100vh;}
 .spin{width:40px;height:40px;border:3px solid rgba(0,200,83,.2);border-top-color:#00C853;border-radius:50%;animation:spin .8s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+/* ─── Mobile hamburger ─────────────────────── */
+.hamburger {
+  display:none; background:none; border:none; cursor:pointer;
+  padding:.4rem; color:rgba(255,255,255,.7); margin-left:.5rem;
+}
+.hamburger .material-symbols-outlined { font-size:1.6rem; }
+
+/* Sidebar overlay (mobile) */
+.sidebar-overlay {
+  display:none; position:fixed; inset:0; background:rgba(0,0,0,.55);
+  z-index:100; backdrop-filter:blur(2px);
+}
+.sidebar-overlay.open { display:block; }
+
+/* ─── RESPONSIVE ──────────────────────────── */
+
+/* Tablet: hide sidebar labels, show icon-only */
+@media (max-width: 1024px) {
+  .sidebar { width:200px; min-width:200px; }
+}
+
+/* Mobile: sidebar becomes a drawer */
+@media (max-width: 768px) {
+  .admin-layout { flex-direction:column; }
+
+  .sidebar {
+    position:fixed; top:0; right:-280px; width:260px; height:100vh;
+    z-index:200; transition:right .28s ease; border-left:1px solid rgba(255,255,255,.1);
+  }
+  .sidebar.open { right:0; }
+
+  .main-content { width:100%; }
+
+  .hamburger { display:flex; align-items:center; justify-content:center; }
+
+  .admin-header { padding:.875rem 1rem; }
+
+  /* Stats row: 2 cols on mobile */
+  #stats-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap:.875rem !important;
+  }
+
+  /* Content padding */
+  .main-content > div[style*="padding:2rem"] ,
+  .main-content > div { padding:1rem !important; }
+
+  /* Pricing: 1 col */
+  #pricing-cards { grid-template-columns: 1fr !important; }
+
+  /* Settings: 1 col */
+  #sec-settings .stat-card + .stat-card { margin-top:1.25rem; }
+
+  /* Services grid row → vertical stack */
+  #services-list .stat-card {
+    grid-template-columns: auto 1fr !important;
+    grid-template-rows: auto auto auto auto;
+    gap:.75rem !important;
+  }
+  #services-list .stat-card > div:not(:first-child):not(:last-child) {
+    grid-column: 1 / -1;
+  }
+  #services-list .stat-card > button { grid-column: 1 / -1; width:fit-content; }
+
+  /* Users table: horizontal scroll */
+  #sec-users .stat-card { padding:.75rem .5rem; }
+  .data-table th, .data-table td { padding:.65rem .6rem; font-size:.78rem; }
+
+  /* Header title */
+  #section-title { font-size:1.05rem !important; }
+
+  /* Message filters wrap */
+  #sec-messages > div:first-child { flex-direction:column; align-items:flex-start; }
+}
+
+/* Very small screens */
+@media (max-width: 400px) {
+  #stats-row { grid-template-columns: 1fr !important; }
+  .stat-card { padding:1rem; }
+  #st-msgs, #st-new, #st-users, #st-workers { font-size:1.6rem !important; }
+}
 </style>
 </head>
 <body>
@@ -122,8 +204,11 @@ body { background:#0A0A0F; color:#e4e1e9; font-family:'Cairo','Tajawal',sans-ser
 
 <div id="admin-panel" style="display:none;" class="admin-layout">
 
+  <!-- Sidebar overlay for mobile -->
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
   <!-- ═══ SIDEBAR ═══ -->
-  <aside class="sidebar">
+  <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
       <div style="display:flex;align-items:center;gap:10px;">
         <div style="width:36px;height:36px;border-radius:8px;background:rgba(0,200,83,.12);display:flex;align-items:center;justify-content:center;">
@@ -176,9 +261,14 @@ body { background:#0A0A0F; color:#e4e1e9; font-family:'Cairo','Tajawal',sans-ser
 
     <!-- Header -->
     <header class="admin-header">
-      <div>
+      <div style="display:flex;align-items:center;gap:.75rem;">
+        <button class="hamburger" onclick="toggleSidebar()" aria-label="القائمة">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+        <div>
         <h1 id="section-title" style="font-size:1.25rem;font-weight:900;color:#fff;">نظرة عامة</h1>
         <p id="section-sub" style="font-size:.75rem;color:rgba(255,255,255,.35);margin-top:2px;">مرحباً بك في لوحة تحكم IDEA TECH</p>
+        </div>
       </div>
       <div style="display:flex;align-items:center;gap:1rem;">
         <span id="admin-name" style="font-size:.875rem;font-weight:700;color:#00C853;"></span>
@@ -880,5 +970,31 @@ window.saveSettings = async function() {
   showToast('تم حفظ الإعدادات ✓');
 };
 </script>
+<!-- Responsive sidebar JS -->
+<script>
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebar-overlay');
+  sidebar.classList.toggle('open');
+  overlay.classList.toggle('open');
+  document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
+}
+
+// Auto-close sidebar on mobile when nav item clicked
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        sidebar.classList.remove('open');
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+});
+</script>
+
 </body>
 </html>

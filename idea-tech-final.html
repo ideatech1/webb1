@@ -1,0 +1,4558 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark" data-lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IDEA TECH Store</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700;900&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+
+  <!-- Stylesheet -->
+
+  <style>
+/* ═══════════════════════════════════════════════
+   IDEA TECH STORE — style.css
+   Color Palette: Deep Navy + Electric Cyan + Gold
+═══════════════════════════════════════════════ */
+
+/* ── CUSTOM PROPERTIES ── */
+:root {
+  /* Brand colors */
+  --cyan:    #00D4FF;
+  --cyan2:   #0099CC;
+  --cyan3:   #66E5FF;
+  --gold:    #FFB700;
+  --gold2:   #FF8C00;
+  --purple:  #7C3AED;
+  --red:     #FF4757;
+  --green:   #00E676;
+
+  /* Gradients */
+  --grad-brand: linear-gradient(135deg, #00D4FF, #7C3AED);
+  --grad-gold:  linear-gradient(135deg, #FFB700, #FF8C00);
+  --grad-green: linear-gradient(135deg, #00E676, #00C853);
+  --grad-wa:    linear-gradient(135deg, #25D366, #128C7E);
+
+  /* Transitions */
+  --t-theme: background 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+  --t-smooth: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── DARK THEME ── */
+[data-theme="dark"] {
+  --bg:        #050816;
+  --bg2:       #080c1a;
+  --bg3:       #0d1226;
+  --bg4:       #111830;
+
+  --nav-bg:    rgba(5, 8, 22, 0.92);
+  --card-bg:   rgba(10, 14, 28, 0.90);
+  --modal-bg:  #0d1226;
+  --input-bg:  #0a0e1c;
+  --input-bg2: #0f1428;
+  --sidebar-bg: #080c1a;
+  --stat-bg:   #0d1226;
+
+  --text:      #E8F0FE;
+  --text2:     #93B4D8;
+  --text3:     rgba(147, 180, 216, 0.45);
+  --text-inv:  #050816;
+
+  --border:    rgba(0, 212, 255, 0.12);
+  --border2:   rgba(255, 255, 255, 0.07);
+  --border3:   rgba(0, 212, 255, 0.25);
+
+  --shadow:    rgba(0, 0, 0, 0.6);
+  --shadow2:   0 0 40px rgba(0, 212, 255, 0.08);
+
+  --orb-opacity: 0.10;
+  --grid-line: rgba(0, 212, 255, 0.025);
+  --placeholder: rgba(147, 180, 216, 0.35);
+  --scrollbar: #080c1a;
+  --search-bg: rgba(255, 255, 255, 0.04);
+  --footer-text: rgba(147, 180, 216, 0.3);
+
+  /* Glow effects */
+  --glow-cyan:   0 0 20px rgba(0, 212, 255, 0.3);
+  --glow-gold:   0 0 20px rgba(255, 183, 0, 0.3);
+  --glow-purple: 0 0 20px rgba(124, 58, 237, 0.3);
+}
+
+/* ── LIGHT THEME ── */
+[data-theme="light"] {
+  --bg:        #F0F4FF;
+  --bg2:       #E5ECFF;
+  --bg3:       #FFFFFF;
+  --bg4:       #F7F9FF;
+
+  --nav-bg:    rgba(240, 244, 255, 0.95);
+  --card-bg:   rgba(255, 255, 255, 0.97);
+  --modal-bg:  #FFFFFF;
+  --input-bg:  #F7F9FF;
+  --input-bg2: #FFFFFF;
+  --sidebar-bg: #FFFFFF;
+  --stat-bg:   #FFFFFF;
+
+  --text:      #0F1A3C;
+  --text2:     #2563EB;
+  --text3:     #64748B;
+  --text-inv:  #FFFFFF;
+
+  --border:    rgba(37, 99, 235, 0.15);
+  --border2:   rgba(0, 0, 0, 0.08);
+  --border3:   rgba(37, 99, 235, 0.3);
+
+  --shadow:    rgba(0, 0, 0, 0.12);
+  --shadow2:   0 4px 24px rgba(37, 99, 235, 0.08);
+
+  --orb-opacity: 0.04;
+  --grid-line: rgba(37, 99, 235, 0.03);
+  --placeholder: rgba(100, 116, 139, 0.5);
+  --scrollbar: #E5ECFF;
+  --search-bg: rgba(0, 0, 0, 0.04);
+  --footer-text: rgba(100, 116, 139, 0.6);
+
+  --glow-cyan:   0 4px 20px rgba(37, 99, 235, 0.15);
+  --glow-gold:   0 4px 20px rgba(255, 183, 0, 0.2);
+  --glow-purple: 0 4px 20px rgba(124, 58, 237, 0.15);
+}
+
+/* ══════════════════════════════════════
+   BASE RESET
+══════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Cairo', 'Tajawal', 'Inter', sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+  transition: var(--t-theme);
+}
+
+[data-lang="en"],
+[data-lang="fr"] { font-family: 'Inter', 'Cairo', sans-serif; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--scrollbar); }
+::-webkit-scrollbar-thumb {
+  background: var(--grad-brand);
+  border-radius: 9999px;
+}
+
+::selection { background: rgba(0, 212, 255, 0.2); }
+
+.material-symbols-outlined {
+  vertical-align: middle;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  font-size: 1.2rem;
+}
+
+/* ══════════════════════════════════════
+   BACKGROUND EFFECTS
+══════════════════════════════════════ */
+.bg-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: var(--orb-opacity);
+}
+
+.orb-1 {
+  width: 600px; height: 600px;
+  top: -200px; right: -100px;
+  background: radial-gradient(var(--cyan), transparent 70%);
+  animation: orb-float 20s ease-in-out infinite alternate;
+}
+
+.orb-2 {
+  width: 500px; height: 500px;
+  bottom: -150px; left: -100px;
+  background: radial-gradient(var(--purple), transparent 70%);
+  animation: orb-float 16s ease-in-out infinite alternate-reverse;
+}
+
+.orb-3 {
+  width: 300px; height: 300px;
+  top: 40%; left: 30%;
+  background: radial-gradient(var(--gold), transparent 70%);
+  opacity: calc(var(--orb-opacity) * 0.5);
+  animation: orb-float 25s ease-in-out infinite alternate;
+}
+
+@keyframes orb-float {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(60px, 40px) scale(1.2); }
+}
+
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+#particles-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.25;
+}
+
+/* ══════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════ */
+#storeNav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  height: 66px;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--nav-bg);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+  transition: var(--t-theme);
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.logo-wordmark {
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  animation: logo-glow 3s ease-in-out infinite;
+}
+
+.logo-icon .material-symbols-outlined {
+  color: var(--cyan);
+  font-variation-settings: 'FILL' 1;
+  font-size: 1.15rem;
+}
+
+@keyframes logo-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(0, 212, 255, 0.2); }
+  50%       { box-shadow: 0 0 22px rgba(0, 212, 255, 0.55); }
+}
+
+/* Nav right */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Theme toggle */
+.theme-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: rgba(0, 212, 255, 0.05);
+  color: var(--text2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--t-smooth);
+  font-family: inherit;
+}
+
+.theme-toggle:hover {
+  border-color: var(--border3);
+  background: rgba(0, 212, 255, 0.12);
+  box-shadow: var(--glow-cyan);
+}
+
+.theme-toggle .material-symbols-outlined { font-size: 1rem; }
+
+/* Language switcher */
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(0, 212, 255, 0.03);
+}
+
+.lang-btn {
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--text3);
+  transition: var(--t-smooth);
+  font-family: inherit;
+  letter-spacing: 0.04em;
+}
+
+.lang-btn.active {
+  background: var(--grad-brand);
+  color: #fff;
+}
+
+.lang-btn:hover:not(.active) {
+  color: var(--cyan);
+}
+
+/* Nav buttons */
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(0, 212, 255, 0.04);
+  color: var(--text2);
+  font-weight: 700;
+  font-size: 0.76rem;
+  cursor: pointer;
+  transition: var(--t-smooth);
+  font-family: inherit;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.nav-btn:hover {
+  border-color: var(--border3);
+  color: var(--cyan);
+  background: rgba(0, 212, 255, 0.08);
+}
+
+.nav-btn.primary {
+  background: var(--grad-brand);
+  color: #fff;
+  border-color: transparent;
+}
+
+.nav-btn.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.35);
+}
+
+.nav-btn.admin-btn {
+  border-color: rgba(0, 212, 255, 0.3);
+  color: var(--cyan);
+  background: rgba(0, 212, 255, 0.07);
+}
+
+/* Nav user info */
+.nav-user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0, 212, 255, 0.4);
+  object-fit: cover;
+}
+
+.nav-role-tag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.63rem;
+  font-weight: 700;
+}
+
+.role-admin   { background: rgba(0, 212, 255, 0.12); color: var(--cyan);   border: 1px solid rgba(0, 212, 255, 0.3); }
+.role-worker  { background: rgba(255, 183, 0, 0.1);  color: var(--gold);   border: 1px solid rgba(255, 183, 0, 0.3); }
+.role-customer{ background: rgba(147,180,216,0.08);  color: var(--text3);  border: 1px solid rgba(147,180,216,0.15); }
+
+/* WA Nav */
+.nav-wa {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.42rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(37, 211, 102, 0.1);
+  border: 1px solid rgba(37, 211, 102, 0.25);
+  color: #25D366;
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-decoration: none;
+  transition: var(--t-smooth);
+  white-space: nowrap;
+}
+
+.nav-wa:hover {
+  background: rgba(37, 211, 102, 0.2);
+  transform: translateY(-1px);
+}
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+#storeHero {
+  position: relative;
+  z-index: 1;
+  padding: 4.5rem 1.5rem 2rem;
+  text-align: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 16px;
+  border-radius: 999px;
+  background: rgba(0, 212, 255, 0.07);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  margin-bottom: 1.25rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  animation: fade-up 0.7s ease both 0.1s;
+}
+
+.dot-live {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cyan);
+  display: inline-block;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.dot-live::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--cyan);
+  animation: ping 1.8s ease-out infinite;
+}
+
+@keyframes ping {
+  0%   { transform: scale(1);   opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0;   }
+}
+
+#storeHero h1 {
+  font-size: clamp(2rem, 5vw, 3.75rem);
+  font-weight: 900;
+  line-height: 1.12;
+  color: var(--text);
+  margin-bottom: 0.6rem;
+  animation: fade-up 0.7s ease both 0.2s;
+}
+
+.hero-grad-text {
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  color: var(--text2);
+  font-size: 0.95rem;
+  max-width: 500px;
+  margin: 0 auto 1.75rem;
+  line-height: 1.75;
+  animation: fade-up 0.7s ease both 0.3s;
+}
+
+/* Hero stats */
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+  animation: fade-up 0.7s ease both 0.4s;
+}
+
+.stat-num {
+  font-size: 1.65rem;
+  font-weight: 900;
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  color: var(--text2);
+  margin-top: 0.2rem;
+  text-align: center;
+}
+
+/* Search */
+.search-wrap {
+  max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+  animation: fade-up 0.7s ease both 0.45s;
+}
+
+.search-wrap input {
+  width: 100%;
+  padding: 0.9rem 1.25rem 0.9rem 3rem;
+  border-radius: 999px;
+  background: var(--search-bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  transition: var(--t-smooth);
+}
+
+.search-wrap input:focus {
+  border-color: rgba(0, 212, 255, 0.5);
+  background: rgba(0, 212, 255, 0.04);
+  box-shadow: var(--glow-cyan);
+}
+
+.search-wrap input::placeholder { color: var(--placeholder); }
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--cyan);
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════
+   FILTER TABS
+══════════════════════════════════════ */
+.filter-wrap {
+  position: relative;
+  z-index: 1;
+  padding: 1.75rem 1.5rem 0.75rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ftab {
+  padding: 0.48rem 1.15rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: var(--t-smooth);
+  border: 1px solid var(--border);
+  background: rgba(0, 212, 255, 0.03);
+  color: var(--text2);
+}
+
+.ftab:hover {
+  border-color: rgba(0, 212, 255, 0.4);
+  color: var(--cyan);
+  background: rgba(0, 212, 255, 0.08);
+}
+
+.ftab.active {
+  background: var(--grad-brand);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 18px rgba(0, 212, 255, 0.3);
+  font-weight: 800;
+}
+
+/* ══════════════════════════════════════
+   PRODUCTS GRID
+══════════════════════════════════════ */
+.products-section {
+  position: relative;
+  z-index: 1;
+  padding: 0.75rem 1.5rem 5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.results-count {
+  font-size: 0.78rem;
+  color: var(--text2);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+  gap: 1.25rem;
+}
+
+/* ── PRODUCT CARD ── */
+.card {
+  border-radius: 1.15rem;
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1px solid var(--border2);
+  backdrop-filter: blur(20px);
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.32s, border-color 0.32s;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px var(--shadow), var(--glow-cyan);
+  border-color: rgba(0, 212, 255, 0.25);
+}
+
+[data-theme="light"] .card {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+}
+
+[data-theme="light"] .card:hover {
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12), var(--glow-cyan);
+}
+
+/* Card image */
+.card-img-wrap {
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  height: 185px;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease, filter 0.4s;
+  filter: brightness(0.82) saturate(0.9);
+}
+
+.card:hover .card-img {
+  transform: scale(1.08);
+  filter: brightness(1) saturate(1.05);
+}
+
+.card-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 30%, var(--bg) 100%);
+  opacity: 0.65;
+}
+
+[data-theme="light"] .card-img-wrap::after { opacity: 0.35; }
+
+/* Badges */
+.card-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.badge-new { background: var(--grad-brand); color: #fff; }
+.badge-hot {
+  background: linear-gradient(135deg, #FF6B35, #FF3B00);
+  color: #fff;
+  animation: badge-hot 2s ease-in-out infinite;
+}
+
+@keyframes badge-hot {
+  0%, 100% { box-shadow: 0 0 7px rgba(255, 80, 0, 0.4); }
+  50%       { box-shadow: 0 0 18px rgba(255, 80, 0, 0.7); }
+}
+
+/* Card icon */
+.card-icon-wrap {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  transition: transform 0.3s;
+}
+
+[data-theme="light"] .card-icon-wrap {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 150, 255, 0.25);
+}
+
+.card:hover .card-icon-wrap {
+  transform: scale(1.12) rotate(-5deg);
+}
+
+/* Card body */
+.card-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-bottom: 0.55rem;
+  align-self: flex-start;
+}
+
+.cat-web    { background: rgba(0,212,255,.1);  color: var(--cyan);  border: 1px solid rgba(0,212,255,.2); }
+.cat-3d     { background: rgba(255,183,0,.1);  color: var(--gold);  border: 1px solid rgba(255,183,0,.2); }
+.cat-app    { background: rgba(124,58,237,.1); color: #a78bfa;      border: 1px solid rgba(124,58,237,.2); }
+.cat-bot    { background: rgba(0,230,118,.1);  color: #34d399;      border: 1px solid rgba(0,230,118,.2); }
+.cat-design { background: rgba(244,63,94,.1);  color: #fb7185;      border: 1px solid rgba(244,63,94,.2); }
+.cat-sys    { background: rgba(59,130,246,.1); color: #60a5fa;      border: 1px solid rgba(59,130,246,.2); }
+.cat-solar  { background: rgba(251,191,36,.1); color: #fbbf24;      border: 1px solid rgba(251,191,36,.2); }
+
+.stars { color: #FFD700; font-size: 0.75rem; letter-spacing: 1px; margin-bottom: 0.45rem; }
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+  line-height: 1.35;
+}
+
+.card-desc {
+  font-size: 0.8rem;
+  color: var(--text2);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.card-price {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1;
+}
+
+.card-price small {
+  font-size: 0.67rem;
+  font-weight: 600;
+  color: var(--text2);
+  display: block;
+  margin-bottom: 1px;
+}
+
+.btn-order {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.52rem 1.05rem;
+  border-radius: 999px;
+  background: var(--grad-wa);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.75rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.18s, box-shadow 0.18s;
+  font-family: inherit;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-order:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+/* Admin edit buttons on card */
+.card-admin-bar {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 10;
+  gap: 5px;
+  display: none;
+}
+
+.card-admin-bar.visible { display: flex; }
+
+.card-admin-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  backdrop-filter: blur(8px);
+  transition: transform 0.15s;
+}
+
+.card-admin-btn:hover { transform: scale(1.12); }
+.btn-edit-card { background: rgba(66, 165, 245, 0.88); color: #fff; }
+.btn-del-card  { background: rgba(255, 71, 87, 0.88);  color: #fff; }
+
+/* ══════════════════════════════════════
+   PRODUCT DETAIL MODAL
+══════════════════════════════════════ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(14px);
+}
+
+.modal-overlay.open {
+  display: flex;
+  animation: fade-in 0.2s ease;
+}
+
+.modal {
+  background: var(--modal-bg);
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  width: 100%;
+  max-width: 490px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slide-up 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal::-webkit-scrollbar { width: 4px; }
+.modal::-webkit-scrollbar-thumb { background: rgba(0,212,255,.3); border-radius: 9999px; }
+
+.modal-body { padding: 1.75rem; }
+
+.modal-close {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border2);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+  z-index: 10;
+}
+
+.modal-close:hover { background: rgba(0,0,0,.6); }
+
+.modal-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: rgba(0, 212, 255, 0.05);
+  border: 1px solid rgba(0, 212, 255, 0.12);
+  border-radius: 0.875rem;
+}
+
+.modal-price {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1;
+}
+
+.modal-price small {
+  font-size: 0.72rem;
+  color: var(--text2);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.modal-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.84rem;
+  color: var(--text);
+}
+
+.modal-features li .material-symbols-outlined {
+  color: var(--cyan);
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.btn-wa-cta {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 999px;
+  background: var(--grad-wa);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-family: inherit;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+
+.btn-wa-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+}
+
+/* ══════════════════════════════════════
+   WA FLOAT BUTTON
+══════════════════════════════════════ */
+.wa-float {
+  position: fixed;
+  bottom: 1.75rem;
+  left: 1.75rem;
+  z-index: 300;
+  width: 54px;
+  height: 54px;
+  border-radius: 999px;
+  background: var(--grad-wa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
+  transition: transform 0.28s, box-shadow 0.28s;
+  animation: wa-pulse 3s ease-in-out infinite;
+  text-decoration: none;
+}
+
+.wa-float:hover {
+  transform: scale(1.15) translateY(-3px);
+  box-shadow: 0 14px 36px rgba(37, 211, 102, 0.55);
+}
+
+@keyframes wa-pulse {
+  0%, 100% { box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4); }
+  50%       { box-shadow: 0 6px 40px rgba(37, 211, 102, 0.65); }
+}
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--footer-text);
+  font-size: 0.75rem;
+  transition: var(--t-theme);
+}
+
+footer a { color: var(--cyan); text-decoration: none; }
+
+/* ══════════════════════════════════════
+   REVEAL ANIMATION
+══════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s cubic-bezier(0.16,1,0.3,1),
+              transform 0.55s cubic-bezier(0.16,1,0.3,1);
+}
+
+.reveal.vis { opacity: 1; transform: none; }
+
+.empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text2);
+  grid-column: 1 / -1;
+}
+
+.empty .material-symbols-outlined {
+  font-size: 3.5rem;
+  color: rgba(0, 212, 255, 0.15);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+/* ══════════════════════════════════════
+   AUTH MODAL
+══════════════════════════════════════ */
+#authModal {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(18px);
+}
+
+#authModal.open { display: flex; }
+
+.auth-box {
+  background: var(--input-bg);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 1.75rem;
+  width: 100%;
+  max-width: 410px;
+  padding: 2.5rem;
+  animation: slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  box-shadow: 0 0 60px rgba(0, 212, 255, 0.1);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.auth-logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 1.25rem;
+  font-size: 1.25rem;
+  font-weight: 900;
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.auth-title {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--text);
+  margin-bottom: 0.35rem;
+}
+
+.auth-sub {
+  font-size: 0.82rem;
+  color: var(--text3);
+}
+
+/* Google button */
+.btn-google {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 0.875rem;
+  background: #fff;
+  color: #1a1a1a;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  transition: box-shadow 0.2s, transform 0.15s;
+  margin-bottom: 1.1rem;
+}
+
+.btn-google:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.google-icon { width: 20px; height: 20px; flex-shrink: 0; }
+
+/* Divider */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.1rem;
+  color: var(--text3);
+  font-size: 0.75rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border2);
+}
+
+/* Form inputs */
+.inp-group { margin-bottom: 1rem; }
+
+.inp-group label {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text3);
+  margin-bottom: 0.4rem;
+}
+
+.ctrl-input {
+  background: var(--input-bg2) !important;
+  border: 1px solid var(--border2);
+  border-radius: 0.625rem;
+  padding: 0.7rem 0.9rem;
+  color: var(--text) !important;
+  -webkit-text-fill-color: var(--text) !important;
+  caret-color: var(--text);
+  font-size: 0.875rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+
+.ctrl-input:focus {
+  border-color: rgba(0, 212, 255, 0.5);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.08);
+}
+
+.ctrl-input::placeholder {
+  color: var(--placeholder) !important;
+  -webkit-text-fill-color: var(--placeholder) !important;
+}
+
+.ctrl-input:-webkit-autofill,
+.ctrl-input:-webkit-autofill:hover,
+.ctrl-input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--input-bg2) inset !important;
+  -webkit-text-fill-color: var(--text) !important;
+  caret-color: var(--text);
+  transition: background-color 5000s;
+}
+
+.ctrl-input option {
+  background: var(--input-bg);
+  color: var(--text);
+}
+
+.ctrl-input[type="number"]::-webkit-inner-spin-button { opacity: 1; }
+
+/* Auth submit button */
+.btn-auth-submit {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 999px;
+  background: var(--grad-brand);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.18s, box-shadow 0.18s;
+  margin-top: 0.25rem;
+  letter-spacing: 0.03em;
+}
+
+.btn-auth-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 212, 255, 0.35);
+}
+
+/* Password wrapper */
+.pass-wrap { position: relative; }
+.pass-wrap .ctrl-input { padding-left: 2.8rem; }
+.pass-toggle {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text3);
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+.pass-toggle:hover { color: var(--cyan); }
+.pass-toggle .material-symbols-outlined { font-size: 1.1rem; }
+
+/* Auth error */
+.auth-err {
+  font-size: 0.78rem;
+  color: var(--red);
+  text-align: center;
+  margin-top: 0.75rem;
+  min-height: 1.1rem;
+  font-weight: 600;
+}
+
+.auth-switch {
+  font-size: 0.8rem;
+  color: var(--text3);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.auth-switch a {
+  color: var(--cyan);
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.auth-switch a:hover { text-decoration: underline; }
+
+.auth-close-btn {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.12);
+  border: 1px solid var(--border2);
+  color: var(--text3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+
+.auth-close-btn:hover { background: rgba(0,0,0,.25); }
+
+/* ══════════════════════════════════════
+   ADMIN PANEL
+══════════════════════════════════════ */
+#adminPanel {
+  position: fixed;
+  inset: 0;
+  z-index: 800;
+  display: none;
+  background: var(--bg);
+  transition: var(--t-theme);
+}
+
+#adminPanel.open { display: flex; }
+
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 255px;
+  min-width: 255px;
+  background: var(--sidebar-bg);
+  border-left: 1px solid var(--border2);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  transition: var(--t-theme), right 0.28s ease;
+}
+
+.sidebar-logo {
+  padding: 1.5rem 1.25rem;
+  border-bottom: 1px solid var(--border2);
+}
+
+.sidebar-logo-title {
+  font-size: 1.25rem;
+  font-weight: 900;
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sidebar-nav { padding: 0.75rem; flex: 1; }
+
+.nav-section-label {
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text3);
+  text-transform: uppercase;
+  padding: 0.5rem 0.75rem 0.25rem;
+  margin-top: 0.75rem;
+  display: block;
+}
+
+.adm-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.7rem 0.875rem;
+  border-radius: 0.625rem;
+  color: var(--text3);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--t-smooth);
+  margin-bottom: 2px;
+  font-family: inherit;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: right;
+}
+
+.adm-nav-item:hover {
+  background: rgba(0, 212, 255, 0.06);
+  color: var(--text);
+}
+
+.adm-nav-item.active {
+  background: rgba(0, 212, 255, 0.1);
+  color: var(--cyan);
+  border: 1px solid rgba(0, 212, 255, 0.18);
+}
+
+.adm-nav-item .material-symbols-outlined { font-size: 1.15rem; }
+
+.sidebar-footer {
+  padding: 1rem 0.75rem;
+  border-top: 1px solid var(--border2);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Main content area */
+.main-content {
+  flex: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.admin-header {
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border2);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: var(--t-theme);
+}
+
+.admin-content-wrap { padding: 2rem; }
+
+/* Admin stat cards */
+.adm-stat-card {
+  background: var(--stat-bg);
+  border: 1px solid var(--border2);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: border-color 0.25s, background 0.3s;
+}
+
+.adm-stat-card:hover { border-color: rgba(0, 212, 255, 0.2); }
+
+/* Sections */
+.asection { display: none; }
+.asection.active { display: block; animation: fade-up 0.3s ease; }
+
+/* Admin table */
+.data-table { width: 100%; border-collapse: collapse; }
+
+.data-table th {
+  padding: 0.875rem 1rem;
+  text-align: right;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text3);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border2);
+  background: var(--sidebar-bg);
+}
+
+.data-table td {
+  padding: 0.875rem 1rem;
+  font-size: 0.875rem;
+  border-bottom: 1px solid var(--border2);
+  vertical-align: middle;
+  color: var(--text);
+}
+
+.data-table tr:hover td { background: rgba(0, 212, 255, 0.025); }
+
+/* Admin products grid */
+.admin-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.adm-pcard {
+  background: var(--stat-bg);
+  border: 1px solid var(--border2);
+  border-radius: 0.875rem;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.adm-pcard:hover { border-color: rgba(0, 212, 255, 0.25); }
+.adm-pcard img { width: 100%; height: 110px; object-fit: cover; display: block; }
+.adm-pcard-body { padding: 0.875rem; }
+
+/* Messages */
+.msg-card {
+  background: var(--stat-bg);
+  border: 1px solid var(--border2);
+  border-radius: 0.875rem;
+  padding: 1.25rem 1.5rem;
+  transition: border-color 0.25s;
+  cursor: pointer;
+}
+
+.msg-card:hover { border-color: rgba(0, 212, 255, 0.2); }
+
+.msg-card.unread {
+  border-color: rgba(0, 212, 255, 0.2);
+  background: rgba(0, 212, 255, 0.025);
+}
+
+.msg-expanded {
+  display: none;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border2);
+}
+
+/* Badges (admin) */
+.abadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+/* Mobile hamburger */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem;
+  color: var(--text2);
+}
+
+.hamburger .material-symbols-outlined { font-size: 1.6rem; }
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 100;
+  backdrop-filter: blur(3px);
+}
+
+.sidebar-overlay.open { display: block; }
+
+/* ── Admin buttons ── */
+.btn-ap {
+  padding: 0.6rem 1.25rem;
+  background: var(--grad-brand);
+  color: #fff;
+  border: none;
+  border-radius: 0.625rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-ap:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 16px rgba(0, 212, 255, 0.3);
+}
+
+.btn-danger {
+  padding: 0.48rem 1rem;
+  background: rgba(255, 60, 60, 0.1);
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 60, 60, 0.2);
+  border-radius: 0.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.8rem;
+  transition: background 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.btn-danger:hover { background: rgba(255, 60, 60, 0.2); }
+
+.btn-ghost {
+  padding: 0.48rem 1rem;
+  background: rgba(255,255,255,0.05);
+  color: var(--text2);
+  border: 1px solid var(--border2);
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.8rem;
+  transition: background 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+[data-theme="light"] .btn-ghost {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.btn-ghost:hover { background: rgba(0, 212, 255, 0.08); color: var(--cyan); }
+
+/* ══════════════════════════════════════
+   PRODUCT FORM MODAL
+══════════════════════════════════════ */
+#productFormModal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.86);
+  backdrop-filter: blur(14px);
+}
+
+#productFormModal.open { display: flex; }
+
+.pf-box {
+  background: var(--input-bg);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 1.5rem;
+  width: 100%;
+  max-width: 590px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2rem;
+  position: relative;
+  animation: slide-up 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 50px rgba(0, 212, 255, 0.08);
+}
+
+.pf-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.pf-full { grid-column: 1 / -1; }
+
+/* ══════════════════════════════════════
+   TOAST
+══════════════════════════════════════ */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--input-bg);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  color: var(--text);
+  padding: 0.875rem 2rem;
+  border-radius: 0.875rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: var(--glow-cyan);
+}
+
+.toast.show { opacity: 1; }
+.toast.err {
+  border-color: rgba(255, 71, 87, 0.4);
+  background: rgba(255, 71, 87, 0.08);
+  color: var(--red);
+  box-shadow: none;
+}
+
+/* ══════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════ */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spin {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(0, 212, 255, 0.2);
+  border-top-color: var(--cyan);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: -270px;
+    width: 255px;
+    height: 100vh;
+    z-index: 200;
+    transition: right 0.28s ease;
+    border-left: 1px solid var(--border2);
+  }
+  .sidebar.open { right: 0; }
+  .main-content { width: 100%; }
+  .hamburger { display: flex; align-items: center; justify-content: center; }
+  .admin-header { padding: 0.875rem 1rem; }
+  .pf-grid { grid-template-columns: 1fr; }
+  /* ✅ Keep lang switcher visible on mobile — just shrink buttons */
+  .lang-switcher { display: flex; }
+  .lang-btn { padding: 3px 7px; font-size: 0.6rem; }
+  .adm-stats-grid { grid-template-columns: 1fr 1fr !important; }
+}
+
+@media (max-width: 600px) {
+  #storeNav { padding: 0 0.6rem; }
+  /* Hide WA text + admin btn text on very small screens */
+  .nav-wa span { display: none; }
+  .nav-btn.admin-btn span[data-i18n] { display: none; }
+  .nav-right { gap: 0.25rem; }
+  /* Lang switcher compact */
+  .lang-switcher { padding: 2px; gap: 1px; }
+  .lang-btn { padding: 3px 6px; font-size: 0.58rem; font-weight: 800; }
+  /* Theme toggle compact */
+  .theme-toggle { width: 30px; height: 30px; }
+  .theme-toggle .material-symbols-outlined { font-size: 0.9rem; }
+  #storeHero { padding: 3rem 1rem 1.5rem; }
+  .filter-wrap { padding: 1.25rem 1rem 0.5rem; }
+  .products-section { padding: 0.5rem 1rem 4rem; }
+  .products-grid { grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+  .card-img-wrap { height: 145px; }
+  .card-body { padding: 1rem; }
+  .btn-order span { display: none; }
+  .admin-content-wrap { padding: 1rem; }
+  /* Hide display name on very small screens */
+  #navDisplayName { display: none !important; }
+}
+
+@media (max-width: 400px) {
+  .products-grid { grid-template-columns: 1fr; }
+  /* Ultra compact nav */
+  .nav-wa { display: none; }
+  .logo-wordmark { display: none; }
+}
+
+
+/* Contact popup rows */
+.contact-row {
+  display:flex;align-items:center;gap:.75rem;padding:.6rem .75rem;
+  border-radius:.7rem;text-decoration:none;color:var(--text);
+  transition:background .18s;margin-bottom:3px;
+}
+.contact-row:hover { background:rgba(0,212,255,.06); }
+.contact-icon {
+  width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.contact-label { font-size:.8rem;font-weight:700;margin-bottom:1px; }
+.contact-num   { font-size:.72rem;color:var(--text3);direction:ltr; }
+
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════
+     BACKGROUND EFFECTS
+════════════════════════════════════ -->
+<canvas id="particles-canvas"></canvas>
+<div class="bg-canvas">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+<div class="grid-bg"></div>
+
+
+<!-- ════════════════════════════════════
+     STORE PAGE
+════════════════════════════════════ -->
+<div id="storePage">
+
+  <!-- ── NAVIGATION ── -->
+  <nav id="storeNav">
+
+    <!-- Logo -->
+    <a href="#" class="logo">
+      <div class="logo-icon">
+        <span class="material-symbols-outlined">lightbulb</span>
+      </div>
+      <span class="logo-wordmark">IDEA TECH</span>
+    </a>
+
+    <!-- Right Controls -->
+    <div class="nav-right">
+
+      <div class="nav-controls">
+        <!-- Theme toggle -->
+        <button class="theme-toggle" onclick="toggleTheme()" title="تبديل المظهر">
+          <span class="material-symbols-outlined theme-icon">light_mode</span>
+        </button>
+
+        <!-- Language switcher -->
+        <div class="lang-switcher">
+          <button class="lang-btn lang-btn-ar active" onclick="setLang('ar')">ع</button>
+          <button class="lang-btn lang-btn-en"        onclick="setLang('en')">EN</button>
+          <button class="lang-btn lang-btn-fr"        onclick="setLang('fr')">FR</button>
+        </div>
+      </div>
+
+      <!-- Logged-in user info -->
+      <div id="navUserInfo" class="nav-user-info" style="display:none">
+        <img id="navAvatar" class="nav-avatar" src="" alt="" style="display:none"/>
+        <span id="navDisplayName"
+              style="font-size:.78rem;font-weight:700;color:var(--text);
+                     max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">
+        </span>
+        <span id="navRoleTag" class="nav-role-tag role-customer"></span>
+      </div>
+
+      <!-- Admin dashboard button (staff only) -->
+      <button id="btnOpenAdmin" class="nav-btn admin-btn"
+              style="display:none" onclick="openAdminPanel()">
+        <span class="material-symbols-outlined" style="font-size:.9rem">dashboard</span>
+        <span data-i18n="nav.admin">لوحة التحكم</span>
+      </button>
+
+      <!-- Login / Logout -->
+      <button id="btnLogin"  class="nav-btn primary" onclick="openAuth()">
+        <span class="material-symbols-outlined" style="font-size:.9rem">login</span>
+        <span data-i18n="nav.login">دخول</span>
+      </button>
+      <button id="btnLogout" class="nav-btn" style="display:none" onclick="doLogout()">
+        <span class="material-symbols-outlined" style="font-size:.9rem">logout</span>
+        <span data-i18n="nav.logout">خروج</span>
+      </button>
+
+      <!-- WhatsApp -->
+      <a href="https://wa.me/201283328730" target="_blank" class="nav-wa">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+        <span data-i18n="nav.wa">واتساب</span>
+      </a>
+
+    </div><!-- /.nav-right -->
+  </nav>
+
+
+  <!-- ── HERO ── -->
+  <div id="storeHero" class="reveal">
+    <div class="hero-badge">
+      <span class="dot-live"></span>
+      <span data-i18n="hero.badge">متجر الخدمات التقنية</span>
+    </div>
+
+    <h1>
+      <span data-i18n="hero.h1a">كل اللي تحتاجه</span><br/>
+      <span class="hero-grad-text" data-i18n="hero.h1b">في عالم التقنية</span>
+    </h1>
+
+    <p class="hero-sub" data-i18n="hero.sub">
+      مواقع ويب · تطبيقات · طباعة 3D · بوتات AI · تصاميم · أنظمة
+    </p>
+
+    <div class="hero-stats">
+      <div><div class="stat-num" id="sc1">0+</div><div class="stat-label" data-i18n="hero.s1">عميل سعيد</div></div>
+      <div><div class="stat-num" id="sc2">0</div> <div class="stat-label" data-i18n="hero.s2">خدمة متاحة</div></div>
+      <div><div class="stat-num" id="sc3">0+</div><div class="stat-label" data-i18n="hero.s3">سنوات خبرة</div></div>
+      <div><div class="stat-num" id="sc4">0%</div><div class="stat-label" data-i18n="hero.s4">رضا العملاء</div></div>
+    </div>
+
+    <div class="search-wrap">
+      <span class="material-symbols-outlined search-icon">search</span>
+      <input type="text" id="searchInput"
+             placeholder="ابحث عن خدمة..."
+             oninput="filterProducts()"/>
+    </div>
+  </div>
+
+
+  <!-- ── FILTER TABS ── -->
+  <div class="filter-wrap">
+    <div class="filter-tabs" id="filterTabs">
+      <!-- Rendered by app.js → renderFilterTabs() -->
+    </div>
+  </div>
+
+
+  <!-- ── PRODUCTS GRID ── -->
+  <section class="products-section">
+    <div class="results-count" id="resultsCount"></div>
+    <div class="products-grid"  id="productsGrid">
+      <div class="empty">
+        <div class="spin" style="margin:0 auto 1rem"></div>
+        <p style="color:var(--text3)">جاري التحميل...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p>© 2025 IDEA TECH Store &nbsp;|&nbsp;
+      <a href="mailto:ideatech829@gmail.com">ideatech829@gmail.com</a>
+      &nbsp;|&nbsp;
+      <a href="tel:+201283328730">+20 128 332 8730</a>
+      &nbsp;|&nbsp;
+      <a href="tel:+201207052914">+20 120 705 2914</a>
+    </p>
+  </footer>
+
+  <!-- ── Contact floating button ── -->
+  <button class="wa-float" onclick="toggleContactMenu()" id="contactFloatBtn" title="تواصل معنا" style="border:none;cursor:pointer">
+    <svg width="26" height="26" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  </button>
+
+  <!-- ── Contact popup ── -->
+  <div id="contactMenu" style="display:none;position:fixed;bottom:5.5rem;left:1.75rem;z-index:400;
+    background:var(--modal-bg);border:1px solid var(--border);border-radius:1.25rem;
+    padding:.75rem;box-shadow:0 12px 48px rgba(0,0,0,.45);min-width:230px;
+    animation:slide-up .22s cubic-bezier(.16,1,.3,1)">
+
+    <p style="font-size:.68rem;font-weight:800;color:var(--text3);text-transform:uppercase;
+              letter-spacing:.1em;margin-bottom:.6rem;padding:0 .4rem">تواصل معنا</p>
+
+    <!-- WA 1 -->
+    <a href="https://wa.me/201283328730" target="_blank" class="contact-row">
+      <span class="contact-icon" style="background:rgba(37,211,102,.12)">
+        <svg width="16" height="16" fill="#25D366" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      </span>
+      <div>
+        <div class="contact-label" style="color:#25D366">واتساب — رقم 1</div>
+        <div class="contact-num">+20 128 332 8730</div>
+      </div>
+    </a>
+
+    <!-- WA 2 -->
+    <a href="https://wa.me/201207052914" target="_blank" class="contact-row">
+      <span class="contact-icon" style="background:rgba(37,211,102,.12)">
+        <svg width="16" height="16" fill="#25D366" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      </span>
+      <div>
+        <div class="contact-label" style="color:#25D366">واتساب — رقم 2</div>
+        <div class="contact-num">+20 120 705 2914</div>
+      </div>
+    </a>
+
+    <div style="height:1px;background:var(--border2);margin:.5rem .4rem"></div>
+
+    <!-- Call 1 -->
+    <a href="tel:+201283328730" class="contact-row">
+      <span class="contact-icon" style="background:rgba(0,212,255,.1)">
+        <span class="material-symbols-outlined" style="color:var(--cyan);font-size:.95rem">call</span>
+      </span>
+      <div>
+        <div class="contact-label" style="color:var(--cyan)">اتصال — رقم 1</div>
+        <div class="contact-num">+20 128 332 8730</div>
+      </div>
+    </a>
+
+    <!-- Call 2 -->
+    <a href="tel:+201207052914" class="contact-row">
+      <span class="contact-icon" style="background:rgba(0,212,255,.1)">
+        <span class="material-symbols-outlined" style="color:var(--cyan);font-size:.95rem">call</span>
+      </span>
+      <div>
+        <div class="contact-label" style="color:var(--cyan)">اتصال — رقم 2</div>
+        <div class="contact-num">+20 120 705 2914</div>
+      </div>
+    </a>
+
+  </div>
+  <div id="contactOverlay" onclick="toggleContactMenu()"
+       style="display:none;position:fixed;inset:0;z-index:399"></div>
+
+</div><!-- /#storePage -->
+
+
+<!-- ════════════════════════════════════
+     PRODUCT DETAIL MODAL
+════════════════════════════════════ -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+
+<!-- ════════════════════════════════════
+     AUTH MODAL (Login / Register)
+════════════════════════════════════ -->
+<div id="authModal">
+  <div class="auth-box">
+
+    <button class="auth-close-btn" onclick="closeAuth()">✕</button>
+
+    <div class="auth-header">
+      <div class="auth-logo-wrap">
+        <div class="logo-icon">
+          <span class="material-symbols-outlined">lightbulb</span>
+        </div>
+        IDEA TECH
+      </div>
+      <div id="authTitle" class="auth-title">تسجيل الدخول</div>
+      <div id="authSub"   class="auth-sub">أدخل بياناتك للوصول لحسابك</div>
+    </div>
+
+    <!-- Google -->
+    <button class="btn-google" onclick="doGoogleLogin()">
+      <svg class="google-icon" viewBox="0 0 48 48">
+        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.29-8.16 2.29-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        <path fill="none" d="M0 0h48v48H0z"/>
+      </svg>
+      <span data-i18n="auth.google">الدخول بحساب Google</span>
+    </button>
+
+    <div class="auth-divider">
+      <span data-i18n="auth.or">أو</span>
+    </div>
+
+    <!-- Email -->
+    <div class="inp-group">
+      <label data-i18n="auth.email">البريد الإلكتروني</label>
+      <input type="email" id="authEmail" class="ctrl-input"
+             style="direction:ltr" placeholder="email@example.com"
+             autocomplete="email"/>
+    </div>
+
+    <!-- Password -->
+    <div class="inp-group">
+      <label data-i18n="auth.pass">كلمة المرور</label>
+      <div class="pass-wrap">
+        <input type="password" id="authPass" class="ctrl-input"
+               placeholder="••••••••" autocomplete="current-password"
+               onkeydown="if(event.key==='Enter') submitAuth()"/>
+        <button class="pass-toggle"
+                onclick="togglePassVisibility('authPass', this)"
+                type="button" tabindex="-1">
+          <span class="material-symbols-outlined">visibility_off</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <button id="authSubmitBtn" class="btn-auth-submit" onclick="submitAuth()">
+      دخول
+    </button>
+
+    <!-- Error -->
+    <div class="auth-err" id="authErr"></div>
+
+    <!-- Switch mode -->
+    <div class="auth-switch" id="authSwitchLine">
+      ما عندكش حساب؟ <a onclick="toggleAuthMode()">سجّل الآن</a>
+    </div>
+
+  </div>
+</div><!-- /#authModal -->
+
+
+<!-- ════════════════════════════════════
+     ADMIN PANEL
+════════════════════════════════════ -->
+<div id="adminPanel">
+  <div class="admin-layout">
+
+    <!-- Mobile overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar" id="adm-sidebar">
+
+      <div class="sidebar-logo">
+        <!-- Logo -->
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:.4rem">
+          <div class="logo-icon">
+            <span class="material-symbols-outlined">lightbulb</span>
+          </div>
+          <span class="sidebar-logo-title">IDEA TECH</span>
+        </div>
+        <p style="font-size:.7rem;color:var(--text3)" data-i18n="admin.panel">لوحة التحكم</p>
+
+        <!-- Theme + Lang in sidebar -->
+        <div style="display:flex;align-items:center;gap:.4rem;margin-top:.75rem">
+          <button class="theme-toggle" onclick="toggleTheme()"
+                  style="width:28px;height:28px">
+            <span class="material-symbols-outlined theme-icon"
+                  style="font-size:.85rem">light_mode</span>
+          </button>
+          <div class="lang-switcher">
+            <button class="lang-btn lang-btn-ar" onclick="setLang('ar')">ع</button>
+            <button class="lang-btn lang-btn-en" onclick="setLang('en')">EN</button>
+            <button class="lang-btn lang-btn-fr" onclick="setLang('fr')">FR</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nav -->
+      <nav class="sidebar-nav">
+        <span class="nav-section-label" data-i18n="admin.general">عام</span>
+        <button class="adm-nav-item active" onclick="showAdmSection('overview',this)">
+          <span class="material-symbols-outlined">dashboard</span>
+          <span data-i18n="admin.overview">نظرة عامة</span>
+        </button>
+        <button class="adm-nav-item" onclick="showAdmSection('messages',this)">
+          <span class="material-symbols-outlined">inbox</span>
+          <span data-i18n="admin.messages">الرسائل</span>
+          <span id="msg-badge"
+                style="margin-right:auto;background:rgba(0,212,255,.15);
+                       color:var(--cyan);font-size:.65rem;padding:2px 8px;
+                       border-radius:9999px;font-weight:700;display:none">
+          </span>
+        </button>
+
+        <span class="nav-section-label" data-i18n="admin.manage">إدارة المتجر</span>
+        <button class="adm-nav-item" onclick="showAdmSection('products',this)">
+          <span class="material-symbols-outlined">inventory_2</span>
+          <span data-i18n="admin.products">المنتجات</span>
+        </button>
+        <button class="adm-nav-item" onclick="showAdmSection('pricing',this)">
+          <span class="material-symbols-outlined">sell</span>
+          <span data-i18n="admin.pricing">الأسعار</span>
+        </button>
+        <button class="adm-nav-item" onclick="showAdmSection('services',this)">
+          <span class="material-symbols-outlined">design_services</span>
+          <span data-i18n="admin.services">الخدمات</span>
+        </button>
+        <button class="adm-nav-item" onclick="showAdmSection('settings',this)">
+          <span class="material-symbols-outlined">tune</span>
+          <span data-i18n="admin.settings">الإعدادات</span>
+        </button>
+
+        <span class="nav-section-label" data-i18n="admin.team">الفريق</span>
+        <button class="adm-nav-item" id="navUsersBtn" onclick="showAdmSection('users',this)">
+          <span class="material-symbols-outlined">group</span>
+          <span data-i18n="admin.users">المستخدمون</span>
+        </button>
+      </nav>
+
+      <!-- Sidebar footer -->
+      <div class="sidebar-footer">
+        <button class="adm-nav-item" onclick="closeAdminPanel()"
+                style="color:var(--text3)">
+          <span class="material-symbols-outlined">store</span>
+          <span data-i18n="admin.backStore">العودة للمتجر</span>
+        </button>
+        <button class="adm-nav-item" onclick="doLogout()"
+                style="color:#ff6b6b">
+          <span class="material-symbols-outlined">logout</span>
+          <span data-i18n="admin.logout">تسجيل الخروج</span>
+        </button>
+      </div>
+
+    </aside><!-- /.sidebar -->
+
+
+    <!-- ── MAIN CONTENT ── -->
+    <div class="main-content">
+
+      <!-- Header -->
+      <header class="admin-header">
+        <div style="display:flex;align-items:center;gap:.75rem">
+          <button class="hamburger" onclick="toggleSidebar()">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+          <div>
+            <h1 id="adm-section-title"
+                style="font-size:1.25rem;font-weight:900;color:var(--text)"
+                data-i18n="admin.overview">نظرة عامة</h1>
+            <p style="font-size:.75rem;color:var(--text3);margin-top:2px"
+               data-i18n="admin.welcome">مرحباً بك في لوحة تحكم IDEA TECH</p>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.75rem">
+          <span id="adm-user-name"
+                style="font-size:.875rem;font-weight:700;color:var(--cyan)"></span>
+          <div style="width:36px;height:36px;border-radius:50%;
+                      background:var(--grad-brand);display:flex;
+                      align-items:center;justify-content:center;overflow:hidden">
+            <img id="adm-avatar" src="" alt=""
+                 style="width:100%;height:100%;object-fit:cover;display:none"/>
+            <span class="material-symbols-outlined" id="adm-avatar-icon"
+                  style="font-size:1.2rem;color:#fff">person</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- ── SECTIONS ── -->
+      <div class="admin-content-wrap">
+
+        <!-- OVERVIEW -->
+        <section class="asection active" id="adm-sec-overview">
+          <div class="adm-stats-grid"
+               style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-bottom:2rem">
+
+            <div class="adm-stat-card">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                <div>
+                  <p style="font-size:.72rem;color:var(--text3);font-weight:700;
+                            letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem"
+                     data-i18n="stat.msgs">إجمالي الرسائل</p>
+                  <p id="st-msgs" style="font-size:2rem;font-weight:900;color:var(--text)">—</p>
+                </div>
+                <div style="width:42px;height:42px;border-radius:.625rem;
+                            background:rgba(0,212,255,.1);display:flex;
+                            align-items:center;justify-content:center">
+                  <span class="material-symbols-outlined" style="color:var(--cyan)">inbox</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="adm-stat-card">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                <div>
+                  <p style="font-size:.72rem;color:var(--text3);font-weight:700;
+                            letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem"
+                     data-i18n="stat.newMsgs">رسائل جديدة</p>
+                  <p id="st-new" style="font-size:2rem;font-weight:900;color:var(--cyan)">—</p>
+                </div>
+                <div style="width:42px;height:42px;border-radius:.625rem;
+                            background:rgba(0,212,255,.1);display:flex;
+                            align-items:center;justify-content:center">
+                  <span class="material-symbols-outlined" style="color:var(--cyan)">mark_email_unread</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="adm-stat-card">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                <div>
+                  <p style="font-size:.72rem;color:var(--text3);font-weight:700;
+                            letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem"
+                     data-i18n="stat.users">إجمالي المستخدمين</p>
+                  <p id="st-users" style="font-size:2rem;font-weight:900;color:var(--text)">—</p>
+                </div>
+                <div style="width:42px;height:42px;border-radius:.625rem;
+                            background:rgba(124,58,237,.1);display:flex;
+                            align-items:center;justify-content:center">
+                  <span class="material-symbols-outlined" style="color:#a78bfa">group</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="adm-stat-card">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                <div>
+                  <p style="font-size:.72rem;color:var(--text3);font-weight:700;
+                            letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem"
+                     data-i18n="stat.products">المنتجات</p>
+                  <p id="st-products" style="font-size:2rem;font-weight:900;color:var(--text)">—</p>
+                </div>
+                <div style="width:42px;height:42px;border-radius:.625rem;
+                            background:rgba(255,183,0,.1);display:flex;
+                            align-items:center;justify-content:center">
+                  <span class="material-symbols-outlined" style="color:var(--gold)">inventory_2</span>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /.adm-stats-grid -->
+
+          <div class="adm-stat-card">
+            <h3 style="font-size:.95rem;font-weight:700;color:var(--text);
+                       margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem">
+              <span class="material-symbols-outlined" style="color:var(--cyan);font-size:1.1rem">inbox</span>
+              <span data-i18n="admin.recentMsgs">آخر الرسائل</span>
+            </h3>
+            <div id="recent-msgs-list"></div>
+          </div>
+        </section>
+
+        <!-- MESSAGES -->
+        <section class="asection" id="adm-sec-messages">
+          <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1.5rem">
+            <button class="btn-ghost msg-filter active" data-filter="all"
+                    onclick="filterMsgs('all',this)" data-i18n="filter.all">الكل</button>
+            <button class="btn-ghost msg-filter" data-filter="new"
+                    onclick="filterMsgs('new',this)" data-i18n="filter.new">جديدة</button>
+            <button class="btn-ghost msg-filter" data-filter="read"
+                    onclick="filterMsgs('read',this)" data-i18n="filter.read">مقروءة</button>
+            <button class="btn-ghost msg-filter" data-filter="replied"
+                    onclick="filterMsgs('replied',this)" data-i18n="filter.replied">تم الرد</button>
+          </div>
+          <div id="msgs-list" style="display:flex;flex-direction:column;gap:.875rem"></div>
+        </section>
+
+        <!-- PRODUCTS -->
+        <section class="asection" id="adm-sec-products">
+          <div style="display:flex;align-items:center;justify-content:space-between;
+                      margin-bottom:1.25rem;flex-wrap:wrap;gap:.75rem">
+            <span id="adm-product-count" style="color:var(--text3);font-size:.82rem"></span>
+            <button class="btn-ap" id="btnAddProduct" onclick="openProductForm()">
+              <span class="material-symbols-outlined" style="font-size:.95rem">add</span>
+              <span data-i18n="admin.addProduct">إضافة منتج</span>
+            </button>
+          </div>
+          <div class="admin-products-grid" id="adm-products-grid"></div>
+        </section>
+
+        <!-- PRICING -->
+        <section class="asection" id="adm-sec-pricing">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem"
+               id="pricing-cards"></div>
+          <div style="margin-top:1.5rem;text-align:left">
+            <button class="btn-ap" onclick="savePricing()">
+              <span class="material-symbols-outlined" style="font-size:.95rem">save</span>
+              <span data-i18n="btn.save">حفظ</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section class="asection" id="adm-sec-services">
+          <div style="margin-bottom:1.5rem;text-align:left">
+            <button class="btn-ap" onclick="addService()">
+              <span class="material-symbols-outlined" style="font-size:.95rem">add</span>
+              <span data-i18n="admin.addService">إضافة خدمة</span>
+            </button>
+          </div>
+          <div id="services-list" style="display:flex;flex-direction:column;gap:1rem"></div>
+          <div style="margin-top:1.5rem;text-align:left">
+            <button class="btn-ap" onclick="saveServices()">
+              <span class="material-symbols-outlined" style="font-size:.95rem">save</span>
+              <span data-i18n="btn.save">حفظ</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section class="asection" id="adm-sec-settings">
+          <div style="max-width:700px;display:flex;flex-direction:column;gap:1.25rem">
+
+            <div class="adm-stat-card">
+              <h3 style="font-size:.95rem;font-weight:700;color:var(--text);
+                         margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem">
+                <span class="material-symbols-outlined" style="color:var(--cyan);font-size:1.1rem">business</span>
+                <span data-i18n="settings.company">معلومات الشركة</span>
+              </h3>
+              <div style="display:flex;flex-direction:column;gap:1.25rem">
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;
+                                color:var(--text3);margin-bottom:.5rem"
+                         data-i18n="settings.name">اسم الشركة</label>
+                  <input class="ctrl-input" id="s-company" value="IDEA TECH"/>
+                </div>
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;
+                                color:var(--text3);margin-bottom:.5rem"
+                         data-i18n="settings.email">البريد الإلكتروني</label>
+                  <input class="ctrl-input" id="s-email"
+                         style="direction:ltr" value="stsmarteg@gmail.com"/>
+                </div>
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;
+                                color:var(--text3);margin-bottom:.5rem"
+                         data-i18n="settings.address">العنوان</label>
+                  <input class="ctrl-input" id="s-address" value="الإسكندرية، مصر"/>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+                  <div>
+                    <label style="display:block;font-size:.75rem;font-weight:700;
+                                  color:var(--text3);margin-bottom:.5rem">شعار (عربي)</label>
+                    <input class="ctrl-input" id="s-tagline"
+                           value="نحوّل أفكارك إلى واقع تقني"/>
+                  </div>
+                  <div>
+                    <label style="display:block;font-size:.75rem;font-weight:700;
+                                  color:var(--text3);margin-bottom:.5rem">Tagline (EN)</label>
+                    <input class="ctrl-input" id="s-taglineEn" style="direction:ltr"
+                           placeholder="We turn your ideas into reality"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="adm-stat-card">
+              <h3 style="font-size:.95rem;font-weight:700;color:var(--text);
+                         margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem">
+                <span class="material-symbols-outlined" style="color:var(--cyan);font-size:1.1rem">contact_phone</span>
+                <span data-i18n="settings.social">التواصل والسوشيال ميديا</span>
+              </h3>
+              <div style="display:flex;flex-direction:column;gap:1.25rem">
+                <div>
+                  <label style="display:flex;align-items:center;justify-content:space-between;
+                                font-size:.75rem;font-weight:700;color:var(--text3);margin-bottom:.75rem">
+                    WhatsApp
+                    <button onclick="addWaField()"
+                            style="background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.3);
+                                   color:#25D366;border-radius:.5rem;padding:.3rem .75rem;
+                                   font-size:.75rem;font-weight:700;cursor:pointer">
+                      + <span data-i18n="settings.addWa">إضافة رقم</span>
+                    </button>
+                  </label>
+                  <div id="whatsapp-numbers" style="display:flex;flex-direction:column;gap:.6rem"></div>
+                </div>
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;
+                                color:var(--text3);margin-bottom:.5rem">Facebook</label>
+                  <input class="ctrl-input" id="s-facebook" style="direction:ltr"
+                         placeholder="https://facebook.com/st.smart14"/>
+                </div>
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;
+                                color:var(--text3);margin-bottom:.5rem">Instagram</label>
+                  <input class="ctrl-input" id="s-instagram" style="direction:ltr"
+                         placeholder="https://instagram.com/st_smart_eg"/>
+                </div>
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;
+                                color:var(--text3);margin-bottom:.5rem">LinkedIn</label>
+                  <input class="ctrl-input" id="s-linkedin" style="direction:ltr"
+                         placeholder="https://linkedin.com/company/..."/>
+                </div>
+              </div>
+            </div>
+
+            <div style="text-align:left">
+              <button class="btn-ap" onclick="saveSettings()">
+                <span class="material-symbols-outlined" style="font-size:.95rem">save</span>
+                <span data-i18n="btn.save">حفظ</span>
+              </button>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- USERS -->
+        <section class="asection" id="adm-sec-users">
+          <div class="adm-stat-card" style="overflow-x:auto">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th data-i18n="table.user">المستخدم</th>
+                  <th data-i18n="table.email">البريد</th>
+                  <th data-i18n="table.role">الدور</th>
+                  <th data-i18n="table.date">تاريخ التسجيل</th>
+                  <th data-i18n="table.action">الإجراء</th>
+                </tr>
+              </thead>
+              <tbody id="users-tbody">
+                <tr>
+                  <td colspan="5"
+                      style="text-align:center;color:var(--text3);padding:2rem">
+                    جاري التحميل...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+      </div><!-- /.admin-content-wrap -->
+    </div><!-- /.main-content -->
+
+  </div><!-- /.admin-layout -->
+</div><!-- /#adminPanel -->
+
+
+<!-- ════════════════════════════════════
+     PRODUCT FORM MODAL
+════════════════════════════════════ -->
+<div id="productFormModal">
+  <div class="pf-box">
+    <button class="modal-close" onclick="closeProductForm()">✕</button>
+    <div id="pfTitle"
+         style="font-size:1.1rem;font-weight:900;color:var(--text);margin-bottom:1.5rem">
+      إضافة منتج جديد
+    </div>
+
+    <div class="pf-grid">
+      <div class="pf-full">
+        <label style="display:block;font-size:.75rem;font-weight:700;
+                      color:var(--text3);margin-bottom:.4rem"
+               data-i18n="form.title">عنوان المنتج *</label>
+        <input type="text" id="pfName" class="ctrl-input"/>
+      </div>
+      <div class="pf-full">
+        <label style="display:block;font-size:.75rem;font-weight:700;
+                      color:var(--text3);margin-bottom:.4rem"
+               data-i18n="form.desc">وصف المنتج</label>
+        <input type="text" id="pfDesc" class="ctrl-input"/>
+      </div>
+      <div>
+        <label style="display:block;font-size:.75rem;font-weight:700;
+                      color:var(--text3);margin-bottom:.4rem"
+               data-i18n="form.price">السعر</label>
+        <input type="text" id="pfPrice" class="ctrl-input" placeholder="1,500"/>
+      </div>
+      <div>
+        <label style="display:block;font-size:.75rem;font-weight:700;
+                      color:var(--text3);margin-bottom:.4rem"
+               data-i18n="form.currency">العملة</label>
+        <input type="text" id="pfCurrency" class="ctrl-input" value="جنيه"/>
+      </div>
+      <div>
+        <label style="display:block;font-size:.75rem;font-weight:700;
+                      color:var(--text3);margin-bottom:.4rem"
+               data-i18n="form.cat">التصنيف</label>
+        <select id="pfCat" class="ctrl-input">
+          <option value="web">موقع ويب</option>
+          <option value="3d">طباعة 3D</option>
+          <option value="app">تطبيق</option>
+          <option value="bot">بوت AI</option>
+          <option value="design">تصميم</option>
+          <option value="sys">نظام</option>
+          <option value="solar">طاقة شمسية</option>
+        </select>
+      </div>
+      <div>
+        <label style="display:block;font-size:.75rem;font-weight:700;
+                      color:var(--text3);margin-bottom:.4rem"
+               data-i18n="form.badge">الشارة</label>
+        <select id="pfBadge" class="ctrl-input">
+          <option value="">بدون</option>
+          <option value="new">جديد</option>
+          <option value="hot">رائج 🔥</option>
+        </select>
+      </div>
+      <div>
+        <label style="display:block;font-size:.75rem;font-weight:700;
+                      color:var(--text3);margin-bottom:.4rem"
+               data-i18n="form.icon">أيقونة (Emoji)</label>
+        <input type="text" id="pfIcon" class="ctrl-input" value="💡"/>
+      </div>
+      <div>
+        <label style="display:block;font-size:.75rem;font-weight:700;
+                      color:var(--text3);margin-bottom:.4rem"
+               data-i18n="form.stars">التقييم (1-5)</label>
+        <input type="number" id="pfStars" class="ctrl-input" min="1" max="5" value="5"/>
+      </div>
+      <div class="pf-full">
+        <label style="display:block;font-size:.75rem;font-weight:700;
+                      color:var(--text3);margin-bottom:.4rem"
+               data-i18n="form.img">رابط الصورة (URL)</label>
+        <input type="text" id="pfImg" class="ctrl-input"
+               placeholder="https://..." style="direction:ltr"/>
+      </div>
+      <div class="pf-full">
+        <label style="display:block;font-size:.75rem;font-weight:700;
+                      color:var(--text3);margin-bottom:.4rem"
+               data-i18n="form.features">المميزات (افصل بفاصلة ،)</label>
+        <input type="text" id="pfFeatures" class="ctrl-input"/>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:.75rem;margin-top:1.25rem;justify-content:flex-end">
+      <button onclick="closeProductForm()" class="btn-ghost"
+              style="border-radius:999px" data-i18n="btn.cancel">إلغاء</button>
+      <button onclick="saveProduct()" class="btn-ap" style="border-radius:999px">
+        <span class="material-symbols-outlined" style="font-size:.9rem">save</span>
+        <span data-i18n="btn.save">حفظ</span>
+      </button>
+    </div>
+  </div>
+</div><!-- /#productFormModal -->
+
+
+<!-- ════════════════════════════════════
+     TOAST NOTIFICATION
+════════════════════════════════════ -->
+<div class="toast" id="toast"></div>
+
+
+<!-- ════════════════════════════════════
+     SCRIPTS
+     app.js first (sync) → firebase-init.js (module, async)
+════════════════════════════════════ -->
+
+
+
+<script>
+/* ═══════════════════════════════════════════════
+   IDEA TECH STORE — app.js
+   UI Logic: i18n · Theme · Lang · Particles · UI
+═══════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════
+   TRANSLATIONS (AR / EN / FR)
+══════════════════════════════════════ */
+const TRANSLATIONS = {
+  ar: {
+    /* NAV */
+    'nav.admin':   'لوحة التحكم',
+    'nav.login':   'دخول',
+    'nav.logout':  'خروج',
+    'nav.wa':      'واتساب',
+    /* HERO */
+    'hero.badge':  'متجر الخدمات التقنية',
+    'hero.h1a':    'كل اللي تحتاجه',
+    'hero.h1b':    'في عالم التقنية',
+    'hero.sub':    'مواقع ويب · تطبيقات · طباعة 3D · بوتات AI · تصاميم · أنظمة',
+    'hero.s1':     'عميل سعيد',
+    'hero.s2':     'خدمة متاحة',
+    'hero.s3':     'سنوات خبرة',
+    'hero.s4':     'رضا العملاء',
+    'search.ph':   'ابحث عن خدمة...',
+    /* AUTH */
+    'auth.title.login':    'تسجيل الدخول',
+    'auth.title.register': 'إنشاء حساب',
+    'auth.sub.login':      'أدخل بياناتك للوصول لحسابك',
+    'auth.sub.register':   'أنشئ حسابك الجديد الآن',
+    'auth.google':         'الدخول بحساب Google',
+    'auth.or':             'أو',
+    'auth.email':          'البريد الإلكتروني',
+    'auth.pass':           'كلمة المرور',
+    'auth.btn.login':      'دخول',
+    'auth.btn.register':   'إنشاء الحساب',
+    'auth.switch.login':   'عندك حساب؟ <a onclick="toggleAuthMode()">سجّل الدخول</a>',
+    'auth.switch.register':'ما عندكش حساب؟ <a onclick="toggleAuthMode()">سجّل الآن</a>',
+    /* AUTH ERRORS */
+    'err.empty':       'أدخل البريد وكلمة المرور',
+    'err.notfound':    'البريد غير موجود',
+    'err.wrongpass':   'كلمة المرور غير صحيحة',
+    'err.exists':      'البريد مستخدم بالفعل',
+    'err.invalidemail':'بريد إلكتروني غير صالح',
+    'err.weakpass':    'كلمة المرور ضعيفة جداً',
+    'err.credential':  'بيانات الدخول غير صحيحة',
+    'err.google':      'فشل الدخول بـ Google',
+    'err.general':     'حدث خطأ، حاول مجدداً',
+    /* ROLES */
+    'role.admin':    '👑 مدير',
+    'role.worker':   '🔧 عامل',
+    'role.customer': '👤 عميل',
+    /* CATEGORIES */
+    'cat.all':    '🌐 الكل',
+    'cat.web':    '💻 مواقع',
+    'cat.3d':     '🖨️ طباعة 3D',
+    'cat.app':    '📱 تطبيقات',
+    'cat.bot':    '🤖 بوتات AI',
+    'cat.design': '🎨 تصميم',
+    'cat.sys':    '⚙️ أنظمة',
+    'cat.label.web':    'موقع ويب',
+    'cat.label.3d':     'طباعة 3D',
+    'cat.label.app':    'تطبيق',
+    'cat.label.bot':    'بوت AI',
+    'cat.label.design': 'تصميم',
+    'cat.label.sys':    'نظام',
+    'cat.label.solar':  'طاقة شمسية',
+    /* STORE */
+    'btn.order':        'اطلب',
+    'results.count':    'خدمة',
+    'results.admin':    'وضع المدير 👑',
+    'results.worker':   'وضع العامل 🔧',
+    'results.link':     'لوحة التحكم ↗',
+    'product.contact':  'تواصل للتفاصيل',
+    'product.wa.btn':   'تواصل واتساب الآن',
+    'product.msg':      'السلام عليكم، أنا مهتم بخدمة "{t}" بسعر {p} {c}. ممكن توضح أكتر؟',
+    'order.msg':        'السلام عليكم، أريد الاستفسار عن "{t}" — السعر {p} {c}',
+    'badge.new':        'جديد',
+    'badge.hot':        '🔥 رائج',
+    'empty.text':       'لا توجد نتائج',
+    /* BUTTONS */
+    'btn.save':   'حفظ',
+    'btn.cancel': 'إلغاء',
+    'btn.edit':   'تعديل',
+    'btn.delete': 'حذف',
+    'btn.add':    'إضافة',
+    /* ADMIN SECTIONS */
+    'admin.panel':     'لوحة التحكم',
+    'admin.overview':  'نظرة عامة',
+    'admin.messages':  'الرسائل',
+    'admin.products':  'المنتجات',
+    'admin.pricing':   'الأسعار',
+    'admin.services':  'الخدمات',
+    'admin.settings':  'الإعدادات',
+    'admin.users':     'المستخدمون',
+    'admin.backStore': 'العودة للمتجر',
+    'admin.logout':    'تسجيل الخروج',
+    'admin.welcome':   'مرحباً بك في لوحة تحكم IDEA TECH',
+    'admin.general':   'عام',
+    'admin.manage':    'إدارة المتجر',
+    'admin.team':      'الفريق',
+    'admin.addProduct':'إضافة منتج',
+    'admin.addService':'إضافة خدمة',
+    'admin.recentMsgs':'آخر الرسائل',
+    /* STATS */
+    'stat.msgs':     'إجمالي الرسائل',
+    'stat.newMsgs':  'رسائل جديدة',
+    'stat.users':    'إجمالي المستخدمين',
+    'stat.products': 'المنتجات',
+    /* FILTERS */
+    'filter.all':     'الكل',
+    'filter.new':     'جديدة',
+    'filter.read':    'مقروءة',
+    'filter.replied': 'تم الرد',
+    /* TABLE */
+    'table.user':      'المستخدم',
+    'table.email':     'البريد',
+    'table.role':      'الدور',
+    'table.date':      'تاريخ التسجيل',
+    'table.action':    'الإجراء',
+    'table.protected': 'محمي',
+    'table.noUsers':   'لا يوجد مستخدمون بعد',
+    /* MESSAGES */
+    'msg.new':         'جديد',
+    'msg.read':        'مقروء',
+    'msg.replied':     'تم الرد',
+    'msg.visitor':     'زائر',
+    'msg.fullMsg':     'الرسالة الكاملة:',
+    'msg.markReplied': 'تم الرد',
+    'msg.markRead':    'تحديد كمقروء',
+    'noMsgs':          'لا توجد رسائل',
+    'noMsgsYet':       'لا توجد رسائل بعد',
+    /* SETTINGS */
+    'settings.company': 'معلومات الشركة',
+    'settings.name':    'اسم الشركة',
+    'settings.email':   'البريد الإلكتروني',
+    'settings.address': 'العنوان',
+    'settings.social':  'التواصل والسوشيال ميديا',
+    'settings.addWa':   'إضافة رقم',
+    /* PRODUCT FORM */
+    'form.add':       'إضافة منتج جديد',
+    'form.edit':      'تعديل المنتج',
+    'form.title':     'عنوان المنتج *',
+    'form.desc':      'وصف المنتج',
+    'form.price':     'السعر',
+    'form.currency':  'العملة',
+    'form.cat':       'التصنيف',
+    'form.badge':     'الشارة',
+    'form.none':      'بدون',
+    'form.icon':      'أيقونة (Emoji)',
+    'form.stars':     'التقييم (1-5)',
+    'form.img':       'رابط الصورة',
+    'form.features':  'المميزات (افصل بفاصلة ،)',
+    'form.required':  'أدخل اسم المنتج',
+    /* TOASTS */
+    'toast.welcome':      'مرحباً 👋',
+    'toast.loggedOut':    'تم تسجيل الخروج',
+    'toast.productAdded': 'تم إضافة المنتج ✔',
+    'toast.productEdited':'تم تعديل المنتج ✔',
+    'toast.productDel':   'تم حذف المنتج',
+    'toast.saveErr':      'خطأ في الحفظ',
+    'toast.delErr':       'خطأ في الحذف',
+    'toast.saved':        'تم الحفظ ✓',
+    'toast.roleChanged':  'تم تحديث الدور ✓',
+    'toast.userDel':      'تم حذف المستخدم',
+    'toast.msgStatus':    'تم تحديث حالة الرسالة ✓',
+    'toast.msgDel':       'تم حذف الرسالة',
+    /* CONFIRMS */
+    'confirm.delProduct': 'تأكيد حذف المنتج؟',
+    'confirm.delUser':    'هل تريد حذف هذا المستخدم؟',
+    'confirm.delMsg':     'هل تريد حذف هذه الرسالة؟',
+  },
+
+  en: {
+    'nav.admin':   'Dashboard',
+    'nav.login':   'Login',
+    'nav.logout':  'Logout',
+    'nav.wa':      'WhatsApp',
+    'hero.badge':  'Tech Services Store',
+    'hero.h1a':    'Everything You Need',
+    'hero.h1b':    'In The Tech World',
+    'hero.sub':    'Websites · Apps · 3D Printing · AI Bots · Design · Systems',
+    'hero.s1':     'Happy Clients',
+    'hero.s2':     'Services',
+    'hero.s3':     'Years Experience',
+    'hero.s4':     'Client Satisfaction',
+    'search.ph':   'Search for a service...',
+    'auth.title.login':    'Sign In',
+    'auth.title.register': 'Create Account',
+    'auth.sub.login':      'Access your account',
+    'auth.sub.register':   'Create your account now',
+    'auth.google':         'Continue with Google',
+    'auth.or':             'or',
+    'auth.email':          'Email Address',
+    'auth.pass':           'Password',
+    'auth.btn.login':      'Sign In',
+    'auth.btn.register':   'Create Account',
+    'auth.switch.login':   'Have an account? <a onclick="toggleAuthMode()">Sign In</a>',
+    'auth.switch.register':"Don't have an account? <a onclick=\"toggleAuthMode()\">Sign Up</a>",
+    'err.empty':       'Enter email and password',
+    'err.notfound':    'Email not found',
+    'err.wrongpass':   'Wrong password',
+    'err.exists':      'Email already in use',
+    'err.invalidemail':'Invalid email address',
+    'err.weakpass':    'Password is too weak',
+    'err.credential':  'Invalid credentials',
+    'err.google':      'Google sign-in failed',
+    'err.general':     'An error occurred, please try again',
+    'role.admin':    '👑 Admin',
+    'role.worker':   '🔧 Worker',
+    'role.customer': '👤 Customer',
+    'cat.all':    '🌐 All',
+    'cat.web':    '💻 Websites',
+    'cat.3d':     '🖨️ 3D Printing',
+    'cat.app':    '📱 Apps',
+    'cat.bot':    '🤖 AI Bots',
+    'cat.design': '🎨 Design',
+    'cat.sys':    '⚙️ Systems',
+    'cat.label.web':    'Website',
+    'cat.label.3d':     '3D Printing',
+    'cat.label.app':    'App',
+    'cat.label.bot':    'AI Bot',
+    'cat.label.design': 'Design',
+    'cat.label.sys':    'System',
+    'cat.label.solar':  'Solar Energy',
+    'btn.order':       'Order',
+    'results.count':   'service(s)',
+    'results.admin':   'Admin Mode 👑',
+    'results.worker':  'Worker Mode 🔧',
+    'results.link':    'Dashboard ↗',
+    'product.contact': 'Contact for details',
+    'product.wa.btn':  'Contact on WhatsApp',
+    'product.msg':     'Hello, I\'m interested in "{t}" at {p} {c}. Can you give more details?',
+    'order.msg':       'Hello, I\'d like to inquire about "{t}" — Price: {p} {c}',
+    'badge.new':       'New',
+    'badge.hot':       '🔥 Hot',
+    'empty.text':      'No results found',
+    'btn.save':   'Save',
+    'btn.cancel': 'Cancel',
+    'btn.edit':   'Edit',
+    'btn.delete': 'Delete',
+    'btn.add':    'Add',
+    'admin.panel':     'Dashboard',
+    'admin.overview':  'Overview',
+    'admin.messages':  'Messages',
+    'admin.products':  'Products',
+    'admin.pricing':   'Pricing',
+    'admin.services':  'Services',
+    'admin.settings':  'Settings',
+    'admin.users':     'Users',
+    'admin.backStore': 'Back to Store',
+    'admin.logout':    'Sign Out',
+    'admin.welcome':   'Welcome to IDEA TECH Dashboard',
+    'admin.general':   'General',
+    'admin.manage':    'Store Management',
+    'admin.team':      'Team',
+    'admin.addProduct':'Add Product',
+    'admin.addService':'Add Service',
+    'admin.recentMsgs':'Recent Messages',
+    'stat.msgs':     'Total Messages',
+    'stat.newMsgs':  'New Messages',
+    'stat.users':    'Total Users',
+    'stat.products': 'Products',
+    'filter.all':     'All',
+    'filter.new':     'New',
+    'filter.read':    'Read',
+    'filter.replied': 'Replied',
+    'table.user':      'User',
+    'table.email':     'Email',
+    'table.role':      'Role',
+    'table.date':      'Registration Date',
+    'table.action':    'Action',
+    'table.protected': 'Protected',
+    'table.noUsers':   'No users yet',
+    'msg.new':         'New',
+    'msg.read':        'Read',
+    'msg.replied':     'Replied',
+    'msg.visitor':     'Visitor',
+    'msg.fullMsg':     'Full Message:',
+    'msg.markReplied': 'Mark Replied',
+    'msg.markRead':    'Mark as Read',
+    'noMsgs':          'No messages',
+    'noMsgsYet':       'No messages yet',
+    'settings.company': 'Company Info',
+    'settings.name':    'Company Name',
+    'settings.email':   'Email',
+    'settings.address': 'Address',
+    'settings.social':  'Contact & Social Media',
+    'settings.addWa':   'Add Number',
+    'form.add':       'Add New Product',
+    'form.edit':      'Edit Product',
+    'form.title':     'Product Title *',
+    'form.desc':      'Description',
+    'form.price':     'Price',
+    'form.currency':  'Currency',
+    'form.cat':       'Category',
+    'form.badge':     'Badge',
+    'form.none':      'None',
+    'form.icon':      'Icon (Emoji)',
+    'form.stars':     'Rating (1-5)',
+    'form.img':       'Image URL',
+    'form.features':  'Features (comma separated)',
+    'form.required':  'Enter product title',
+    'toast.welcome':      'Welcome 👋',
+    'toast.loggedOut':    'Signed out',
+    'toast.productAdded': 'Product added ✔',
+    'toast.productEdited':'Product updated ✔',
+    'toast.productDel':   'Product deleted',
+    'toast.saveErr':      'Save error',
+    'toast.delErr':       'Delete error',
+    'toast.saved':        'Saved ✓',
+    'toast.roleChanged':  'Role updated ✓',
+    'toast.userDel':      'User deleted',
+    'toast.msgStatus':    'Message status updated ✓',
+    'toast.msgDel':       'Message deleted',
+    'confirm.delProduct': 'Confirm delete product?',
+    'confirm.delUser':    'Delete this user?',
+    'confirm.delMsg':     'Delete this message?',
+  },
+
+  fr: {
+    'nav.admin':   'Tableau de bord',
+    'nav.login':   'Connexion',
+    'nav.logout':  'Déconnexion',
+    'nav.wa':      'WhatsApp',
+    'hero.badge':  'Boutique de Services Tech',
+    'hero.h1a':    'Tout ce dont vous avez besoin',
+    'hero.h1b':    'Dans le monde tech',
+    'hero.sub':    'Sites web · Apps · Impression 3D · Bots IA · Design · Systèmes',
+    'hero.s1':     'Clients satisfaits',
+    'hero.s2':     'Services',
+    'hero.s3':     'Ans d\'expérience',
+    'hero.s4':     'Satisfaction client',
+    'search.ph':   'Rechercher un service...',
+    'auth.title.login':    'Connexion',
+    'auth.title.register': 'Créer un compte',
+    'auth.sub.login':      'Accédez à votre compte',
+    'auth.sub.register':   'Créez votre compte maintenant',
+    'auth.google':         'Continuer avec Google',
+    'auth.or':             'ou',
+    'auth.email':          'Adresse e-mail',
+    'auth.pass':           'Mot de passe',
+    'auth.btn.login':      'Se connecter',
+    'auth.btn.register':   'Créer le compte',
+    'auth.switch.login':   'Vous avez un compte ? <a onclick="toggleAuthMode()">Se connecter</a>',
+    'auth.switch.register':'Pas de compte ? <a onclick="toggleAuthMode()">S\'inscrire</a>',
+    'err.empty':       'Entrez l\'e-mail et le mot de passe',
+    'err.notfound':    'E-mail introuvable',
+    'err.wrongpass':   'Mot de passe incorrect',
+    'err.exists':      'E-mail déjà utilisé',
+    'err.invalidemail':'Adresse e-mail invalide',
+    'err.weakpass':    'Mot de passe trop faible',
+    'err.credential':  'Identifiants incorrects',
+    'err.google':      'Échec de la connexion Google',
+    'err.general':     'Une erreur est survenue',
+    'role.admin':    '👑 Admin',
+    'role.worker':   '🔧 Employé',
+    'role.customer': '👤 Client',
+    'cat.all':    '🌐 Tout',
+    'cat.web':    '💻 Sites web',
+    'cat.3d':     '🖨️ Impression 3D',
+    'cat.app':    '📱 Applications',
+    'cat.bot':    '🤖 Bots IA',
+    'cat.design': '🎨 Design',
+    'cat.sys':    '⚙️ Systèmes',
+    'cat.label.web':    'Site Web',
+    'cat.label.3d':     'Impression 3D',
+    'cat.label.app':    'Application',
+    'cat.label.bot':    'Bot IA',
+    'cat.label.design': 'Design',
+    'cat.label.sys':    'Système',
+    'cat.label.solar':  'Énergie Solaire',
+    'btn.order':       'Commander',
+    'results.count':   'service(s)',
+    'results.admin':   'Mode Admin 👑',
+    'results.worker':  'Mode Employé 🔧',
+    'results.link':    'Tableau de bord ↗',
+    'product.contact': 'Contactez-nous pour les détails',
+    'product.wa.btn':  'Contacter sur WhatsApp',
+    'product.msg':     'Bonjour, je suis intéressé par "{t}" à {p} {c}. Pouvez-vous donner plus de détails ?',
+    'order.msg':       'Bonjour, je voudrais me renseigner sur "{t}" — Prix : {p} {c}',
+    'badge.new':       'Nouveau',
+    'badge.hot':       '🔥 Populaire',
+    'empty.text':      'Aucun résultat',
+    'btn.save':   'Enregistrer',
+    'btn.cancel': 'Annuler',
+    'btn.edit':   'Modifier',
+    'btn.delete': 'Supprimer',
+    'btn.add':    'Ajouter',
+    'admin.panel':     'Tableau de bord',
+    'admin.overview':  'Vue d\'ensemble',
+    'admin.messages':  'Messages',
+    'admin.products':  'Produits',
+    'admin.pricing':   'Tarifs',
+    'admin.services':  'Services',
+    'admin.settings':  'Paramètres',
+    'admin.users':     'Utilisateurs',
+    'admin.backStore': 'Retour au magasin',
+    'admin.logout':    'Déconnexion',
+    'admin.welcome':   'Bienvenue sur le tableau de bord IDEA TECH',
+    'admin.general':   'Général',
+    'admin.manage':    'Gestion du magasin',
+    'admin.team':      'Équipe',
+    'admin.addProduct':'Ajouter un produit',
+    'admin.addService':'Ajouter un service',
+    'admin.recentMsgs':'Derniers messages',
+    'stat.msgs':     'Total messages',
+    'stat.newMsgs':  'Nouveaux messages',
+    'stat.users':    'Total utilisateurs',
+    'stat.products': 'Produits',
+    'filter.all':     'Tous',
+    'filter.new':     'Nouveaux',
+    'filter.read':    'Lus',
+    'filter.replied': 'Répondus',
+    'table.user':      'Utilisateur',
+    'table.email':     'E-mail',
+    'table.role':      'Rôle',
+    'table.date':      'Date d\'inscription',
+    'table.action':    'Action',
+    'table.protected': 'Protégé',
+    'table.noUsers':   'Pas encore d\'utilisateurs',
+    'msg.new':         'Nouveau',
+    'msg.read':        'Lu',
+    'msg.replied':     'Répondu',
+    'msg.visitor':     'Visiteur',
+    'msg.fullMsg':     'Message complet :',
+    'msg.markReplied': 'Marquer répondu',
+    'msg.markRead':    'Marquer comme lu',
+    'noMsgs':          'Aucun message',
+    'noMsgsYet':       'Pas encore de messages',
+    'settings.company': 'Informations de la société',
+    'settings.name':    'Nom de la société',
+    'settings.email':   'E-mail',
+    'settings.address': 'Adresse',
+    'settings.social':  'Contact & Réseaux sociaux',
+    'settings.addWa':   'Ajouter un numéro',
+    'form.add':       'Ajouter un nouveau produit',
+    'form.edit':      'Modifier le produit',
+    'form.title':     'Titre du produit *',
+    'form.desc':      'Description',
+    'form.price':     'Prix',
+    'form.currency':  'Devise',
+    'form.cat':       'Catégorie',
+    'form.badge':     'Badge',
+    'form.none':      'Aucun',
+    'form.icon':      'Icône (Emoji)',
+    'form.stars':     'Note (1-5)',
+    'form.img':       'URL de l\'image',
+    'form.features':  'Fonctionnalités (séparer par virgule)',
+    'form.required':  'Entrez le titre du produit',
+    'toast.welcome':      'Bienvenue 👋',
+    'toast.loggedOut':    'Déconnecté',
+    'toast.productAdded': 'Produit ajouté ✔',
+    'toast.productEdited':'Produit modifié ✔',
+    'toast.productDel':   'Produit supprimé',
+    'toast.saveErr':      'Erreur de sauvegarde',
+    'toast.delErr':       'Erreur de suppression',
+    'toast.saved':        'Sauvegardé ✓',
+    'toast.roleChanged':  'Rôle mis à jour ✓',
+    'toast.userDel':      'Utilisateur supprimé',
+    'toast.msgStatus':    'Statut mis à jour ✓',
+    'toast.msgDel':       'Message supprimé',
+    'confirm.delProduct': 'Confirmer la suppression ?',
+    'confirm.delUser':    'Supprimer cet utilisateur ?',
+    'confirm.delMsg':     'Supprimer ce message ?',
+  }
+};
+
+/* ══════════════════════════════════════
+   GLOBALS
+══════════════════════════════════════ */
+let currentLang  = localStorage.getItem('it_lang')  || 'ar';
+let currentTheme = localStorage.getItem('it_theme') || 'dark';
+let currentFilter = 'all';
+let searchTerm    = '';
+let isRegisterMode = false;
+
+/* ══════════════════════════════════════
+   TRANSLATION HELPER
+══════════════════════════════════════ */
+function t(key) {
+  return (TRANSLATIONS[currentLang] && TRANSLATIONS[currentLang][key])
+      || (TRANSLATIONS['ar'][key])
+      || key;
+}
+
+/* ══════════════════════════════════════
+   THEME
+══════════════════════════════════════ */
+function applyTheme(theme) {
+  currentTheme = theme;
+  localStorage.setItem('it_theme', theme);
+  document.documentElement.setAttribute('data-theme', theme);
+
+  const icon = theme === 'dark' ? 'light_mode' : 'dark_mode';
+  document.querySelectorAll('.theme-icon').forEach(el => {
+    el.textContent = icon;
+  });
+}
+
+function toggleTheme() {
+  applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+}
+
+/* ══════════════════════════════════════
+   LANGUAGE
+══════════════════════════════════════ */
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('it_lang', lang);
+
+  const html = document.documentElement;
+  if (lang === 'ar') {
+    html.setAttribute('lang', 'ar');
+    html.setAttribute('dir', 'rtl');
+    document.body.style.fontFamily = "'Cairo','Tajawal',sans-serif";
+  } else {
+    html.setAttribute('lang', lang);
+    html.setAttribute('dir', 'ltr');
+    document.body.style.fontFamily = "'Inter','Cairo',sans-serif";
+  }
+
+  // Update all [data-i18n] elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const val = t(key);
+    if (el.tagName === 'INPUT' && el.getAttribute('type') !== 'button') {
+      el.placeholder = val;
+    } else if (el.tagName === 'TEXTAREA') {
+      el.placeholder = val;
+    } else {
+      el.textContent = val;
+    }
+  });
+
+  // Search placeholder
+  const si = document.getElementById('searchInput');
+  if (si) si.placeholder = t('search.ph');
+
+  // Lang buttons highlight
+  ['AR','EN','FR'].forEach(code => {
+    document.querySelectorAll(`.lang-btn-${code.toLowerCase()}`).forEach(btn => {
+      btn.classList.toggle('active', code.toLowerCase() === lang);
+    });
+  });
+
+  // Re-render dynamic UI
+  renderFilterTabs();
+  if (typeof renderProducts === 'function') renderProducts();
+  updateAuthModalTexts();
+}
+
+function setLang(lang) { applyLang(lang); }
+
+/* ══════════════════════════════════════
+   FILTER TABS
+══════════════════════════════════════ */
+function renderFilterTabs() {
+  const container = document.getElementById('filterTabs');
+  if (!container) return;
+
+  const tabs = ['all','web','3d','app','bot','design','sys'];
+  container.innerHTML = tabs.map(key => `
+    <button class="ftab${currentFilter === key ? ' active' : ''}"
+            onclick="setFilter('${key}', this)">
+      ${t('cat.' + key)}
+    </button>
+  `).join('');
+}
+
+function setFilter(cat, btn) {
+  currentFilter = cat;
+  document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (typeof renderProducts === 'function') renderProducts();
+}
+
+function filterProducts() {
+  searchTerm = (document.getElementById('searchInput')?.value || '').trim().toLowerCase();
+  if (typeof renderProducts === 'function') renderProducts();
+}
+
+/* ══════════════════════════════════════
+   AUTH MODAL TEXTS
+══════════════════════════════════════ */
+function updateAuthModalTexts() {
+  const mode = isRegisterMode ? 'register' : 'login';
+
+  const titleEl = document.getElementById('authTitle');
+  const subEl   = document.getElementById('authSub');
+  const btnEl   = document.getElementById('authSubmitBtn');
+  const swEl    = document.getElementById('authSwitchLine');
+
+  if (titleEl) titleEl.textContent = t(`auth.title.${mode}`);
+  if (subEl)   subEl.textContent   = t(`auth.sub.${mode}`);
+  if (btnEl)   btnEl.textContent   = t(`auth.btn.${mode}`);
+  if (swEl)    swEl.innerHTML      = t(`auth.switch.${mode}`);
+}
+
+function toggleAuthMode() {
+  isRegisterMode = !isRegisterMode;
+  updateAuthModalTexts();
+  const errEl = document.getElementById('authErr');
+  if (errEl) errEl.textContent = '';
+}
+
+function openAuth() {
+  isRegisterMode = false;
+  updateAuthModalTexts();
+  document.getElementById('authModal').classList.add('open');
+  const errEl = document.getElementById('authErr');
+  if (errEl) errEl.textContent = '';
+}
+
+function closeAuth() {
+  document.getElementById('authModal').classList.remove('open');
+}
+
+/* Password visibility toggle */
+function togglePassVisibility(inputId, btnEl) {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+  const isText = input.type === 'text';
+  input.type = isText ? 'password' : 'text';
+  const icon = btnEl.querySelector('.material-symbols-outlined');
+  if (icon) icon.textContent = isText ? 'visibility' : 'visibility_off';
+}
+
+/* ══════════════════════════════════════
+   TOAST
+══════════════════════════════════════ */
+let _toastTimer;
+function showToast(msg, isErr = false) {
+  const el = document.getElementById('toast');
+  if (!el) return;
+  el.textContent = msg;
+  el.className = 'toast show' + (isErr ? ' err' : '');
+  clearTimeout(_toastTimer);
+  _toastTimer = setTimeout(() => el.classList.remove('show'), 2800);
+}
+
+/* ══════════════════════════════════════
+   PARTICLES
+══════════════════════════════════════ */
+function initParticles() {
+  const canvas = document.getElementById('particles-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, pts = [];
+
+  const resize = () => {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  };
+  resize();
+  window.addEventListener('resize', resize);
+
+  for (let i = 0; i < 55; i++) {
+    pts.push({
+      x: Math.random() * 2000,
+      y: Math.random() * 2000,
+      vx: (Math.random() - 0.5) * 0.22,
+      vy: (Math.random() - 0.5) * 0.22,
+      r:  Math.random() * 1.5 + 0.5,
+      a:  Math.random() * 0.45 + 0.1,
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    pts.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = W;
+      if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H;
+      if (p.y > H) p.y = 0;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0, 212, 255, ${p.a})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+/* ══════════════════════════════════════
+   COUNTER ANIMATION
+══════════════════════════════════════ */
+function runCounters(productTotal) {
+  const targets = [
+    { id: 'sc1', val: 150, suffix: '+' },
+    { id: 'sc2', val: productTotal, suffix: '' },
+    { id: 'sc3', val: 4, suffix: '+' },
+    { id: 'sc4', val: 98, suffix: '%' },
+  ];
+  targets.forEach(({ id, val, suffix }) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    let current = 0;
+    const steps = 60;
+    const inc = val / steps;
+    const interval = setInterval(() => {
+      current = Math.min(current + inc, val);
+      el.textContent = Math.floor(current) + suffix;
+      if (current >= val) clearInterval(interval);
+    }, 30);
+  });
+}
+
+/* ══════════════════════════════════════
+   REVEAL ON SCROLL
+══════════════════════════════════════ */
+function initReveal() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+}
+
+/* ══════════════════════════════════════
+   ADMIN SIDEBAR TOGGLE
+══════════════════════════════════════ */
+function toggleSidebar() {
+  const s = document.getElementById('adm-sidebar');
+  const o = document.getElementById('sidebar-overlay');
+  if (!s || !o) return;
+  s.classList.toggle('open');
+  o.classList.toggle('open');
+  document.body.style.overflow = s.classList.contains('open') ? 'hidden' : '';
+}
+
+/* ══════════════════════════════════════
+   INIT — called after DOM ready
+══════════════════════════════════════ */
+
+function toggleContactMenu() {
+  const menu    = document.getElementById('contactMenu');
+  const overlay = document.getElementById('contactOverlay');
+  const isOpen  = menu.style.display === 'block';
+  menu.style.display    = isOpen ? 'none' : 'block';
+  overlay.style.display = isOpen ? 'none' : 'block';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  applyTheme(currentTheme);
+  applyLang(currentLang);
+  initParticles();
+  initReveal();
+});
+
+</script>
+
+<script type="module">
+/* ═══════════════════════════════════════════════
+   IDEA TECH STORE — firebase-init.js
+   Firebase: Auth · Firestore · Products · Admin
+═══════════════════════════════════════════════ */
+
+import { initializeApp } from
+  "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+  signInWithPopup,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  deleteDoc,
+  query,
+  orderBy,
+  serverTimestamp,
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+/* ══════════════════════════════════════
+   FIREBASE CONFIG
+══════════════════════════════════════ */
+const firebaseConfig = {
+  apiKey:            "AIzaSyCH5K-zXdh0v8lZz4PiSFocAs_rklBZe1A",
+  authDomain:        "web1-94067.firebaseapp.com",
+  projectId:         "web1-94067",
+  storageBucket:     "web1-94067.firebasestorage.app",
+  messagingSenderId: "106677179670",
+  appId:             "1:106677179670:web:1388a0d28f7bbce8186c37",
+};
+
+/* ── ADMIN EMAIL (always gets role=admin) ── */
+const ADMIN_EMAIL = "ideatech829@gmail.com";
+const WA_NUMBER   = "201283328730";
+
+const app       = initializeApp(firebaseConfig);
+const auth      = getAuth(app);
+const db        = getFirestore(app);
+const gProvider = new GoogleAuthProvider();
+
+/* ══════════════════════════════════════
+   STATE
+══════════════════════════════════════ */
+let currentUser  = null;
+let currentRole  = 'customer';
+let allMessages  = [];
+let allUsers     = [];
+let pricingData  = {};
+let servicesData = [];
+let productsCache  = [];
+let editingProductId = null;
+
+/* ══════════════════════════════════════
+   HELPERS
+══════════════════════════════════════ */
+const catClsMap = {
+  web:'cat-web', '3d':'cat-3d', app:'cat-app',
+  bot:'cat-bot', design:'cat-design', sys:'cat-sys', solar:'cat-solar',
+};
+
+const svgWA = `<svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15
+  -.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475
+  -.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52
+  .149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207
+  -.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372
+  -.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2
+  5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085
+  1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347
+  m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648
+  -.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0
+  5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885
+  9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0
+  2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683
+  1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0
+  00-3.48-8.413Z"/></svg>`;
+
+function waMsg(template, title, price, currency) {
+  return template
+    .replace('{t}', title)
+    .replace('{p}', price)
+    .replace('{c}', currency || '');
+}
+
+/* ══════════════════════════════════════
+   AUTH STATE LISTENER
+══════════════════════════════════════ */
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    currentUser = user;
+    const ref  = doc(db, 'users', user.uid);
+    const snap = await getDoc(ref);
+
+    if (!snap.exists()) {
+      /* First login — create user document */
+      const role = user.email === ADMIN_EMAIL ? 'admin' : 'customer';
+      await setDoc(ref, {
+        uid:         user.uid,
+        email:       user.email,
+        displayName: user.displayName || user.email.split('@')[0],
+        photoURL:    user.photoURL || '',
+        role,
+        createdAt:   serverTimestamp(),
+      });
+      currentRole = role;
+    } else {
+      currentRole = snap.data().role || 'customer';
+      /* Always keep admin email as admin */
+      if (user.email === ADMIN_EMAIL && currentRole !== 'admin') {
+        await updateDoc(ref, { role: 'admin' });
+        currentRole = 'admin';
+      }
+    }
+
+    closeAuth();
+    showToast(t('toast.welcome'));
+  } else {
+    currentUser = null;
+    currentRole = 'customer';
+  }
+
+  updateNavUI();
+  renderProducts();
+});
+
+/* ── Update nav bar based on auth state ── */
+function updateNavUI() {
+  const btnLogin  = document.getElementById('btnLogin');
+  const btnLogout = document.getElementById('btnLogout');
+  const btnAdmin  = document.getElementById('btnOpenAdmin');
+  const userInfo  = document.getElementById('navUserInfo');
+
+  if (currentUser) {
+    btnLogin.style.display  = 'none';
+    btnLogout.style.display = 'flex';
+    userInfo.style.display  = 'flex';
+
+    const name = currentUser.displayName || currentUser.email.split('@')[0];
+    const nameEl = document.getElementById('navDisplayName');
+    if (nameEl) nameEl.textContent = name;
+
+    const av = document.getElementById('navAvatar');
+    if (av && currentUser.photoURL) {
+      av.src = currentUser.photoURL;
+      av.style.display = 'block';
+    }
+
+    const roleTag = document.getElementById('navRoleTag');
+    if (roleTag) {
+      roleTag.textContent = t('role.' + currentRole);
+      roleTag.className   = 'nav-role-tag role-' + currentRole;
+    }
+
+    const isStaff = currentRole === 'admin' || currentRole === 'worker';
+    btnAdmin.style.display = isStaff ? 'flex' : 'none';
+  } else {
+    btnLogin.style.display  = 'flex';
+    btnLogout.style.display = 'none';
+    userInfo.style.display  = 'none';
+    btnAdmin.style.display  = 'none';
+  }
+}
+
+/* ══════════════════════════════════════
+   AUTH ACTIONS — exposed to window
+══════════════════════════════════════ */
+window.doLogout = async () => {
+  await signOut(auth);
+  closeAdminPanel();
+  showToast(t('toast.loggedOut'));
+};
+
+window.doGoogleLogin = async () => {
+  clearAuthErr();
+  try {
+    await signInWithPopup(auth, gProvider);
+  } catch (e) {
+    setAuthErr(t('err.google'));
+  }
+};
+
+window.submitAuth = async () => {
+  const email = document.getElementById('authEmail')?.value.trim();
+  const pass  = document.getElementById('authPass')?.value.trim();
+  clearAuthErr();
+
+  if (!email || !pass) { setAuthErr(t('err.empty')); return; }
+
+  try {
+    if (isRegisterMode) {
+      const cred = await createUserWithEmailAndPassword(auth, email, pass);
+      /* Set display name from email prefix */
+      await updateProfile(cred.user, {
+        displayName: email.split('@')[0],
+      });
+    } else {
+      await signInWithEmailAndPassword(auth, email, pass);
+    }
+  } catch (e) {
+    const errMap = {
+      'auth/user-not-found':         'err.notfound',
+      'auth/wrong-password':         'err.wrongpass',
+      'auth/email-already-in-use':   'err.exists',
+      'auth/invalid-email':          'err.invalidemail',
+      'auth/weak-password':          'err.weakpass',
+      'auth/invalid-credential':     'err.credential',
+      'auth/too-many-requests':      'err.general',
+    };
+    setAuthErr(t(errMap[e.code] || 'err.general'));
+  }
+};
+
+function clearAuthErr() {
+  const el = document.getElementById('authErr');
+  if (el) el.textContent = '';
+}
+function setAuthErr(msg) {
+  const el = document.getElementById('authErr');
+  if (el) el.textContent = msg;
+}
+
+/* ══════════════════════════════════════
+   DEFAULT PRODUCTS
+══════════════════════════════════════ */
+const DEFAULT_PRODUCTS = [
+  {
+    id:'p1', cat:'web', badge:'hot', icon:'💻',
+    title:'موقع بيزنس احترافي',
+    desc:'موقع ويب كامل لشركتك أو مشروعك بتصميم عصري متجاوب وسرعة تحميل عالية.',
+    features:['تصميم UI/UX مخصص','متجاوب مع كل الأجهزة','SEO محسّن','لوحة تحكم','دعم شهر بعد التسليم'],
+    price:'1,500', currency:'جنيه', stars:5,
+    img:'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80',
+  },
+  {
+    id:'p2', cat:'web', badge:'new', icon:'🛒',
+    title:'متجر إلكتروني كامل',
+    desc:'متجر أونلاين متكامل بسلة تسوق ونظام دفع وإدارة منتجات وإشعارات طلبات.',
+    features:['عربة تسوق كاملة','بوابات دفع إلكتروني','إدارة المخزون','تتبع الطلبات','إشعارات واتساب'],
+    price:'3,500', currency:'جنيه', stars:5,
+    img:'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=80',
+  },
+  {
+    id:'p3', cat:'web', badge:null, icon:'🏢',
+    title:'موقع شركة متعدد اللغات',
+    desc:'موقع شركة احترافي بالعربي والإنجليزي مع صفحات الخدمات والفريق والتواصل.',
+    features:['عربي + إنجليزي','صفحات متعددة','نموذج تواصل','ربط السوشيال ميديا'],
+    price:'2,000', currency:'جنيه', stars:5,
+    img:'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&q=80',
+  },
+  {
+    id:'p4', cat:'3d', badge:'hot', icon:'🖨️',
+    title:'طباعة 3D — نماذج هندسية',
+    desc:'طباعة ثلاثية الأبعاد دقيقة لنماذج هندسية وبروتوتايب ومجسمات للمشاريع.',
+    features:['دقة طباعة 0.1mm','PLA · ABS · PETG','تسليم سريع','تصميم مجاني'],
+    price:'يبدأ من 200', currency:'جنيه', stars:5,
+    img:'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=600&q=80',
+  },
+  {
+    id:'p5', cat:'app', badge:'new', icon:'📱',
+    title:'تطبيق موبايل Android & iOS',
+    desc:'تطبيق مخصص لمشروعك بواجهة جميلة وأداء عالي ونشر على Google Play و App Store.',
+    features:['Android & iOS','تصميم Material Design','إشعارات Push','نشر على المتجرين'],
+    price:'5,000', currency:'جنيه', stars:5,
+    img:'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&q=80',
+  },
+  {
+    id:'p6', cat:'bot', badge:'hot', icon:'🤖',
+    title:'بوت واتساب ذكي بـ AI',
+    desc:'بوت واتساب يرد على العملاء تلقائياً ويدير الطلبات على مدار الساعة.',
+    features:['ردود AI تلقائية','إدارة الطلبات','تكامل ChatGPT','إحصائيات يومية'],
+    price:'2,000', currency:'جنيه', stars:5,
+    img:'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80',
+  },
+  {
+    id:'p7', cat:'design', badge:'new', icon:'🎨',
+    title:'هوية بصرية كاملة',
+    desc:'تصميم هوية بصرية احترافية: لوجو، ألوان، خطوط، بطاقات أعمال، وبراندينج كامل.',
+    features:['لوجو احترافي','دليل الهوية البصرية','بطاقة أعمال','ملفات AI · PDF · PNG'],
+    price:'800', currency:'جنيه', stars:5,
+    img:'https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&q=80',
+  },
+  {
+    id:'p8', cat:'sys', badge:'hot', icon:'📊',
+    title:'نظام إدارة المبيعات CRM',
+    desc:'نظام ويب لإدارة المبيعات والعملاء والمخزون مع فواتير وتقارير تفصيلية.',
+    features:['إدارة العملاء CRM','فواتير إلكترونية','تقارير وإحصائيات','صلاحيات متعددة'],
+    price:'4,500', currency:'جنيه', stars:5,
+    img:'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80',
+  },
+];
+
+/* ══════════════════════════════════════
+   PRODUCTS — Firestore
+══════════════════════════════════════ */
+async function initProducts() {
+  try {
+    const snap = await getDocs(collection(db, 'products'));
+    if (snap.empty) {
+      for (const p of DEFAULT_PRODUCTS) {
+        await setDoc(doc(db, 'products', p.id), p);
+      }
+      productsCache = [...DEFAULT_PRODUCTS];
+    } else {
+      productsCache = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    }
+  } catch (e) {
+    productsCache = [...DEFAULT_PRODUCTS];
+  }
+
+  const stEl = document.getElementById('st-products');
+  if (stEl) stEl.textContent = productsCache.length;
+
+  renderProducts();
+  runCounters(productsCache.length);
+}
+
+/* ── Render store grid ── */
+window.renderProducts = function () {
+  const grid    = document.getElementById('productsGrid');
+  const countEl = document.getElementById('resultsCount');
+  if (!grid) return;
+
+  const filtered = productsCache.filter(p => {
+    const mc = currentFilter === 'all' || p.cat === currentFilter;
+    const ms = !searchTerm
+      || p.title.toLowerCase().includes(searchTerm)
+      || p.desc.toLowerCase().includes(searchTerm);
+    return mc && ms;
+  });
+
+  const isAdmin = currentRole === 'admin';
+  const isStaff = currentRole === 'admin' || currentRole === 'worker';
+
+  if (countEl) {
+    countEl.innerHTML = `
+      <span style="display:flex;align-items:center;gap:.35rem">
+        <span class="material-symbols-outlined" style="font-size:.95rem;color:var(--cyan)">grid_view</span>
+        ${filtered.length} ${t('results.count')}
+      </span>
+      ${isStaff
+        ? `<span style="font-size:.72rem;color:var(--text2)">
+             ${isAdmin ? t('results.admin') : t('results.worker')}
+             — <button onclick="openAdminPanel()"
+                       style="background:none;border:none;color:var(--cyan);
+                              cursor:pointer;font-family:inherit;
+                              font-size:.72rem;font-weight:700">
+                 ${t('results.link')}
+               </button>
+           </span>`
+        : ''}
+    `;
+  }
+
+  if (!filtered.length) {
+    grid.innerHTML = `
+      <div class="empty">
+        <span class="material-symbols-outlined">search_off</span>
+        <p>${t('empty.text')}</p>
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map((p, i) => {
+    const cls      = catClsMap[p.cat] || 'cat-web';
+    const catLabel = t('cat.label.' + (p.cat || 'web'));
+    const badgeHtml = p.badge === 'new'
+      ? `<span class="card-badge badge-new">${t('badge.new')}</span>`
+      : p.badge === 'hot'
+      ? `<span class="card-badge badge-hot">${t('badge.hot')}</span>`
+      : '';
+
+    return `
+      <div class="card" onclick="openModal('${p.id}')">
+        ${isAdmin ? `
+          <div class="card-admin-bar visible">
+            <button class="card-admin-btn btn-edit-card"
+                    onclick="event.stopPropagation();openProductForm('${p.id}')"
+                    title="${t('btn.edit')}">✏️</button>
+            <button class="card-admin-btn btn-del-card"
+                    onclick="event.stopPropagation();deleteProductById('${p.id}')"
+                    title="${t('btn.delete')}">🗑️</button>
+          </div>` : ''}
+        ${badgeHtml}
+        <div class="card-img-wrap">
+          <img class="card-img"
+               src="${p.img || ''}" alt="${p.title}" loading="lazy"
+               onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80'"/>
+          <div class="card-icon-wrap">${p.icon || '💡'}</div>
+        </div>
+        <div class="card-body">
+          <span class="card-cat ${cls}">${catLabel}</span>
+          <div class="stars">${'★'.repeat(p.stars || 5)}${'☆'.repeat(5 - (p.stars || 5))}</div>
+          <h3 class="card-title">${p.title}</h3>
+          <p class="card-desc">${p.desc}</p>
+          <div class="card-footer">
+            <div class="card-price">
+              <small>${p.currency || 'جنيه'}</small>
+              ${p.price}
+            </div>
+            <button class="btn-order"
+                    onclick="event.stopPropagation();orderNow('${p.id}')">
+              ${svgWA} <span>${t('btn.order')}</span>
+            </button>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+
+  /* Animate cards in */
+  requestAnimationFrame(() => {
+    grid.querySelectorAll('.card').forEach((el, i) => {
+      el.style.opacity   = '0';
+      el.style.transform = 'translateY(20px)';
+      setTimeout(() => {
+        el.style.transition = 'opacity .5s ease, transform .5s ease';
+        el.style.opacity    = '1';
+        el.style.transform  = 'none';
+      }, i * 55);
+    });
+  });
+};
+
+/* ── Open product detail modal ── */
+window.openModal = (id) => {
+  const p = productsCache.find(x => x.id === id);
+  if (!p) return;
+
+  const cls      = catClsMap[p.cat] || 'cat-web';
+  const catLabel = t('cat.label.' + (p.cat || 'web'));
+  const msgTpl   = waMsg(t('product.msg'), p.title, p.price, p.currency);
+  const waLink   = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msgTpl)}`;
+
+  document.getElementById('modalContent').innerHTML = `
+    <button class="modal-close"
+            onclick="document.getElementById('modal').classList.remove('open');
+                     document.body.style.overflow=''">✕</button>
+    <img src="${p.img || ''}" alt="${p.title}"
+         style="width:100%;height:200px;object-fit:cover;display:block;
+                border-radius:1.5rem 1.5rem 0 0"
+         onerror="this.style.display='none'"/>
+    <div class="modal-body">
+      <span class="card-cat ${cls}" style="margin-bottom:.6rem">${p.icon} ${catLabel}</span>
+      <div class="stars" style="margin:.45rem 0">${'★'.repeat(p.stars || 5)}${'☆'.repeat(5 - (p.stars || 5))}</div>
+      <h2 style="font-size:1.35rem;font-weight:900;color:var(--text);margin-bottom:.55rem;line-height:1.25">
+        ${p.title}
+      </h2>
+      <p style="color:var(--text2);line-height:1.75;margin-bottom:1.25rem;font-size:.875rem">
+        ${p.desc}
+      </p>
+      <ul class="modal-features">
+        ${(p.features || []).map(f => `
+          <li>
+            <span class="material-symbols-outlined">check_circle</span>
+            ${f}
+          </li>`).join('')}
+      </ul>
+      <div class="modal-price-row">
+        <div class="modal-price">
+          <small>${p.currency || 'جنيه'}</small>
+          ${p.price}
+        </div>
+        <span style="font-size:.75rem;color:var(--text2)">${t('product.contact')}</span>
+      </div>
+      <a href="${waLink}" target="_blank" class="btn-wa-cta">
+        ${svgWA} ${t('product.wa.btn')}
+      </a>
+    </div>`;
+
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+};
+
+window.closeModal = (e) => {
+  if (e.target === document.getElementById('modal')) {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+};
+
+window.orderNow = (id) => {
+  const p = productsCache.find(x => x.id === id);
+  if (!p) return;
+  const msg = waMsg(t('order.msg'), p.title, p.price, p.currency);
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+};
+
+/* ══════════════════════════════════════
+   PRODUCT FORM
+══════════════════════════════════════ */
+window.openProductForm = (id) => {
+  editingProductId = id || null;
+  document.getElementById('pfTitle').textContent = t(id ? 'form.edit' : 'form.add');
+
+  if (id) {
+    const p = productsCache.find(x => x.id === id);
+    if (p) {
+      _setVal('pfName',     p.title);
+      _setVal('pfDesc',     p.desc);
+      _setVal('pfPrice',    p.price);
+      _setVal('pfCurrency', p.currency || 'جنيه');
+      _setVal('pfCat',      p.cat);
+      _setVal('pfBadge',    p.badge || '');
+      _setVal('pfIcon',     p.icon || '💡');
+      _setVal('pfStars',    p.stars || 5);
+      _setVal('pfImg',      p.img || '');
+      _setVal('pfFeatures', (p.features || []).join('، '));
+    }
+  } else {
+    ['pfName','pfDesc','pfPrice','pfFeatures','pfImg'].forEach(id => _setVal(id, ''));
+    _setVal('pfCurrency', 'جنيه');
+    _setVal('pfCat',      'web');
+    _setVal('pfBadge',    '');
+    _setVal('pfIcon',     '💡');
+    _setVal('pfStars',    5);
+  }
+
+  document.getElementById('productFormModal').classList.add('open');
+};
+
+window.closeProductForm = () =>
+  document.getElementById('productFormModal').classList.remove('open');
+
+window.saveProduct = async () => {
+  const title = _getVal('pfName').trim();
+  if (!title) { showToast(t('form.required'), true); return; }
+
+  const cat      = _getVal('pfCat');
+  const features = _getVal('pfFeatures')
+    .split(/[،,]/)
+    .map(f => f.trim())
+    .filter(Boolean);
+
+  const data = {
+    title,
+    desc:     _getVal('pfDesc'),
+    price:    _getVal('pfPrice'),
+    currency: _getVal('pfCurrency') || 'جنيه',
+    cat,
+    badge:    _getVal('pfBadge') || null,
+    icon:     _getVal('pfIcon')  || '💡',
+    stars:    parseInt(_getVal('pfStars')) || 5,
+    img:      _getVal('pfImg')   || '',
+    features,
+    updatedAt: serverTimestamp(),
+  };
+
+  try {
+    if (editingProductId) {
+      await setDoc(doc(db, 'products', editingProductId), data, { merge: true });
+      const idx = productsCache.findIndex(p => p.id === editingProductId);
+      if (idx !== -1) productsCache[idx] = { ...productsCache[idx], ...data };
+      showToast(t('toast.productEdited'));
+    } else {
+      const newId = 'p' + Date.now();
+      await setDoc(doc(db, 'products', newId), { ...data, id: newId });
+      productsCache.push({ ...data, id: newId });
+      showToast(t('toast.productAdded'));
+    }
+    closeProductForm();
+    renderProducts();
+    _renderAdminProducts();
+    _setInner('st-products', productsCache.length);
+  } catch (e) {
+    showToast(t('toast.saveErr'), true);
+  }
+};
+
+window.deleteProductById = async (id) => {
+  if (!confirm(t('confirm.delProduct'))) return;
+  try {
+    await deleteDoc(doc(db, 'products', id));
+    productsCache = productsCache.filter(p => p.id !== id);
+    renderProducts();
+    _renderAdminProducts();
+    _setInner('st-products', productsCache.length);
+    showToast(t('toast.productDel'));
+  } catch (e) {
+    showToast(t('toast.delErr'), true);
+  }
+};
+
+function _renderAdminProducts() {
+  const grid = document.getElementById('adm-products-grid');
+  if (!grid) return;
+
+  const countEl = document.getElementById('adm-product-count');
+  if (countEl) countEl.textContent = `${productsCache.length} ${t('results.count')}`;
+
+  const isAdmin = currentRole === 'admin';
+
+  grid.innerHTML = productsCache.map(p => `
+    <div class="adm-pcard">
+      <img src="${p.img || 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=300&q=60'}"
+           alt="" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=300&q=60'"/>
+      <div class="adm-pcard-body">
+        <div style="font-size:.88rem;font-weight:800;color:var(--text);
+                    margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
+          ${p.icon || ''} ${p.title}
+        </div>
+        <div style="font-size:.78rem;color:var(--cyan);font-weight:700;margin-bottom:.75rem">
+          ${p.price} ${p.currency || 'جنيه'}
+        </div>
+        ${isAdmin
+          ? `<div style="display:flex;gap:.5rem">
+               <button class="btn-ghost" style="font-size:.72rem;padding:.35rem .7rem"
+                       onclick="openProductForm('${p.id}')">
+                 <span class="material-symbols-outlined" style="font-size:.75rem">edit</span>
+                 ${t('btn.edit')}
+               </button>
+               <button class="btn-danger" style="font-size:.72rem;padding:.35rem .7rem"
+                       onclick="deleteProductById('${p.id}')">
+                 <span class="material-symbols-outlined" style="font-size:.75rem">delete</span>
+                 ${t('btn.delete')}
+               </button>
+             </div>`
+          : `<span style="font-size:.72rem;color:var(--text3)">${t('role.worker')}</span>`}
+      </div>
+    </div>`).join('');
+}
+
+/* ══════════════════════════════════════
+   ADMIN PANEL
+══════════════════════════════════════ */
+window.openAdminPanel = async () => {
+  if (!currentUser) { openAuth(); return; }
+
+  document.getElementById('adminPanel').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  _setInner('adm-user-name', currentUser.displayName || currentUser.email);
+
+  const av = document.getElementById('adm-avatar');
+  if (av && currentUser.photoURL) {
+    av.src = currentUser.photoURL;
+    av.style.display = 'block';
+    const icon = document.getElementById('adm-avatar-icon');
+    if (icon) icon.style.display = 'none';
+  }
+
+  /* Show/hide role-gated items */
+  const isAdmin = currentRole === 'admin';
+  _show('navUsersBtn',  isAdmin ? 'flex' : 'none');
+  _show('btnAddProduct', isAdmin ? 'flex' : 'none');
+
+  showAdmSection('overview', document.querySelector('#adm-sidebar .adm-nav-item'));
+  _loadMessages();
+  _loadUsers();
+  _loadPricing();
+  _loadServices();
+  _loadSettings();
+  _renderAdminProducts();
+};
+
+window.closeAdminPanel = () => {
+  document.getElementById('adminPanel').classList.remove('open');
+  document.body.style.overflow = '';
+};
+
+window.showAdmSection = (name, el) => {
+  document.querySelectorAll('.asection').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.adm-nav-item').forEach(n => n.classList.remove('active'));
+
+  document.getElementById('adm-sec-' + name)?.classList.add('active');
+  if (el) el.classList.add('active');
+
+  _setInner('adm-section-title', t('admin.' + name) || name);
+
+  if (name === 'products') _renderAdminProducts();
+  if (window.innerWidth <= 768) toggleSidebar();
+};
+
+/* ══════════════════════════════════════
+   MESSAGES
+══════════════════════════════════════ */
+async function _loadMessages() {
+  try {
+    const snap = await getDocs(
+      query(collection(db, 'messages'), orderBy('createdAt', 'desc'))
+    );
+    allMessages = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    const nc = allMessages.filter(m => m.status === 'new').length;
+    _setInner('st-msgs', allMessages.length);
+    _setInner('st-new',  nc);
+
+    const badge = document.getElementById('msg-badge');
+    if (badge) {
+      badge.textContent   = nc;
+      badge.style.display = nc > 0 ? 'inline' : 'none';
+    }
+    _renderMessages('all');
+    _renderRecentMsgs();
+  } catch (e) { /* offline fallback */ }
+}
+
+function _renderRecentMsgs() {
+  const el = document.getElementById('recent-msgs-list');
+  if (!el) return;
+  if (!allMessages.length) {
+    el.innerHTML = `<p style="color:var(--text3);font-size:.85rem">${t('noMsgsYet')}</p>`;
+    return;
+  }
+  el.innerHTML = allMessages.slice(0, 5).map(m => `
+    <div style="display:flex;align-items:center;justify-content:space-between;
+                padding:.75rem 1rem;border-radius:.625rem;
+                background:rgba(0,0,0,.03);border:1px solid var(--border2)">
+      <div style="display:flex;align-items:center;gap:.75rem">
+        <div style="width:36px;height:36px;border-radius:50%;
+                    background:rgba(0,212,255,.1);display:flex;align-items:center;justify-content:center">
+          <span class="material-symbols-outlined" style="font-size:1rem;color:var(--cyan)">person</span>
+        </div>
+        <div>
+          <p style="font-size:.875rem;font-weight:700;color:var(--text)">${m.name || t('msg.visitor')}</p>
+          <p style="font-size:.75rem;color:var(--text3)">
+            ${(m.message || '').substring(0, 50)}${(m.message || '').length > 50 ? '...' : ''}
+          </p>
+        </div>
+      </div>
+      <span style="background:rgba(0,212,255,.1);color:var(--cyan);
+                   border:1px solid rgba(0,212,255,.2);
+                   padding:3px 10px;border-radius:9999px;font-size:.7rem;font-weight:700">
+        ${m.status === 'new' ? t('msg.new') : m.status === 'read' ? t('msg.read') : t('msg.replied')}
+      </span>
+    </div>`).join('');
+}
+
+function _renderMessages(filter) {
+  const filtered = filter === 'all'
+    ? allMessages
+    : allMessages.filter(m => (m.status || 'new') === filter);
+
+  const el = document.getElementById('msgs-list');
+  if (!el) return;
+
+  if (!filtered.length) {
+    el.innerHTML = `<p style="color:var(--text3);font-size:.85rem;padding:2rem 0">${t('noMsgs')}</p>`;
+    return;
+  }
+
+  el.innerHTML = filtered.map(m => {
+    const status = m.status || 'new';
+    const statusLabel = status === 'new' ? t('msg.new')
+      : status === 'read' ? t('msg.read') : t('msg.replied');
+
+    return `
+      <div class="msg-card ${status === 'new' ? 'unread' : ''}"
+           onclick="toggleMsg('${m.id}')">
+        <div style="display:flex;align-items:flex-start;
+                    justify-content:space-between;gap:1rem;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:.75rem">
+            <div style="width:42px;height:42px;border-radius:50%;
+                        background:rgba(0,212,255,.1);display:flex;
+                        align-items:center;justify-content:center;flex-shrink:0">
+              <span class="material-symbols-outlined" style="color:var(--cyan)">person</span>
+            </div>
+            <div>
+              <p style="font-weight:700;color:var(--text)">${m.name || t('msg.visitor')}</p>
+              <p style="font-size:.8rem;color:var(--text3);direction:ltr">${m.email || ''}</p>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap">
+            <span style="background:rgba(0,212,255,.1);color:var(--cyan);
+                         border:1px solid rgba(0,212,255,.2);
+                         padding:3px 10px;border-radius:9999px;font-size:.7rem;font-weight:700">
+              ${statusLabel}
+            </span>
+            <span style="font-size:.75rem;color:var(--text3)">
+              ${m.createdAt?.toDate ? m.createdAt.toDate().toLocaleDateString() : ''}
+            </span>
+          </div>
+        </div>
+        <p style="font-size:.875rem;color:var(--text2);margin-top:.75rem">
+          ${(m.message || '').substring(0, 100)}${(m.message || '').length > 100 ? '...' : ''}
+        </p>
+        <div class="msg-expanded" id="msg-exp-${m.id}">
+          <p style="font-size:.75rem;font-weight:700;color:var(--text3);margin-bottom:.35rem">
+            ${t('msg.fullMsg')}
+          </p>
+          <p style="font-size:.875rem;color:var(--text);line-height:1.75;margin-bottom:1rem">
+            ${m.message || ''}
+          </p>
+          <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+            <button class="btn-ap" style="font-size:.8rem;padding:.5rem 1rem"
+                    onclick="event.stopPropagation();markMsg('${m.id}','replied')">
+              <span class="material-symbols-outlined" style="font-size:.9rem">reply</span>
+              ${t('msg.markReplied')}
+            </button>
+            <button class="btn-ghost"
+                    onclick="event.stopPropagation();markMsg('${m.id}','read')">
+              ${t('msg.markRead')}
+            </button>
+            <button class="btn-danger"
+                    onclick="event.stopPropagation();deleteMsg('${m.id}')">
+              <span class="material-symbols-outlined" style="font-size:.9rem">delete</span>
+            </button>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+window.toggleMsg = async (id) => {
+  const el = document.getElementById('msg-exp-' + id);
+  if (!el) return;
+  const isOpen = el.style.display === 'block';
+  el.style.display = isOpen ? 'none' : 'block';
+  const msg = allMessages.find(m => m.id === id);
+  if (!isOpen && msg && (msg.status === 'new' || !msg.status)) {
+    await updateDoc(doc(db, 'messages', id), { status: 'read' });
+    msg.status = 'read';
+  }
+};
+
+window.markMsg = async (id, status) => {
+  await updateDoc(doc(db, 'messages', id), { status });
+  const msg = allMessages.find(m => m.id === id);
+  if (msg) msg.status = status;
+  const f = document.querySelector('.msg-filter.active')?.dataset.filter || 'all';
+  _renderMessages(f);
+  _renderRecentMsgs();
+  showToast(t('toast.msgStatus'));
+};
+
+window.deleteMsg = async (id) => {
+  if (!confirm(t('confirm.delMsg'))) return;
+  await deleteDoc(doc(db, 'messages', id));
+  allMessages = allMessages.filter(m => m.id !== id);
+  const f = document.querySelector('.msg-filter.active')?.dataset.filter || 'all';
+  _renderMessages(f);
+  _renderRecentMsgs();
+  showToast(t('toast.msgDel'));
+};
+
+window.filterMsgs = (filter, btn) => {
+  document.querySelectorAll('.msg-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  _renderMessages(filter);
+};
+
+/* ══════════════════════════════════════
+   USERS
+══════════════════════════════════════ */
+async function _loadUsers() {
+  try {
+    const snap = await getDocs(collection(db, 'users'));
+    allUsers = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    _setInner('st-users', allUsers.length);
+    _renderUsers();
+  } catch (e) {}
+}
+
+function _renderUsers() {
+  const tbody = document.getElementById('users-tbody');
+  if (!tbody) return;
+
+  if (!allUsers.length) {
+    tbody.innerHTML = `
+      <tr><td colspan="5" style="text-align:center;color:var(--text3);padding:2rem">
+        ${t('table.noUsers')}
+      </td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = allUsers.map(u => `
+    <tr>
+      <td style="display:flex;align-items:center;gap:.75rem">
+        <div style="width:34px;height:34px;border-radius:50%;
+                    background:rgba(0,212,255,.1);display:flex;
+                    align-items:center;justify-content:center;
+                    overflow:hidden;flex-shrink:0">
+          ${u.photoURL
+            ? `<img src="${u.photoURL}" style="width:100%;height:100%;object-fit:cover"/>`
+            : `<span class="material-symbols-outlined" style="font-size:.9rem;color:var(--cyan)">person</span>`}
+        </div>
+        <span style="font-weight:600">${u.displayName || '—'}</span>
+      </td>
+      <td style="color:var(--text3);direction:ltr">${u.email || '—'}</td>
+      <td>
+        <select onchange="changeRole('${u.uid || u.id}', this.value)"
+                class="ctrl-input"
+                style="padding:.4rem .75rem;font-size:.8rem"
+                ${u.email === ADMIN_EMAIL ? 'disabled' : ''}>
+          <option value="customer" ${u.role === 'customer' ? 'selected' : ''}>${t('role.customer')}</option>
+          <option value="worker"   ${u.role === 'worker'   ? 'selected' : ''}>${t('role.worker')}</option>
+          <option value="admin"    ${u.role === 'admin'    ? 'selected' : ''}>${t('role.admin')}</option>
+        </select>
+      </td>
+      <td style="color:var(--text3);font-size:.8rem">
+        ${u.createdAt?.toDate ? u.createdAt.toDate().toLocaleDateString() : '—'}
+      </td>
+      <td>
+        ${u.email !== ADMIN_EMAIL
+          ? `<button class="btn-danger" onclick="deleteUser('${u.uid || u.id}')">
+               ${t('btn.delete')}
+             </button>`
+          : `<span style="color:var(--text3);font-size:.75rem">${t('table.protected')}</span>`}
+      </td>
+    </tr>`).join('');
+}
+
+window.changeRole = async (uid, role) => {
+  await updateDoc(doc(db, 'users', uid), { role });
+  const u = allUsers.find(u => (u.uid || u.id) === uid);
+  if (u) u.role = role;
+  showToast(t('toast.roleChanged'));
+};
+
+window.deleteUser = async (uid) => {
+  if (!confirm(t('confirm.delUser'))) return;
+  await deleteDoc(doc(db, 'users', uid));
+  allUsers = allUsers.filter(u => (u.uid || u.id) !== uid);
+  _renderUsers();
+  _setInner('st-users', allUsers.length);
+  showToast(t('toast.userDel'));
+};
+
+/* ══════════════════════════════════════
+   PRICING
+══════════════════════════════════════ */
+const DEFAULT_PRICING = {
+  starter:    { name:'Starter',    nameAr:'المبتدئ',   price:'$2k – $5k',  desc:'مثالي للمشاريع الناشئة',      features:['موقع متجاوب','تصميم أساسي','دعم شهر'] },
+  growth:     { name:'Growth',     nameAr:'النمو',     price:'$10k – $25k', desc:'منتجات رقمية متكاملة',        features:['تطبيق + ويب','منطق مخصص','دعم 3 أشهر'] },
+  enterprise: { name:'Enterprise', nameAr:'المؤسسات', price:'$50k+',       desc:'برمجيات ذكاء اصطناعي متقدمة', features:['برمجيات ضخمة','تكامل AI كامل','فريق 24/7'] },
+};
+
+async function _loadPricing() {
+  try {
+    const snap = await getDoc(doc(db, 'siteConfig', 'pricing'));
+    pricingData = snap.exists() ? snap.data() : DEFAULT_PRICING;
+  } catch (e) { pricingData = DEFAULT_PRICING; }
+  _renderPricing();
+}
+
+function _renderPricing() {
+  const el = document.getElementById('pricing-cards');
+  if (!el) return;
+  el.innerHTML = ['starter','growth','enterprise'].map(k => {
+    const p = pricingData[k] || DEFAULT_PRICING[k];
+    return `
+      <div class="adm-stat-card">
+        <p style="font-size:.7rem;font-weight:700;color:var(--text3);
+                  letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem">
+          ${p.name}
+        </p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem">
+          <div><label style="display:block;font-size:.7rem;color:var(--text3);margin-bottom:.35rem">الاسم (عربي)</label>
+               <input class="ctrl-input" id="p-${k}-nameAr" value="${p.nameAr || ''}"/></div>
+          <div><label style="display:block;font-size:.7rem;color:var(--text3);margin-bottom:.35rem">Name (EN)</label>
+               <input class="ctrl-input" id="p-${k}-nameEn" value="${p.nameEn || p.name || ''}" style="direction:ltr"/></div>
+        </div>
+        <div style="margin-bottom:1rem">
+          <label style="display:block;font-size:.7rem;color:var(--text3);margin-bottom:.35rem">السعر</label>
+          <input class="ctrl-input" id="p-${k}-price" value="${p.price || ''}" style="direction:ltr"/>
+        </div>
+        <div style="margin-bottom:1rem">
+          <label style="display:block;font-size:.7rem;color:var(--text3);margin-bottom:.35rem">الوصف</label>
+          <input class="ctrl-input" id="p-${k}-desc" value="${p.desc || ''}"/>
+        </div>
+        <div>
+          <label style="display:block;font-size:.7rem;color:var(--text3);margin-bottom:.35rem">
+            المميزات (سطر لكل ميزة)
+          </label>
+          <textarea class="ctrl-input" id="p-${k}-features"
+                    rows="4" style="resize:vertical">${(p.features || []).join('\n')}</textarea>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+window.savePricing = async () => {
+  const keys = ['starter','growth','enterprise'];
+  const data = {};
+  keys.forEach(k => {
+    data[k] = {
+      name:     DEFAULT_PRICING[k].name,
+      nameAr:   _getVal(`p-${k}-nameAr`),
+      nameEn:   _getVal(`p-${k}-nameEn`),
+      price:    _getVal(`p-${k}-price`),
+      desc:     _getVal(`p-${k}-desc`),
+      features: _getVal(`p-${k}-features`).split('\n').filter(f => f.trim()),
+    };
+  });
+  await setDoc(doc(db, 'siteConfig', 'pricing'), data);
+  pricingData = data;
+  showToast(t('toast.saved'));
+};
+
+/* ══════════════════════════════════════
+   SERVICES
+══════════════════════════════════════ */
+const DEFAULT_SERVICES = [
+  { id:'s1', nameAr:'تطوير الويب',       icon:'language',   color:'#00D4FF', descAr:'تطوير مواقع إلكترونية متجاوبة وعالية الأداء' },
+  { id:'s2', nameAr:'تطبيقات الجوال',    icon:'smartphone', color:'#7C3AED', descAr:'تطبيقات ذكية لنظامي Android و iOS' },
+  { id:'s3', nameAr:'بوتات AI',           icon:'smart_toy',  color:'#00E676', descAr:'بوتات ذكاء اصطناعي لأتمتة المهام' },
+  { id:'s4', nameAr:'تصميم UI/UX',        icon:'brush',      color:'#FFB700', descAr:'تصاميم عصرية تركز على تجربة المستخدم' },
+];
+
+async function _loadServices() {
+  try {
+    const snap = await getDoc(doc(db, 'siteConfig', 'services'));
+    servicesData = snap.exists() ? snap.data().list : DEFAULT_SERVICES;
+  } catch (e) { servicesData = DEFAULT_SERVICES; }
+  _renderServices();
+}
+
+function _renderServices() {
+  const el = document.getElementById('services-list');
+  if (!el) return;
+  el.innerHTML = servicesData.map((s, i) => `
+    <div class="adm-stat-card"
+         style="display:grid;grid-template-columns:auto 1fr 1fr 1fr auto;gap:1rem;align-items:center">
+      <span class="material-symbols-outlined" style="color:${s.color};font-size:1.75rem">${s.icon}</span>
+      <div>
+        <label style="display:block;font-size:.7rem;color:var(--text3);margin-bottom:.35rem">الاسم</label>
+        <input class="ctrl-input" id="srv-${i}-nameAr" value="${s.nameAr || ''}"/>
+      </div>
+      <div>
+        <label style="display:block;font-size:.7rem;color:var(--text3);margin-bottom:.35rem">Name (EN)</label>
+        <input class="ctrl-input" id="srv-${i}-nameEn" value="${s.nameEn || ''}" style="direction:ltr"/>
+      </div>
+      <div>
+        <label style="display:block;font-size:.7rem;color:var(--text3);margin-bottom:.35rem">الوصف</label>
+        <input class="ctrl-input" id="srv-${i}-descAr" value="${s.descAr || ''}"/>
+      </div>
+      <div>
+        <label style="display:block;font-size:.7rem;color:var(--text3);margin-bottom:.35rem">Icon</label>
+        <input class="ctrl-input" id="srv-${i}-icon" value="${s.icon || ''}" style="direction:ltr"/>
+      </div>
+      <button class="btn-danger" onclick="removeService(${i})">
+        <span class="material-symbols-outlined" style="font-size:.9rem">delete</span>
+      </button>
+    </div>`).join('');
+}
+
+window.addService = () => {
+  servicesData.push({ id:'s'+Date.now(), nameAr:'خدمة جديدة', icon:'star', color:'#00D4FF', descAr:'وصف الخدمة' });
+  _renderServices();
+};
+
+window.removeService = (i) => { servicesData.splice(i, 1); _renderServices(); };
+
+window.saveServices = async () => {
+  servicesData = servicesData.map((s, i) => ({
+    ...s,
+    nameAr: _getVal(`srv-${i}-nameAr`) || s.nameAr,
+    nameEn: _getVal(`srv-${i}-nameEn`) || '',
+    descAr: _getVal(`srv-${i}-descAr`) || s.descAr,
+    icon:   _getVal(`srv-${i}-icon`)   || s.icon,
+  }));
+  await setDoc(doc(db, 'siteConfig', 'services'), { list: servicesData });
+  showToast(t('toast.saved'));
+};
+
+/* ══════════════════════════════════════
+   SETTINGS
+══════════════════════════════════════ */
+async function _loadSettings() {
+  _renderWaFields(['https://wa.me/201283328730']);
+  try {
+    const snap = await getDoc(doc(db, 'siteConfig', 'general'));
+    if (!snap.exists()) return;
+    const d = snap.data();
+    if (d.company)  _setVal('s-company',  d.company);
+    if (d.email)    _setVal('s-email',    d.email);
+    if (d.address)  _setVal('s-address',  d.address);
+    if (d.tagline)  _setVal('s-tagline',  d.tagline);
+    if (d.taglineEn) _setVal('s-taglineEn', d.taglineEn);
+    if (d.facebook) _setVal('s-facebook', d.facebook);
+    if (d.instagram) _setVal('s-instagram', d.instagram);
+    if (d.linkedin) _setVal('s-linkedin', d.linkedin);
+    const wa = Array.isArray(d.whatsapp) ? d.whatsapp : (d.whatsapp ? [d.whatsapp] : ['']);
+    _renderWaFields(wa);
+  } catch (e) {}
+}
+
+function _renderWaFields(nums) {
+  const c = document.getElementById('whatsapp-numbers');
+  if (!c) return;
+  c.innerHTML = '';
+  (nums.length ? nums : ['']).forEach((n, i) => {
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;gap:.5rem;align-items:center';
+    row.innerHTML = `
+      <input class="ctrl-input wa-num-input" value="${n}"
+             style="flex:1;direction:ltr"
+             placeholder="https://wa.me/201XXXXXXXXX"/>
+      ${nums.length > 1
+        ? `<button onclick="removeWaField(${i})"
+                   style="background:rgba(255,60,60,.12);border:1px solid rgba(255,60,60,.25);
+                          color:#ff6b6b;border-radius:.5rem;padding:.4rem .6rem;
+                          cursor:pointer;display:flex;align-items:center">
+             <span class="material-symbols-outlined" style="font-size:.95rem">delete</span>
+           </button>`
+        : ''}`;
+    c.appendChild(row);
+  });
+}
+
+function _getWaNumbers() {
+  return [...document.querySelectorAll('.wa-num-input')]
+    .map(el => el.value.trim())
+    .filter(v => v);
+}
+
+window.addWaField = () => { const n = _getWaNumbers(); n.push(''); _renderWaFields(n); };
+window.removeWaField = (i) => {
+  const n = _getWaNumbers(); n.splice(i, 1);
+  _renderWaFields(n.length ? n : ['']);
+};
+
+window.saveSettings = async () => {
+  await setDoc(doc(db, 'siteConfig', 'general'), {
+    company:    _getVal('s-company'),
+    email:      _getVal('s-email'),
+    address:    _getVal('s-address'),
+    tagline:    _getVal('s-tagline'),
+    taglineEn:  _getVal('s-taglineEn'),
+    whatsapp:   _getWaNumbers(),
+    facebook:   _getVal('s-facebook'),
+    instagram:  _getVal('s-instagram'),
+    linkedin:   _getVal('s-linkedin'),
+    updatedAt:  serverTimestamp(),
+  });
+  showToast(t('toast.saved'));
+};
+
+/* ══════════════════════════════════════
+   DOM HELPERS
+══════════════════════════════════════ */
+function _getVal(id) {
+  const el = document.getElementById(id);
+  return el ? el.value : '';
+}
+function _setVal(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.value = val;
+}
+function _setInner(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = val;
+}
+function _show(id, disp) {
+  const el = document.getElementById(id);
+  if (el) el.style.display = disp;
+}
+
+/* ══════════════════════════════════════
+   INIT
+══════════════════════════════════════ */
+initProducts();
+
+</script>
+
+</body>
+</html>
